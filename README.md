@@ -170,7 +170,7 @@ MDviewer runs the processor in its own shell, meaning standard environment varia
 
 These variables allows you to script different processes based on the type of file being viewed. For example, on a UNIX system you can create a shell script `mdviewer-proc.sh`
 
-    #!/bin/bash
+    #!/bin/sh
 
     case "$MDVIEWER_EXT" in
         md | markdown | text )
