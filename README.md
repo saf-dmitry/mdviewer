@@ -165,8 +165,9 @@ MathJax supports most of the standard LaTeX syntax, as well as some AMS extensio
 
 MDviewer runs the processor in its own shell, meaning standard environment variables are not automatically passed. You can use MDviewer's environment variables to augment your own in your scripts. MDviewer makes the following variables available for use in your shell scripts:
 
-- `MDVIEWER_EXT`: The extension of the file being processed.
-- `MDVIEWER_PATH`: The directory part of the path to the file being viewed.
+- `MDVIEWER_FILE`: The name of the file being viewed
+- `MDVIEWER_EXT`: The extension of the file being viewed
+- `MDVIEWER_ORIGIN`: The location (base directory) of the file being viewed
 
 These variables allows you to script different processes based on the type of file being viewed. For example, on a UNIX system you can create a shell script `mdviewer-proc.sh`
 

@@ -26,7 +26,8 @@ class App(QtGui.QMainWindow):
         fpath, fname = os.path.split(os.path.abspath(self.filename))
         fext = fname.split('.')[-1].lower()
         os.environ["MDVIEWER_EXT"] = fext
-        os.environ["MDVIEWER_PATH"] = fpath
+        os.environ["MDVIEWER_FILE"] = fname
+        os.environ["MDVIEWER_ORIGIN"] = fpath
 
     def __init__(self, parent=None, filename=''):
         QtGui.QMainWindow.__init__(self, parent)
@@ -402,7 +403,8 @@ class WatcherThread(QtCore.QThread):
         QtCore.QThread.__init__(self)
         self.filename = filename
         # print os.getenv('MDVIEWER_EXT')
-        # print os.getenv('MDVIEWER_PATH')
+        # print os.getenv('MDVIEWER_FILE')
+        # print os.getenv('MDVIEWER_ORIGIN')
 
     def run(self):
         warn = ''
