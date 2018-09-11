@@ -1,0 +1,393 @@
+
+/* Description: Stylesheet for Pandoc HTML export */
+
+html {
+    font-size: 12pt;
+}
+
+body {
+    font-family: "Liberation Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    max-width: 740px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
+    text-align: justify;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
+    color: #24292e;
+    background-color: #fff;
+}
+
+p {
+    vertical-align: baseline;
+}
+
+q:lang(en) {
+    quotes: "“" "”";
+}
+
+q:lang(de) {
+    quotes: "„" "“";
+}
+
+q:lang(ru) {
+    quotes: "«" "»";
+}
+
+.title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3.2rem;
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+    border-style: none;
+}
+
+.author {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-style: none;
+}
+
+.date {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+h1, h2, h3 {
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 1px;
+}
+
+h1 {
+    font-size: 2.4rem;
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-top: 2.1rem;
+    margin-bottom: 0;
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-top: 2.1rem;
+    margin-bottom: 0;
+}
+
+h4 {
+    font-size: 1.3rem;
+    margin-top: 2.1rem;
+    margin-bottom: 0;
+}
+
+h5 {
+    font-size: 1.3rem;
+    margin-top: 2.1rem;
+    margin-bottom: 0;
+}
+
+h6 {
+    font-size: 1.3rem;
+    margin-top: 2.1rem;
+    margin-bottom: 0;
+}
+
+hr {
+    width: 100%;
+    height: 1px;
+    color: #cccccc;
+    border: none;
+    background-color: #cccccc;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+a {
+    color: #08c;
+    padding-bottom: 1px;
+    text-decoration: none;
+}
+
+a[href^="#"] {
+    color: #08c;
+}
+
+a:hover {
+    border-bottom: 1px solid;
+}
+
+a.footnoteRef, a.footnote {
+    color: #08c;
+    border-style: none;
+}
+
+a > sup {
+    height: 0;
+    font-size: 80%;
+}
+
+pre, code {
+    font-size: 100%;
+    font-family: "Ubuntu Mono", "DejaVu Sans Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+pre {
+    border-radius: 0.1rem;
+    background-color: #f6f8fa;
+    padding: 0.8rem 1rem;
+    overflow: auto;
+    white-space: pre !important;
+}
+
+code {
+    border-radius: 0.1rem;
+    background-color: #f7f7f7;
+    padding: 0rem 0.2rem;
+    white-space: pre-wrap !important;
+}
+
+pre > code, code > pre {
+    border: none;
+    padding: 0rem;
+    line-height: 1.5;
+    overflow-x: scroll;
+    white-space: pre !important;
+}
+
+table.sourceCode pre {
+    border: none;
+    line-height: 1.5;
+}
+
+h1 > code, h2 > code, h3 > code {
+    font-size: 0.8em;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+dl {
+    margin-left: 1rem;
+}
+
+ul {
+    list-style-type: outside disc;
+}
+
+ol {
+    list-style-type: outside decimal;
+}
+
+li {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+li > p:first-of-type {
+    margin: 0;
+}
+
+dl dt {
+    margin-top: 0.5rem;
+    font-weight: 700;
+}
+
+blockquote {
+    margin: auto 1.5rem;
+    color: #555555;
+}
+
+img {
+    max-width: 100%;
+}
+
+figure, div.figure {
+    margin: 1.2rem auto;
+    text-align: center;
+}
+
+figure figcaption, div.figure p.caption {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 100%;
+    text-align: center;
+    margin: 0.5rem auto;
+}
+
+table {
+    width: auto;
+    margin: 0 auto;
+    line-height: 1.4;
+    border: 1px solid #cccccc;
+    border-collapse: collapse;
+    border-spacing: 0rem;
+}
+
+table th {
+    height: 2rem;
+    font-weight: 400;
+    background-color: #f5f5f5;
+}
+
+table td {
+    height: 2rem;
+}
+
+table th, td {
+    padding: 0.1rem 0.4rem !important;
+    vertical-align: center;
+    border: 1px solid #dddddd;
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+tbody tr:nth-child(odd) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+table caption {
+    caption-side: top;
+    font-style: normal;
+    text-align: center;
+    font-weight: normal;
+    font-size: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+span.citation {
+
+}
+
+div.references {
+
+}
+
+div.epigraph {
+    margin: 1.5rem 2.5rem 0.5rem 2.5rem;
+    font-style: italic;
+}
+
+div.todo, div.note {
+    margin: 0.5rem auto;
+    padding: 0.1rem 1rem;
+}
+
+div.todo {
+    border-left: 4px solid #e44232;
+    background: #fdf2f2;
+    color: #e52a2a;
+}
+
+div.note {
+    border-left: 4px solid #6ab0de;
+    background: #e7f2fa;
+    color: #08c;
+}
+
+div.sidebar {
+    margin: 0.5rem auto;
+    padding: 0.1rem 1rem;
+    border-left: 4px solid #a8a8a8;
+    background: #f5f5eb;
+    color: 333;
+}
+
+p, div, li, td {
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hypens: auto;
+    hyphens: auto;
+}
+
+@media print {
+
+    html {
+        font-size: 12pt;
+    }
+
+    body {
+        margin: 2rem 2rem;
+        min-width: none;
+        max-width: none;
+        background-color: transparent;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+    }
+
+    a {
+        text-decoration: none;
+        border-style: none;
+    }
+
+    a:after {
+        content: " (" attr(href) ")";
+        word-wrap: break-word;
+    }
+
+    a[href^="#"]:after {
+        display: none;
+    }
+
+    a[href^="#fnref"] {
+        display: none;
+    }
+
+    pre > code, code > pre {
+        white-space: pre-wrap !important;
+    }
+
+    img {
+        max-width: 160mm;
+        max-height: 220mm;
+    }
+
+    figure, div.figure {
+        page-break-inside: avoid;
+    }
+
+}
+
+::selection {
+    background-color: rgba(209, 232, 255, 0.8);
+}
+
+.firstdiff-start {
+    background-color: rgba(255, 100, 100, 0.2);
+    -webkit-transition: background-color 1s;
+}
+
+.firstdiff-end {
+    background-color: none;
+    -webkit-transition: background-color 1s;
+}
+
