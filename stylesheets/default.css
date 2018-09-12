@@ -22,15 +22,27 @@ p {
     vertical-align: baseline;
 }
 
-q:lang(en) {
+q {
     quotes: "“" "”";
 }
 
-q:lang(de) {
+q:lang(en), q:lang(is), q:lang(ga), q:lang(mt), q:lang(vi) {
+    quotes: "“" "”";
+}
+
+q:lang(bs), q:lang(hr), q:lang(fi), q:lang(nl), q:lang(sv) {
+	quotes: "”" "”";
+}
+
+q:lang(de), q:lang(cs), q:lang(da), q:lang(et), q:lang(sl) {
     quotes: "„" "“";
 }
 
-q:lang(ru) {
+q:lang(hu), q:lang(pl), q:lang(ro) {
+    quotes: "„" "”";
+}
+
+q:lang(fr), q:lang(es), q:lang(it), q:lang(ru), q:lang(ua) {
     quotes: "«" "»";
 }
 
