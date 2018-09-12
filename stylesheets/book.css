@@ -353,25 +353,25 @@ p, div, li, td {
     }
 
     h1, h2, h3, h4, h5, h6 {
-        page-break-after: avoid;
+        page-break-after: avoid !important;
     }
 
     a {
-        text-decoration: none;
-        border-style: none;
+        text-decoration: none !important;
+        border-style: none !important;
     }
 
     a:after {
-        content: " (" attr(href) ")";
-        word-wrap: break-word;
+        content: " (" attr(href) ")" !important;
+        word-wrap: break-word !important;
     }
 
     a[href^="#"]:after {
-        display: none;
+        display: none !important;
     }
 
     a[href^="#fnref"] {
-        display: none;
+        display: none !important;
     }
 
     pre > code, code > pre {
@@ -379,12 +379,12 @@ p, div, li, td {
     }
 
     img {
-        max-width: 160mm;
-        max-height: 220mm;
+        max-width: 160mm !important;
+        max-height: 220mm !important;
     }
 
     figure, div.figure {
-        page-break-inside: avoid;
+        page-break-inside: avoid !important;
     }
 
 }
