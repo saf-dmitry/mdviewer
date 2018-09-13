@@ -142,7 +142,7 @@ To install MathJax on Debian-based systems such as Ubuntu or Mint, all you need 
 
     sudo apt-get install libjs-mathjax
 
-On UNIX systems where MathJax is not packaged, you can download it from GitHub and extract to `/usr/share/javascript` directory.
+On UNIX-like systems where MathJax is not packaged, you can download it from [GitHub][mathjax-github] and extract to `/usr/share/javascript/` directory.
 
 Alternatively, you can use a third party [CDN server][mathjax-cdn], where the JavaScript needed for MathJax to work will be loaded at run time. This simplifies the installation and ensures the latest version of the library is always used, but requires an Internet connection at run time.
 
@@ -248,13 +248,15 @@ You should have received a copy of the GNU General Public License along with thi
 
 [mathjax]: https://www.mathjax.org/
 
-[katex]: https://katex.org/
+[mathjax-github]: https://github.com/mathjax/MathJax
 
 [mathjax-cdn]: https://cdnjs.cloudflare.com/ajax/libs/mathjax/
 
 [mathjax-tex]: http://docs.mathjax.org/en/latest/tex.html
 
 [mathjax-config]: http://docs.mathjax.org/en/latest/configuration.html
+
+[katex]: https://katex.org/
 
 [github-issues]: https://github.com/saf-dmitry/mdviewer/issues
 
