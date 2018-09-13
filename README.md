@@ -15,22 +15,23 @@ MDviewer can also be extended to work with just about any processor you need, in
 - [Configuration](#configuration)
     - [Configuration Files](#configuration-files)
     - [Setting a Markdown Processor](#setting-a-markdown-processor)
-- [Usage](#usage)
+- [Basic Usage](#basic-usage)
     - [Opening Files](#opening-files)
+    - [Navigating Preview](#navigating-preview)
     - [Choosing a Style](#choosing-a-style)
-    - [Text Zoom](#text-zoom)
-    - [Table of Contents](#table-of-contents)
+    - [Zooming In and Out](#zooming-in-and-out)
     - [Scroll to Edit](#scroll-to-edit)
     - [Clicking External Links](#clicking-external-links)
     - [Searching](#searching)
     - [Exporting HTML](#exporting-html)
     - [Printing](#printing)
-    - [Using Custom Styles](#using-custom-styles)
+- [Advanced Usage](#advanced-usage)
+    - [Adding Custom Styles](#adding-custom-styles)
     - [Using Math Formulas](#using-math-formulas)
-- [Environment Variables](#environment-variables)
+    - [Evaluating Environment Variables](#evaluating-environment-variables)
 - [Troubleshooting](#troubleshooting)
     - [Preview Not Updating](#preview-not-updating)
-    - [Scroll to Edit Issue](#scroll-to-edit-issue)
+    - [Scroll to Edit Misbehaving](#scroll-to-edit-misbehaving)
     - [Overall Performance Issue](#overall-performance-issue)
 - [Acknowledgments](#acknowledgments)
 - [Bugs](#bugs)
@@ -71,29 +72,33 @@ Configuration file entry example:
     processor_args: --from=markdown --to=html5 --standalone
 
 
-# Usage
+# Basic Usage
 
 
 ## Opening Files
 
-You can open Markdown files directly using the "File > Open" menu option. Alternatively, you can give the name of the file as a command-line argument when calling the viewer:
+You can open Markdown files directly using the "File > Open" menu option. If a file is currently being displayed it will be closed. Alternatively, you can give the path and name of a particular file as a command-line argument to open that file immediately upon viewer's startup:
 
     mdviewer file.md
 
 
-## Choosing a Style
+## Navigating Preview
 
-You can select a style in the "Style" drop-down menu.
-
-
-## Text Zoom
-
-You can change the text size using the "View" menu options.
-
-
-## Table of Contents
+There are multiple ways of scrolling the viewing area. One is to use the Up Arrow and Down Arrow keys. You may also use the scrollbar, your mousewheel or the Page Up and Page Down keys.
 
 If your document has headings in it, the "Goto" drop-down menu will be active. Clicking on it will expand the Table of Contents, and clicking the title of a heading will navigate to that section of the preview.
+
+
+## Choosing a Style
+
+You can select a preview and print style in the "Style" drop-down menu.
+
+
+## Zooming In and Out
+
+You can increase or decrease the magnification of the document view using the "View" menu options.
+
+Note: Depending on the selected style zooming will change the size of everything on the preview, including text and images, or just the size of the font.
 
 
 ## Scroll to Edit
@@ -112,7 +117,7 @@ Clicking an external link in your document's preview will open it in your defaul
 
 ## Searching
 
-The search bar can be accessed with "File > Find" menu option and allows you to incrementally search through the preview for a word or phrase. Once you search, you can use "Next" and "Previous" buttons on the right side of the search bar to navigate forward and backward through additional results.
+The search bar on the bottom of the viewing area can be accessed with the "File > Find" menu option and allows you to incrementally search through the preview for a word or phrase. Once you search, you can use "Next" and "Previous" buttons on the right side of the search bar to navigate forward and backward through additional results.
 
 The buttons on the left side of the search bar allow you to narrow the search down by case sensitivity and wrap the search around the document boundaries.
 
@@ -129,9 +134,14 @@ The "File > Print" menu option will bring up a standard print dialog. Here you c
 You can save the preview as paginated PDF by choosing "Print to File (PDF)" in the drop-down list of available printers.
 
 
-## Using Custom Styles
+# Advanced Usage
 
-If you're familiar with CSS, you can create your own style sheets and copy them to the viewer's `stylesheets` directory. New styles will be added to the "Style" drop-down menu and named based on the CSS file name.
+
+## Adding Custom Styles
+
+If you're familiar with CSS, you can create your own style sheets and copy them to the MDviewer's `stylesheets` directory. New styles will be added to the "Style" drop-down menu and named based on the CSS file name.
+
+All CSS3 options that work in WebKit will work in MDviewer. See existing style sheets in the application's `stylesheets` directory for details.
 
 
 ## Using Math Formulas
@@ -146,7 +156,7 @@ On UNIX-like systems where MathJax is not packaged, you can download it from [Gi
 
 Alternatively, you can use a third party [CDN server][mathjax-cdn], where the JavaScript needed for MathJax to work will be loaded at run time. This simplifies the installation and ensures the latest version of the library is always used, but requires an Internet connection at run time.
 
-To enable MathJax support you have to point your Markdown processor or your document template to the `MathJax.js` load script. The exact way depends on your Markdown processor (see the [Setting a Markdown Processor](#setting-a-markdown-processor) section). E.g., in case of MultiMarkdown you can add following to your Markdown document:
+To enable MathJax support you have to point your Markdown processor or your document template to the `MathJax.js` load script. The exact way depends on your Markdown processor (see the [Setting a Markdown Processor](#setting-a-markdown-processor) section). E.g., in case of MultiMarkdown you can add following metadata directly to your Markdown document:
 
     html header: <script type="text/javascript"
         src="/usr/share/javascript/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
@@ -161,7 +171,7 @@ Pandoc provides the `--mathjax[=URL]` command-line option. The URL should point 
 MathJax supports most of the standard LaTeX syntax, as well as some AMS extensions and custom LaTeX macros. See [MathJax TeX and LaTeX Support][mathjax-tex] and [Loading and Configuring MathJax][mathjax-config] pages for details.
 
 
-# Environment Variables
+## Evaluating Environment Variables
 
 MDviewer runs the processor in its own shell, meaning standard environment variables are not automatically passed. You can use MDviewer's environment variables to augment your own in your scripts. MDviewer makes the following variables available for use in your shell scripts:
 
@@ -169,7 +179,7 @@ MDviewer runs the processor in its own shell, meaning standard environment varia
 - `MDVIEWER_EXT`: The extension of the file being viewed
 - `MDVIEWER_ORIGIN`: The location (base directory) of the file being viewed
 
-These variables allows you to script different processes based on the type of file being viewed. For example, on a UNIX system you can create a shell script `mdviewer-proc.sh`
+These variables allows you to script different processes based on the type of file being viewed. For example, on a UNIX-like system you can create a shell script `mdviewer-proc.sh`
 
     #!/bin/sh
 
@@ -193,18 +203,18 @@ make in executable and point the Markdown processor setting to it:
 
 Some text editors don't modify the contents of a file, but replace the original file with a new one having same name but different inode. Replacing a file will delete the old one, so MDviewer will stop watching the file. Many editors can be configured to modify existing file when saving instead of replacing it. Below some configuration tips for popular programming editors.
 
-- Vim: Add following line to your `.vimrc` configuration file:
+- __Vim:__ Add following line to your `.vimrc` configuration file:
 
         set backupcopy=yes
 
-- GNU Emacs: Add following line to your `.emacs` configuration file:
+- __GNU Emacs:__ Add following line to your `.emacs` configuration file:
 
         (setq backup-by-copying t)
 
 
-## Scroll to Edit Issue
+## Scroll to Edit Misbehaving
 
-If you are using external JavaScripts, which run asynchronously, you may experience unexpected scrolling behavior. DOM changes can be especially problematic.
+If you are using external JavaScripts, which run asynchronously, i.e., after preview loading was finished, you may experience unexpected scrolling behavior. DOM changes can be especially problematic.
 
 In this case you may need to increase the scroll delay value using the `scroll_delay` filed in your configuration file (default is 1500 ms).
 
