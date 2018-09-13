@@ -54,14 +54,14 @@ MDviewer requires the following packages to run:
 By default, MDviewer checks the following places for configuration files, in the following order:
 
 - `$HOME/.config/mdviewer/settings.yml` on macOS and GNU/Linux or `%APPDATA%\mdviewer\settings.yml` on MS Windows
-- `settings.yml` in the viewer's root directory
+- `settings.yml` in the application's root directory
 
 Configuration files are UTF-8-encoded YAML files.
 
 
 ## Setting a Markdown Processor
 
-First, you must specify a Markdown processor in the `processor_path` field of the configuration file. Enter a full path to an executable or script which can return HTML or SVG output on STDOUT and it will be used for Preview and Save operations. Examples of cross-plattform Markdown processors include [pandoc][pandoc] or [MultiMarkdown][multimarkdown].
+First, you must specify a Markdown processor in the `processor_path` field of the configuration file. Enter a full path to an executable or script which can return HTML or SVG output on STDOUT and it will be used for Preview and Save operations. Examples of cross-plattform Markdown processors include [pandoc][pandoc], [PHP Markdown Extra][php-markdown-extra], or [MultiMarkdown][multimarkdown].
 
 If the specified processor needs additional arguments besides the file name, specify them in the `processor_args` field, separating each argument with a space, just like you would on the command line. If your process is more complicated than a single command, create a self-contained script, make it executable and point the Markdown processor setting to it. In your scripts you can use the MDviewer-specific environment variables as described in the [Environment Variables](#environment-variables) section.
 
@@ -76,24 +76,24 @@ Configuration file entry example:
 
 ## Opening Files
 
-You can open Markdown files directly using the File > Open menu option. Alternatively, you can give the name of the file as a command-line argument when calling the viewer:
+You can open Markdown files directly using the "File > Open" menu option. Alternatively, you can give the name of the file as a command-line argument when calling the viewer:
 
     mdviewer file.md
 
 
 ## Choosing a Style
 
-You can select a style in the Style drop-down menu.
+You can select a style in the "Style" drop-down menu.
 
 
 ## Text Zoom
 
-You can change the text size using the View menu option.
+You can change the text size using the "View" menu options.
 
 
 ## Table of Contents
 
-If your document has headings in it, the Goto menu option will be active. Clicking on it will expand the Table of Contents, and clicking the title of a heading will navigate to that section of the preview.
+If your document has headings in it, the "Goto" drop-down menu will be active. Clicking on it will expand the Table of Contents, and clicking the title of a heading will navigate to that section of the preview.
 
 
 ## Scroll to Edit
@@ -112,26 +112,26 @@ Clicking an external link in your document's preview will open it in your defaul
 
 ## Searching
 
-The search bar can be accessed with File > Find menu option and allows you to incrementally search through the preview for a word or phrase. Once you search, you can use Next and Previous buttons on the right side of the search bar to navigate forward and backward through additional results.
+The search bar can be accessed with "File > Find" menu option and allows you to incrementally search through the preview for a word or phrase. Once you search, you can use "Next" and "Previous" buttons on the right side of the search bar to navigate forward and backward through additional results.
 
 The buttons on the left side of the search bar allow you to narrow the search down by case sensitivity and wrap the search around the document boundaries.
 
 
 ## Exporting HTML
 
-The File > Save HTML menu option will allow you to save a full HTML document ready for sharing or publishing.
+The "File > Save HTML" menu option will allow you to save a full HTML document ready for sharing or publishing.
 
 
 ## Printing
 
-The File > Print menu option will bring up a standard print dialog. Here you can select a printer and set available printing options. The preview will be printed based on the currently selected style. Each preview style has its own accompanying print style which modifies type sizes and colors, and displays external links.
+The "File > Print" menu option will bring up a standard print dialog. Here you can select a printer and set available printing options. The preview will be printed based on the currently selected style. Each preview style has its own accompanying print style which modifies type sizes and colors, and displays external links.
 
 You can save the preview as paginated PDF by choosing "Print to File (PDF)" in the drop-down list of available printers.
 
 
 ## Using Custom Styles
 
-If you're familiar with CSS, you can create your own style sheets and copy them to the viewer's `stylesheets` directory. New styles will be added to the Style drop-down menu and named based on the CSS file name.
+If you're familiar with CSS, you can create your own style sheets and copy them to the viewer's `stylesheets` directory. New styles will be added to the "Style" drop-down menu and named based on the CSS file name.
 
 
 ## Using Math Formulas
@@ -243,6 +243,8 @@ You should have received a copy of the GNU General Public License along with thi
 [pyqt4]: https://riverbankcomputing.com/software/pyqt/download
 
 [pandoc]: https://pandoc.org
+
+[php-markdown-extra]: https://michelf.ca/projects/php-markdown/extra/
 
 [multimarkdown]: http://fletcherpenney.net/multimarkdown/
 
