@@ -31,7 +31,7 @@ MDviewer can also be extended to work with just about any processor you need, in
     - [Evaluating Environment Variables](#evaluating-environment-variables)
 - [Troubleshooting](#troubleshooting)
     - [Preview Not Updating](#preview-not-updating)
-    - [Scroll to Edit Misbehaving](#scroll-to-edit-misbehaving)
+    - [Scroll to Edit Behavior](#scroll-to-edit-behavior)
     - [Overall Performance Issue](#overall-performance-issue)
 - [Acknowledgments](#acknowledgments)
 - [Bugs](#bugs)
@@ -168,7 +168,7 @@ Pandoc provides the `--mathjax[=URL]` command-line option. The URL should point 
            --mathjax=/usr/share/javascript/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 
-MathJax supports most of the standard LaTeX syntax, as well as some AMS extensions and custom LaTeX macros. See [MathJax TeX and LaTeX Support][mathjax-tex] and [Loading and Configuring MathJax][mathjax-config] pages for details.
+MathJax supports most of the standard TeX and LaTeX math syntax, as well as some AMS and other LaTeX extensions and custom macros. See [MathJax TeX and LaTeX Support][mathjax-tex] and [Loading and Configuring MathJax][mathjax-config] pages for details.
 
 
 ## Evaluating Environment Variables
@@ -212,11 +212,11 @@ Some text editors don't modify the contents of a file, but replace the original 
         (setq backup-by-copying t)
 
 
-## Scroll to Edit Misbehaving
+## Scroll to Edit Behavior
 
 If you are using external JavaScripts, which run asynchronously, i.e., after preview loading was finished, you may experience unexpected scrolling behavior. DOM changes can be especially problematic.
 
-In this case you may need to increase the scroll delay value using the `scroll_delay` filed in your configuration file (default is 1500 ms).
+In this case you may need to increase the scroll delay value using the `scroll_delay` field in your configuration file (default is 1500 ms).
 
 
 ## Overall Performance Issue
@@ -225,7 +225,7 @@ The rendering performance can vary greatly based on your configuration settings 
 
 - __Markdown processor.__ Different Markdown processors have different performance, which depends on the type of content you have in your document.
 
-- __Markdown document containing a lot of math formulas.__ The math rendering performance generally depends on the [MathJax][mathjax] configuration options, especially those controlling the output generation. Depending on type and complexity of your math you may consider using [KaTeX][katex] as alternative math renderer.
+- __Markdown documents containing a lot of math expressions.__ The math rendering performance generally depends on the [MathJax][mathjax] configuration, especially the output processor options. Depending on type and complexity of your math you may consider using [KaTeX][katex] as alternative LaTeX math renderer.
 
 
 # Acknowledgments
