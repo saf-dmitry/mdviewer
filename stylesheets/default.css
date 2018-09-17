@@ -14,6 +14,7 @@ body {
     padding-right: 2.5%;
     color: #24292e;
     background-color: #fff;
+    -webkit-font-smoothing: antialiased;
 }
 
 p {
@@ -135,6 +136,8 @@ a {
     color: #08c;
     padding-bottom: 1px;
     text-decoration: none;
+    -webkit-transition: border-bottom .2s ease-in-out;
+    transition: border-bottom .2s ease-in-out;
 }
 
 a[href^="#"] {
@@ -153,6 +156,10 @@ a.footnoteRef, a.footnote {
 a > sup {
     height: 0;
     font-size: 80%;
+}
+
+.footnote {
+    vertical-align: super;
 }
 
 pre, code {
@@ -296,6 +303,10 @@ div.references {
 
 }
 
+div.MathJax_Display {
+
+}
+
 div.epigraph {
     margin: 1.5rem 2.5rem 0.5rem 2.5rem;
     font-style: italic;
@@ -326,14 +337,12 @@ div.sidebar {
     color: 333;
 }
 
-p, div, li, td {
-    -ms-word-break: break-all;
-    word-break: break-all;
+p, div, li, td, pre, code {
     word-break: break-word;
+}
 
+p, div, li, td {
     -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hypens: auto;
     hyphens: auto;
 }
 
