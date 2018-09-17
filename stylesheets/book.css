@@ -176,7 +176,7 @@ a > sup {
     vertical-align: super;
 }
 
-pre, code {
+pre, code, tt {
     font-size: 100%;
     font-family: "Ubuntu Mono", "DejaVu Sans Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
@@ -305,6 +305,10 @@ div.references {
 
 div.MathJax_Display {
 
+}
+
+.task-list-item {
+    list-style-type: none !important;
 }
 
 div.epigraph {
