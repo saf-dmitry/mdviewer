@@ -52,14 +52,16 @@ MDviewer requires the following packages to run:
 
 ## Configuration Files
 
-MDviewer stores configuration data in UTF-8-encoded YAML files which have the `.yml` extension. While this is a little trickier than using a GUI, you're rewarded with a flexible system.
+MDviewer stores all of its configuration data in YAML files which have the `.yml` extension and use the UTF-8 encoding. While this is a little bit trickier than using a GUI, you're rewarded with a flexible system.
 
 By default, MDviewer checks the following places for configuration files, in the following order:
 
 1. `$HOME/.config/mdviewer/settings.yml` on macOS and GNU/Linux or `%APPDATA%\mdviewer\settings.yml` on MS Windows
 2. `settings.yml` in the application's root directory
 
-In general, you should place your personal settings in `$HOME/.config/mdviewer/settings.yml` or `%APPDATA%\mdviewer\settings.yml`, so they will be preserved between software updates.
+A path to the configuration file being used is printed to STDOUT during application's startup.
+
+Note: In general, you should place your personal settings in `$HOME/.config/mdviewer/settings.yml` (or `%APPDATA%\mdviewer\settings.yml`), so they will be preserved between software updates.
 
 
 ## Setting a Markdown Processor

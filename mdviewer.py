@@ -34,6 +34,7 @@ class App(QtGui.QMainWindow):
         self.filename = filename or os.path.join(script_dir, u'README.md')
 
         self.set_env()
+        Settings.print_path()
 
         # Configure window
         self.set_window_title()
@@ -433,13 +434,17 @@ class Settings:
         self.settings_file = self.user_source if os.path.exists(self.user_source) else self.app_source
         self.reload_settings()
 
+    def reload_settings(self):
+        with io.open(self.settings_file, 'r', encoding='utf8') as f:
+            self.settings = yaml.safe_load(f)
+
     @classmethod
     def get(cls, key, default_value):
         return cls().settings.get(key, default_value)
 
-    def reload_settings(self):
-        with io.open(self.settings_file, 'r', encoding='utf8') as f:
-            self.settings = yaml.safe_load(f)
+    @classmethod
+    def print_path(cls):
+        print 'Settings: %s' % cls().settings_file
 
 def main():
     app = QtGui.QApplication(sys.argv)
