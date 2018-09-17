@@ -2,9 +2,9 @@
 
 # MDviewer
 
-MDviewer is a cross-platform and editor-agnostic previewer for Markdown files. Use it with your favorite text editor and it updates every time you save.
+MDviewer is a cross-platform and editor-agnostic previewer for Markdown files. Use it with your favorite text editor and it updates every time you save. In applications that automatically save in the background, the Preview will be updated at save intervals as you type.
 
-MDviewer can also be extended to work with just about any processor you need, including Textile, reStructuredText, Wikitext and more.
+MDviewer can also be extended to work with just about any processor you need, including Textile, reStructuredText, MediaWiki and more.
 
 ![](images/screenshot.png)
 
@@ -52,12 +52,14 @@ MDviewer requires the following packages to run:
 
 ## Configuration Files
 
+MDviewer stores configuration data in UTF-8-encoded YAML files which have the `.yml` extension. While this is a little trickier than using a GUI, you're rewarded with a flexible system.
+
 By default, MDviewer checks the following places for configuration files, in the following order:
 
-- `$HOME/.config/mdviewer/settings.yml` on macOS and GNU/Linux or `%APPDATA%\mdviewer\settings.yml` on MS Windows
-- `settings.yml` in the application's root directory
+1. `$HOME/.config/mdviewer/settings.yml` on macOS and GNU/Linux or `%APPDATA%\mdviewer\settings.yml` on MS Windows
+2. `settings.yml` in the application's root directory
 
-Configuration files are UTF-8-encoded YAML files.
+In general, you should place your personal settings in `$HOME/.config/mdviewer/settings.yml` or `%APPDATA%\mdviewer\settings.yml`, so they will be preserved between software updates.
 
 
 ## Setting a Markdown Processor
@@ -86,7 +88,7 @@ You can open Markdown files directly using the "File > Open" menu option. If a f
 
 There are multiple ways of scrolling the viewing area. One is to use the Up Arrow and Down Arrow keys. You may also use the scrollbar, your mousewheel or the Page Up and Page Down keys.
 
-If your document has headings in it, the "Goto" drop-down menu will be active. Clicking on it will expand the Table of Contents, and clicking the title of a heading will navigate to that section of the preview.
+If your document has headings in it, the "Goto" drop-down menu will be active. Clicking on it will expand the Table of Contents, and clicking the title of a heading will navigate to that section of the Preview.
 
 
 ## Choosing a Style
@@ -98,7 +100,7 @@ You can select a preview and print style in the "Style" drop-down menu.
 
 You can increase or decrease the magnification of the document view using the "View" menu options.
 
-Note: Depending on the selected style zooming will change the size of everything on the preview, including text and images, or just the size of the font.
+Note: Depending on the selected style zooming will change the size of everything on the Preview, including text and images, or just the size of the font.
 
 
 ## Scroll to Edit
@@ -112,12 +114,12 @@ By default, the scrolling takes place after some delay (1500 ms). You can change
 
 ## Clicking External Links
 
-Clicking an external link in your document's preview will open it in your default browser.
+Clicking an external link in your document's Preview will open it in your default browser.
 
 
 ## Searching
 
-The search bar on the bottom of the viewing area can be accessed with the "File > Find" menu option and allows you to incrementally search through the preview for a word or phrase. Once you search, you can use "Next" and "Previous" buttons on the right side of the search bar to navigate forward and backward through additional results.
+The search bar on the bottom of the viewing area can be accessed with the "File > Find" menu option and allows you to incrementally search through the Preview for a word or phrase. Once you search, you can use "Next" and "Previous" buttons on the right side of the search bar to navigate forward and backward through additional results.
 
 The buttons on the left side of the search bar allow you to narrow the search down by case sensitivity and wrap the search around the document boundaries.
 
@@ -129,9 +131,9 @@ The "File > Save HTML" menu option will allow you to save a full HTML document r
 
 ## Printing
 
-The "File > Print" menu option will bring up a standard print dialog. Here you can select a printer and set available printing options. The preview will be printed based on the currently selected style. Each preview style has its own accompanying print style which modifies type sizes and colors, and displays external links.
+The "File > Print" menu option will bring up a standard print dialog. Here you can select a printer and set available printing options. The Preview will be printed based on the currently selected style. Each preview style has its own accompanying print style which modifies type sizes and colors, and displays external links.
 
-You can save the preview as paginated PDF by choosing "Print to File (PDF)" in the drop-down list of available printers.
+You can save the Preview as paginated PDF by choosing "Print to File (PDF)" in the drop-down list of available printers.
 
 
 # Advanced Usage
@@ -201,7 +203,9 @@ make in executable and point the Markdown processor setting to it:
 
 ## Preview Not Updating
 
-Some text editors don't modify the contents of a file, but replace the original file with a new one having same name but different inode. Replacing a file will delete the old one, so MDviewer will stop watching the file. Many editors can be configured to modify existing file when saving instead of replacing it. Below some configuration tips for popular programming editors.
+Some text editors will save by writing to an alternate file and then renaming it over the original one. The original file is removed when the new file has been successfully written. Because the original file is deleted, MDviewer will get confused and stop watching the file.
+
+Many editors can be configured to update existing file in place when saving instead of replacing it. Below some configuration tips for popular programming editors.
 
 - __Vim:__ Add following line to your `.vimrc` configuration file:
 
@@ -211,10 +215,14 @@ Some text editors don't modify the contents of a file, but replace the original 
 
         (setq backup-by-copying t)
 
+- __Sublime Text:__ Add following line to your `Preferences.sublime-settings` configuration file:
+
+        "atomic_save": false
+
 
 ## Scroll to Edit Behavior
 
-If you are using external JavaScripts, which run asynchronously, i.e., after preview loading was finished, you may experience unexpected scrolling behavior. DOM changes can be especially problematic.
+If you are using external JavaScripts, which run asynchronously, i.e., after Preview loading was finished, you may experience unexpected scrolling behavior. DOM changes can be especially problematic.
 
 In this case you may need to increase the scroll delay value using the `scroll_delay` field in your configuration file (default is 1500 ms).
 
