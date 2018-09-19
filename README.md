@@ -4,7 +4,7 @@
 
 MDviewer is a cross-platform and editor-agnostic previewer for Markdown files. Use it with your favorite text editor and it updates every time you save. In applications that automatically save in the background, the Preview will be updated at save intervals as you type.
 
-MDviewer can also be extended to work with just about any processor you need, including Textile, reStructuredText, MediaWiki and more.
+MDviewer can also be extended to work with just about any processor you need, including Textile, reStructuredText, MediaWiki, AsciiDoc, and more.
 
 ![](images/screenshot.png)
 
@@ -190,6 +190,8 @@ These variables allows you to script different processes based on the type of fi
     case "$MDVIEWER_EXT" in
         md | markdown | text )
             pandoc --from=markdown --to=html5 --standalone "$1" ;;
+        rst | rest )
+            pandoc --from=rst --to=html5 --standalone "$1" ;;
         html | htm | svg )
             cat "$1" ;;
     esac
