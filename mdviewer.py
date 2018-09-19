@@ -195,7 +195,7 @@ class App(QtGui.QMainWindow):
             QtCore.QTimer.singleShot(500,  lambda: element.addClass('firstdiff-start'))
             QtCore.QTimer.singleShot(1000, lambda: element.addClass('firstdiff-end'))
             QtCore.QTimer.singleShot(1500, lambda: element.removeClass('firstdiff-start'))
-            QtCore.QTimer.singleShot(2200, lambda: element.removeClass('firstdiff-end'))
+            QtCore.QTimer.singleShot(4500, lambda: element.removeClass('firstdiff-end'))
 
     def generate_toc(self, curr_ast):
 
