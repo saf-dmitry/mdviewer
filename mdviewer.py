@@ -252,7 +252,7 @@ class App(QtGui.QMainWindow):
         filename = unicode(QtGui.QFileDialog.getSaveFileName(self, 'Save File', os.path.dirname(self.filename)))
         if filename != '':
             path = Settings.get('processor_path', 'pandoc')
-            args = Settings.get('processor_args', '--from=markdown --to=html5 --standalone')
+            args = Settings.get('processor_args', '')
             args = ('%s' % (args)).split() + [self.filename]
             caller = QtCore.QProcess()
             caller.start(path, args)
@@ -414,7 +414,7 @@ class WatcherThread(QtCore.QThread):
 
     def processor_rules(self):
         path = Settings.get('processor_path', 'pandoc')
-        args = Settings.get('processor_args', '--from=markdown --to=html5 --standalone')
+        args = Settings.get('processor_args', '')
         args = ('%s' % (args)).split() + [self.filename]
         caller = QtCore.QProcess()
         # status = caller.execute(path, args)
