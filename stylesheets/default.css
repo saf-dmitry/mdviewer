@@ -150,18 +150,14 @@ a:hover {
     border-bottom: 1px solid;
 }
 
-a.footnoteRef, a.footnote {
+a[class^="footnote"] {
     color: #08c;
     border-style: none;
 }
 
-a > sup {
+sub, sup {
     height: 0;
     font-size: 80%;
-}
-
-.footnote {
-    vertical-align: super;
 }
 
 pre, code, tt {
@@ -199,11 +195,6 @@ table.sourceCode pre {
 
 h1 > code, h2 > code, h3 > code {
     font-size: 0.8em;
-}
-
-input[type="checkbox"], input[type="radio"] {
-    box-sizing: border-box;
-    padding: 0;
 }
 
 dl {
@@ -311,6 +302,13 @@ div.MathJax_Display {
 
 .task-list-item {
     list-style-type: none !important;
+}
+
+.task-list-item input[type=checkbox] {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 0.1em 0.1em -1.5em;
+    padding: 0;
 }
 
 div.epigraph {
