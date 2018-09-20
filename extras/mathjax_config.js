@@ -1,9 +1,7 @@
 
 MathJax.Hub.Config({
-    showProcessingMessages: false,
-    messageStyle: "none",
     jax: ["input/TeX",
-          "output/HTML-CSS"],
+          "output/CommonHTML"],
     extensions: ["tex2jax.js",
                  "MathMenu.js",
                  "MathZoom.js"],
@@ -21,22 +19,17 @@ MathJax.Hub.Config({
         extensions: ["AMSmath.js",
                      "AMSsymbols.js",
                      "noErrors.js",
-                     "noUndefined.js"],
+                     "noUndefined.js",
+                     "mhchem.js"],
         Macros: {
             "micro": "\\unicode{xb5}",
             "ohm": "\\unicode{x2126}"
         },
     },
-    "HTML-CSS": {
-        preferredFont: "TeX",
-        imageFont: null,
+    "CommonHTML": {
         linebreaks: {
             automatic: false
-        },
-        noReflows: true,
-        EqnChunk: 10,
-        EqnChunkFactor: 1,
-        EqnChunkDelay: 10
+        }
     }
 });
 
