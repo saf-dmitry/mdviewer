@@ -1,3 +1,4 @@
+@ECHO OFF
 cd /D %~dp0
 set PYTHONIOENCODING=utf8
-@start pythonw mdviewer.py %*
+@start pythonw mdviewer.py "%*"
