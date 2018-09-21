@@ -226,7 +226,7 @@ Many editors can be configured to update existing file in place when saving inst
 
 ## Scroll to Edit Behavior
 
-If you are using external JavaScripts, which run asynchronously, i.e., after Preview loading was finished, you may experience unexpected scrolling behavior. DOM changes can be especially problematic.
+If you are using external JavaScripts like MathJax, which run asynchronously, i.e., after Preview loading was finished, you may experience unexpected scrolling behavior. Changing a DOM structure can be especially problematic.
 
 In this case you may need to increase the scroll delay value using the `scroll_delay` field in your configuration file (default is 1500 ms).
 

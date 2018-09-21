@@ -305,6 +305,7 @@ div.MathJax_Display {
 }
 
 .task-list-item input[type=checkbox] {
+    -webkit-appearance: checkbox;
     display: inline-block;
     vertical-align: middle;
     margin: 0px 0.1em 0.1em -1.5em;
