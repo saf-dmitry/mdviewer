@@ -68,7 +68,7 @@ Note: In general, you should place your personal settings in `$HOME/.config/mdvi
 
 First, you must specify a Markdown processor in the `processor_path` field of the configuration file. Enter a full path to an executable or script which can return HTML or SVG output on STDOUT and it will be used for Preview and Save operations. Examples of cross-plattform Markdown processors include [pandoc][pandoc], [PHP Markdown Extra][php-markdown-extra], or [MultiMarkdown][multimarkdown].
 
-If the specified processor needs additional arguments besides the file name, specify them in the `processor_args` field, separating each argument with a space, just like you would on the command line. If your process is more complicated than a single command, create a self-contained script, make it executable and point the Markdown processor setting to it. In your scripts you can use the MDviewer-specific environment variables as described in the [Environment Variables](#environment-variables) section.
+If the specified processor needs additional arguments besides the file name, specify them in the `processor_args` field, separating each argument with a space, just like you would on the command line. If your process is more complicated than a single command, create a self-contained script, make it executable and point the Markdown processor setting to it. In your scripts you can use the MDviewer-specific environment variables as described in the [Evaluating Environment Variables](#evaluating-environment-variables) section.
 
 Configuration file entry example:
 
@@ -95,7 +95,7 @@ If your document has headings in it, the "Goto" drop-down menu will be active. C
 
 ## Choosing a Style
 
-You can select a preview and print style in the "Style" drop-down menu.
+You can select a preview and print style in the "Style" drop-down menu. You can add your own styles as described in the [Adding Custom Styles](#adding-custom-styles) section.
 
 
 ## Zooming In and Out
