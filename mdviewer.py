@@ -186,7 +186,7 @@ class App(QtGui.QMainWindow):
             start = self.curr_doc.scrollPosition()
 
             # Scroll to top of the element
-            self.anim.setDuration(500)
+            self.anim.setDuration(50)
             self.anim.setStartValue(QtCore.QPoint(start))
             self.anim.setEndValue(QtCore.QPoint(0, element.geometry().top()))
             self.anim.start()
