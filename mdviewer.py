@@ -52,7 +52,7 @@ class App(QtGui.QMainWindow):
         self.watcher.fileChanged.connect(self.thread1.run)
         self.thread1.start()
 
-        # Update TOC and perform auto-scrolling
+        # Update TOC and restore scroll position
         self.web_view.loadFinished.connect(self.after_update)
 
         # Set GUI
@@ -61,6 +61,9 @@ class App(QtGui.QMainWindow):
 
     def update(self, text, warn):
         '''Update document view.'''
+
+        # Save scroll position
+        self.scroll_pos = self.web_view.page().currentFrame().scrollPosition()
 
         # Set WebView attributes
         self.web_view.settings().setAttribute(QtWebKit.QWebSettings.JavascriptEnabled, True)
@@ -71,17 +74,8 @@ class App(QtGui.QMainWindow):
         self.web_view.page().linkHovered.connect(lambda link: self.setToolTip(link))
         self.web_view.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateExternalLinks)
 
-        # Save data for auto-scrolling
-        prev_doc = self.web_view.page().currentFrame()
-        self.prev_scroll = prev_doc.scrollPosition()
-        self.prev_ast = self.create_doc_ast(prev_doc.documentElement())
-
         # Update document
         self.web_view.setHtml(text, baseUrl=QtCore.QUrl('file:///' + os.path.join(os.getcwd(), self.filename)))
-
-        # Restore scroll position
-        curr_doc = self.web_view.page().currentFrame()
-        curr_doc.setScrollPosition(self.prev_scroll)
 
         # Display processor warnings, if any
         if warn:
@@ -102,100 +96,13 @@ class App(QtGui.QMainWindow):
         # Recursively traverse the AST
         while not element.isNull():
             if not any(t for t in ('HEAD', 'META', 'TITLE', 'STYLE', 'SCRIPT', 'LINK') if t == element.tagName()):
-                if not (element.styleProperty('display', 2) == 'inline'
-                        or element.styleProperty('display', 2) == 'inline-block'
-                        or element.styleProperty('display', 2) == 'inline-flex'
-                        or element.styleProperty('display', 2) == 'inline-table'
-                        or element.styleProperty('display', 2) == 'none'
-                        or element.styleProperty('visibility', 2) == 'hidden'):
-                    if element not in children:
-                        further = self.create_doc_ast(element)
-                        children.append([element, further])
+                if element not in children:
+                    further = self.create_doc_ast(element)
+                    children.append([element, further])
             element = element.nextSibling()
 
         if children:
             return children
-
-    def after_update(self):
-        scroll_delay = Settings.get('scroll_delay', 1500)
-        # Wait until all asycronous JavaScript actions are complete
-        QtCore.QTimer.singleShot(scroll_delay, self._after_update)
-
-    def _after_update(self):
-        '''Update TOC and scroll to the first change.'''
-
-        def compare(prev_ast, curr_ast, prev_len, curr_len, go):
-            for i, (element, children) in enumerate(curr_ast):
-
-                # Compare children recursively
-                if children:
-                    if prev_ast:
-
-                        try:
-                            prev_children = prev_ast[i][1]
-                        except IndexError:
-                            prev_children = None
-
-                        prev_children_len = len(prev_children) if prev_children else 0
-                        go = compare(prev_children, children, prev_children_len, len(children), go)
-
-                        if go:
-                            return go
-                    else:
-                        return children[0][0]
-
-                if element.tagName() == 'BODY':
-                    go = 0
-                elif curr_len > prev_len and i + 1 > prev_len:
-                    # Block(s) added at the end of document
-                    go = 1
-                elif curr_len < prev_len and i + 1 == curr_len:
-                    # Block(s) removed from the end of document
-                    go = 1
-                elif element.tagName() == prev_ast[i][0].tagName():
-                    if element.toInnerXml() != prev_ast[i][0].toInnerXml():
-                        # Block content changed
-                        go = 1
-                else:
-                    # Block changed
-                    go = 1
-                if go:
-                    value = element
-                    break
-                elif not go and i + 1 == curr_len:
-                    # No actual changes
-                    value = 0
-
-            return value
-
-        self.curr_doc = self.web_view.page().currentFrame()
-        curr_ast = self.create_doc_ast(self.curr_doc.documentElement())
-        prev_len, curr_len, go = len(self.prev_ast), len(curr_ast), 0
-
-        # Refresh TOC
-        self.generate_toc(curr_ast)
-
-        # Scroll to the first change
-        self._scroll(element=compare(self.prev_ast, curr_ast, prev_len, curr_len, go))
-
-    def _scroll(self, element=0):
-        '''Scroll to top of the element.'''
-
-        if element:
-            self.anim = QtCore.QPropertyAnimation(self.curr_doc, 'scrollPosition')
-            start = self.curr_doc.scrollPosition()
-
-            # Scroll to top of the element
-            self.anim.setDuration(50)
-            self.anim.setStartValue(QtCore.QPoint(start))
-            self.anim.setEndValue(QtCore.QPoint(0, element.geometry().top()))
-            self.anim.start()
-
-            # Highlight the element via CSS property
-            QtCore.QTimer.singleShot(500,  lambda: element.addClass('firstdiff-start'))
-            QtCore.QTimer.singleShot(1000, lambda: element.addClass('firstdiff-end'))
-            QtCore.QTimer.singleShot(1500, lambda: element.removeClass('firstdiff-start'))
-            QtCore.QTimer.singleShot(4500, lambda: element.removeClass('firstdiff-end'))
 
     def generate_toc(self, curr_ast):
 
@@ -229,6 +136,30 @@ class App(QtGui.QMainWindow):
             vars(self)['toc_nav%d'%n] = QtGui.QAction(header, self)
             vars(self)['toc_nav%d'%n].triggered[()].connect(lambda header=h: self._scroll(header))
             self.toc_menu.addAction(vars(self)['toc_nav%d'%n])
+
+    def after_update(self):
+        '''Update TOC and restore scroll position.'''
+
+        self.curr_doc = self.web_view.page().currentFrame()
+
+        # Update TOC
+        curr_ast = self.create_doc_ast(self.curr_doc.documentElement())
+        self.generate_toc(curr_ast)
+
+        # Restore scroll position
+        self.curr_doc.setScrollPosition(self.scroll_pos)
+
+    def _scroll(self, element=0):
+        '''Scroll to top of the element.'''
+
+        if element:
+            self.anim = QtCore.QPropertyAnimation(self.curr_doc, 'scrollPosition')
+            start = self.curr_doc.scrollPosition()
+
+            self.anim.setDuration(250)
+            self.anim.setStartValue(QtCore.QPoint(start))
+            self.anim.setEndValue(QtCore.QPoint(0, element.geometry().top()))
+            self.anim.start()
 
     @staticmethod
     def set_stylesheet(self, stylesheet='default.css'):
@@ -403,9 +334,6 @@ class WatcherThread(QtCore.QThread):
     def __init__(self, filename):
         QtCore.QThread.__init__(self)
         self.filename = filename
-        # print os.getenv('MDVIEWER_EXT')
-        # print os.getenv('MDVIEWER_FILE')
-        # print os.getenv('MDVIEWER_ORIGIN')
 
     def run(self):
         warn = ''

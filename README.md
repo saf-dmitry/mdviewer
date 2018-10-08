@@ -20,7 +20,6 @@ MDviewer can also be extended to work with just about any processor you need, in
     - [Navigating Preview](#navigating-preview)
     - [Choosing a Style](#choosing-a-style)
     - [Zooming In and Out](#zooming-in-and-out)
-    - [Scroll to Edit](#scroll-to-edit)
     - [Clicking External Links](#clicking-external-links)
     - [Searching](#searching)
     - [Exporting HTML](#exporting-html)
@@ -31,7 +30,6 @@ MDviewer can also be extended to work with just about any processor you need, in
     - [Evaluating Environment Variables](#evaluating-environment-variables)
 - [Troubleshooting](#troubleshooting)
     - [Preview Not Updating](#preview-not-updating)
-    - [Scroll to Edit Behavior](#scroll-to-edit-behavior)
     - [Overall Performance Issue](#overall-performance-issue)
 - [Acknowledgments](#acknowledgments)
 - [Bugs](#bugs)
@@ -52,7 +50,7 @@ MDviewer requires the following packages to run:
 
 ## Configuration Files
 
-MDviewer stores all of its configuration data in YAML files which have the `.yml` extension and use the UTF-8 encoding. While this is a little bit trickier than using a GUI, you're rewarded with a flexible system.
+MDviewer stores all of its configuration data in YAML files which have the `.yml` extension and use the UTF-8 encoding.
 
 By default, MDviewer checks the following places for configuration files, in the following order:
 
@@ -103,15 +101,6 @@ You can select a preview and print style in the "Style" drop-down menu. You can 
 You can increase or decrease the magnification of the document view using the "View" menu options.
 
 Note: Depending on the selected style zooming will change the size of everything on the Preview, including text and images, or just the size of the font.
-
-
-## Scroll to Edit
-
-The "Scroll to Edit" feature keeps track of differences between the latest update and the last, scrolling to the point where you made your most recent changes and highlighting the location of the first change detected.
-
-By default, the scrolling takes place after some delay (1500 ms). You can change this value using the `scroll_delay` field in your configuration file:
-
-    scroll_delay: 500
 
 
 ## Clicking External Links
@@ -222,13 +211,6 @@ Many editors can be configured to update existing file in place when saving inst
 - __Sublime Text:__ Add following line to your `Preferences.sublime-settings` configuration file:
 
         "atomic_save": false
-
-
-## Scroll to Edit Behavior
-
-If you are using external JavaScripts like MathJax, which run asynchronously, i.e., after Preview loading was finished, you may experience unexpected scrolling behavior. Changing a DOM structure can be especially problematic.
-
-In this case you may need to increase the scroll delay value using the `scroll_delay` field in your configuration file (default is 1500 ms).
 
 
 ## Overall Performance Issue

@@ -1,6 +1,4 @@
 
-@import url('core.css');
-
 html {
     font-size: 12pt;
 }
@@ -16,7 +14,8 @@ body {
     padding-right: 2.5%;
     color: #24292e;
     background-color: #fff;
-    -webkit-font-smoothing: antialiased;
+    font-smooth: always;
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
 p {

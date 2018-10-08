@@ -1,6 +1,4 @@
 
-@import url('core.css');
-
 @font-face {
     font-family: ETBook;
     src: url("et-book-roman-line-figures.ttf"); }
@@ -34,7 +32,9 @@ body {
     padding-right: 2.5%;
     color: #111;
     background-color: #fffff8;
-    -webkit-font-smoothing: antialiased;
+    /* background-color: #fffcf9; */
+    font-smooth: always;
+    -webkit-font-smoothing: subpixel-antialiased;
 }
 
 p {
