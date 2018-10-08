@@ -45,6 +45,8 @@ class App(QtGui.QMainWindow):
         self.web_view = QtWebKit.QWebView()
         self.setCentralWidget(self.web_view)
 
+        self.scroll_pos = {}
+
         # Configure and start file watcher thread
         self.thread1 = WatcherThread(self.filename)
         self.connect(self.thread1, QtCore.SIGNAL('update(QString,QString)'), self.update)
@@ -62,9 +64,6 @@ class App(QtGui.QMainWindow):
     def update(self, text, warn):
         '''Update document view.'''
 
-        # Save scroll position
-        self.scroll_pos = self.web_view.page().currentFrame().scrollPosition()
-
         # Set WebView attributes
         self.web_view.settings().setAttribute(QtWebKit.QWebSettings.JavascriptEnabled, True)
         self.web_view.settings().setAttribute(QtWebKit.QWebSettings.PluginsEnabled, True)
@@ -73,6 +72,9 @@ class App(QtGui.QMainWindow):
         # Set link policy
         self.web_view.page().linkHovered.connect(lambda link: self.setToolTip(link))
         self.web_view.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateExternalLinks)
+
+        # Save scroll position
+        self.scroll_pos[self.filename] = self.web_view.page().currentFrame().scrollPosition()
 
         # Update document
         self.web_view.setHtml(text, baseUrl=QtCore.QUrl('file:///' + os.path.join(os.getcwd(), self.filename)))
@@ -147,7 +149,7 @@ class App(QtGui.QMainWindow):
         self.generate_toc(curr_ast)
 
         # Restore scroll position
-        self.curr_doc.setScrollPosition(self.scroll_pos)
+        self.curr_doc.setScrollPosition(self.scroll_pos[self.filename])
 
     def _scroll(self, element=0):
         '''Scroll to top of the element.'''
