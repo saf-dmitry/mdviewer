@@ -134,7 +134,7 @@ hr {
 }
 
 a {
-    color: #08c;
+    color: #0366d6;
     padding-bottom: 1px;
     text-decoration: none;
     -webkit-transition: border-bottom .2s ease-in-out;
@@ -142,7 +142,7 @@ a {
 }
 
 a[href^="#"] {
-    color: #08c;
+    color: #0366d6;
 }
 
 a:hover {
@@ -150,7 +150,7 @@ a:hover {
 }
 
 a[class^="footnote"] {
-    color: #08c;
+    color: #0366d6;
     border-style: none;
 }
 
