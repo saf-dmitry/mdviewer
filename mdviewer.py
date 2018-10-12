@@ -374,7 +374,7 @@ class Settings:
 
     @classmethod
     def print_path(cls):
-        print 'Settings: %s' % cls().settings_file
+        print('Settings: %s' % cls().settings_file)
 
 def main():
     app = QtGui.QApplication(sys.argv)

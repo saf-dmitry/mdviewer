@@ -40,7 +40,7 @@ MDviewer can also be extended to work with just about any processor you need, in
 
 MDviewer requires the following packages to run:
 
-- [Python][python] version 2.7 or higher
+- [Python 2][python] version 2.7 or higher
 - [PyQt4][pyqt4] version 4.8 or higher
 - Markdown processor (see the [Setting a Markdown Processor](#setting-a-markdown-processor) section below)
 
