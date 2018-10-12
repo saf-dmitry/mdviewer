@@ -147,7 +147,7 @@ To install MathJax on Debian-based systems such as Ubuntu or Mint, all you need 
 
 On UNIX-like systems where MathJax is not packaged, you can download it from [GitHub][mathjax-github] and extract to `/usr/share/javascript/` directory.
 
-Alternatively, you can use a third party [CDN server][mathjax-cdn], where the JavaScript needed for MathJax to work will be loaded at run time. This simplifies the installation and ensures the latest version of the library is always used, but requires an Internet connection at run time.
+Alternatively, you can use a third party CDN server, where the JavaScript needed for MathJax to work will be loaded at run time. This simplifies the installation and ensures the latest version of the library is always used, but requires an Internet connection at run time.
 
 To enable MathJax support you have to point your Markdown processor or your document template to the `MathJax.js` load script. The exact way depends on your Markdown processor (see the [Setting a Markdown Processor](#setting-a-markdown-processor) section). E.g., in case of MultiMarkdown you can add following metadata directly to your Markdown document:
 
@@ -155,7 +155,7 @@ To enable MathJax support you have to point your Markdown processor or your docu
         src="/usr/share/javascript/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
         </script>
 
-Pandoc provides the `--mathjax[=URL]` command-line option. The URL should point to the `MathJax.js` load script. If an URL is not provided, a link to the [Cloudflare CDN][mathjax-cdn] will be inserted.
+Pandoc provides the `--mathjax[=URL]` command-line option. The URL should point to the `MathJax.js` load script. If an URL is not provided, a link to the Cloudflare CDN will be inserted.
 
     pandoc --from=markdown --to=html5 --standalone \
            --mathjax=/usr/share/javascript/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
@@ -255,8 +255,6 @@ You should have received a copy of the GNU General Public License along with thi
 [mathjax]: https://www.mathjax.org/
 
 [mathjax-github]: https://github.com/mathjax/MathJax
-
-[mathjax-cdn]: https://cdnjs.cloudflare.com/ajax/libs/mathjax/
 
 [mathjax-tex]: http://docs.mathjax.org/en/latest/tex.html
 
