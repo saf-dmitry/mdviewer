@@ -56,6 +56,16 @@ q:lang(fr), q:lang(es), q:lang(it), q:lang(ru), q:lang(ua) {
     border-style: none;
 }
 
+.subtitle {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.4rem;
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+    border-style: none;
+}
+
 .author {
     font-style: normal;
     font-weight: 400;
@@ -285,6 +295,11 @@ table caption {
     font-size: 100%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+}
+
+video {
+    height: auto;
+    max-width: 100%;
 }
 
 span.citation {
