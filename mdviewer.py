@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf8
 
-import sys, os, importlib, itertools, locale, io, subprocess, shutil, urllib2, yaml
+import sys, os, webbrowser, importlib, itertools, locale, io, subprocess, shutil, urllib2, yaml
 from PyQt4 import QtCore, QtGui, QtWebKit
 from PyQt4.QtGui import QDesktopServices
 
@@ -71,10 +71,15 @@ class App(QtGui.QMainWindow):
 
         # Set link policy
         self.web_view.page().linkHovered.connect(lambda link: self.setToolTip(link))
+        self.web_view.linkClicked.connect(lambda url: webbrowser.open_new_tab(url.toString()))
         self.web_view.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateExternalLinks)
 
         # Save scroll position
         self.scroll_pos[self.filename] = self.web_view.page().currentFrame().scrollPosition()
+
+        # print ">>>"
+        # print self.scroll_pos[self.filename].y()
+        # print "<<<"
 
         # Update document
         self.web_view.setHtml(text, baseUrl=QtCore.QUrl('file:///' + os.path.join(os.getcwd(), self.filename)))
