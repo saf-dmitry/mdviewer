@@ -376,6 +376,8 @@ p, div, li, td {
         min-width: none;
         max-width: none;
         background-color: transparent;
+        overflow: visible;
+        float: none !important;
     }
 
     h1, h2, h3, h4, h5, h6 {
