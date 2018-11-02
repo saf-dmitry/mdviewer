@@ -38,8 +38,8 @@ class App(QtGui.QMainWindow):
 
         # Configure window
         self.set_window_title()
-        self.resize(self.QSETTINGS.value('size', QtCore.QSize(800, 800)).toSize())
-        self.move(self.QSETTINGS.value('pos', QtCore.QPoint(50, 50)).toPoint())
+        self.resize(self.QSETTINGS.value('size', QtCore.QSize(800,800)).toSize())
+        self.move(self.QSETTINGS.value('pos', QtCore.QPoint(50,50)).toPoint())
 
         # Activate WebView
         self.web_view = QtWebKit.QWebView()
@@ -75,7 +75,8 @@ class App(QtGui.QMainWindow):
         self.web_view.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateExternalLinks)
 
         # Save scroll position
-        self.scroll_pos[self.filename] = self.web_view.page().currentFrame().scrollPosition()
+        if not self.web_view.page().currentFrame().scrollPosition() == QtCore.QPoint(0,0):
+            self.scroll_pos[self.filename] = self.web_view.page().currentFrame().scrollPosition()
 
         # print ">>>"
         # print self.scroll_pos[self.filename].y()
