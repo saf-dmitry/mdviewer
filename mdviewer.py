@@ -155,7 +155,12 @@ class App(QtGui.QMainWindow):
         self.generate_toc(curr_ast)
 
         # Restore scroll position
-        self.curr_doc.setScrollPosition(self.scroll_pos[self.filename])
+        try:
+            scroll_pos = self.scroll_pos[self.filename]
+        except KeyError:
+            pass
+        else:
+            self.curr_doc.setScrollPosition(scroll_pos)
 
     def _scroll(self, element=0):
         '''Scroll to top of the element.'''
