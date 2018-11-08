@@ -239,6 +239,7 @@ blockquote {
 
 img {
     max-width: 100%;
+    height: auto;
 }
 
 figure, div.figure {
@@ -298,8 +299,8 @@ table caption {
 }
 
 video {
-    height: auto;
     max-width: 100%;
+    height: auto;
 }
 
 span.citation {
