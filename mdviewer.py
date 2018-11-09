@@ -78,8 +78,6 @@ class App(QtGui.QMainWindow):
         if not self.web_view.page().currentFrame().scrollPosition() == QtCore.QPoint(0,0):
             self.scroll_pos[self.filename] = self.web_view.page().currentFrame().scrollPosition()
 
-        # print self.scroll_pos[self.filename].y()
-
         # Update document
         self.web_view.setHtml(text, baseUrl=QtCore.QUrl('file:///' + os.path.join(os.getcwd(), self.filename)))
 
