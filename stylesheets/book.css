@@ -367,6 +367,10 @@ p, div, li, td {
     hyphens: auto;
 }
 
+::selection {
+    background-color: rgba(209, 232, 255, 0.8);
+}
+
 @media print {
 
     html {
@@ -415,6 +419,10 @@ p, div, li, td {
 
     figure, div.figure {
         page-break-inside: avoid !important;
+    }
+
+    ::selection {
+        display: none !important;
     }
 
 }
