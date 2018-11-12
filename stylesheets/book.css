@@ -32,7 +32,6 @@ body {
     padding-right: 2.5%;
     color: #111;
     background-color: #fffff8;
-    /* background-color: #fffcf9; */
     font-smooth: always;
     -webkit-font-smoothing: subpixel-antialiased;
 }
@@ -304,6 +303,11 @@ video {
     height: auto;
 }
 
+object {
+    max-width: 100%;
+    height: auto;
+}
+
 span.citation {
 
 }
@@ -390,22 +394,31 @@ p, div, li, td {
         page-break-after: avoid !important;
     }
 
+    p, li {
+        orphans: 3;
+        widows: 3;
+    }
+
     a {
         text-decoration: none !important;
         border-style: none !important;
     }
 
-    a:after {
+    p a:after {
         content: " (" attr(href) ")" !important;
         word-wrap: break-word !important;
     }
 
-    a[href^="#"]:after {
+    p a[href^="#"]:after {
         display: none !important;
     }
 
     a[href^="#fnref"] {
         display: none !important;
+    }
+
+    p abbr[title]:after {
+        content: " (" attr(title) ")" !important;
     }
 
     pre > code, code > pre {
