@@ -164,6 +164,10 @@ a[class^="footnote"] {
     border-style: none;
 }
 
+abbr[title] {
+    border-bottom: 1px dotted #cccccc;
+}
+
 sub, sup {
     height: 0;
     font-size: 80%;
@@ -236,7 +240,7 @@ blockquote {
     margin: auto 1.5rem;
 }
 
-img {
+img, video, object {
     max-width: 100%;
     height: auto;
 }
@@ -297,25 +301,11 @@ table caption {
     margin-bottom: 0.5rem;
 }
 
-video {
-    max-width: 100%;
-    height: auto;
-}
-
-object {
-    max-width: 100%;
-    height: auto;
-}
-
 span.citation {
 
 }
 
 div.references {
-
-}
-
-div.MathJax_Display {
 
 }
 
@@ -403,12 +393,12 @@ p, div, li, td {
         border-style: none !important;
     }
 
-    p a:after {
+    a:after {
         content: " (" attr(href) ")" !important;
         word-wrap: break-word !important;
     }
 
-    p a[href^="#"]:after {
+    a[href^="#"]:after {
         display: none !important;
     }
 
@@ -416,7 +406,11 @@ p, div, li, td {
         display: none !important;
     }
 
-    p abbr[title]:after {
+    abbr[title] {
+        border-bottom: none !important;
+    }
+
+    abbr[title]:after {
         content: " (" attr(title) ")" !important;
     }
 
