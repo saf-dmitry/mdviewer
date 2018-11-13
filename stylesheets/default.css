@@ -173,7 +173,7 @@ sub, sup {
     font-size: 80%;
 }
 
-pre, code, tt {
+pre, code, tt, kbd {
     font-size: 100%;
     font-family: "Ubuntu Mono", "DejaVu Sans Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
@@ -208,6 +208,14 @@ table.sourceCode pre {
 
 h1 > code, h2 > code, h3 > code {
     font-size: 0.8em;
+}
+
+kbd {
+    border: 1px solid #c6cbd1;
+    border-radius: 0.2rem;
+    background-color: #fafbfc;
+    padding: 0.1rem 0.2rem;
+    white-space: pre !important;
 }
 
 dl {
