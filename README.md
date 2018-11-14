@@ -181,6 +181,8 @@ These variables allows you to script different processes based on the type of fi
             pandoc --from=markdown --to=html5 --standalone "$1" ;;
         rst | rest )
             pandoc --from=rst --to=html5 --standalone "$1" ;;
+        dot )
+            dot -Kdot -Tsvg "$1" ;;
         html | htm | svg )
             cat "$1" ;;
     esac
