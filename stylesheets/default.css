@@ -46,46 +46,6 @@ q:lang(fr), q:lang(es), q:lang(it), q:lang(ru), q:lang(ua) {
     quotes: "«" "»";
 }
 
-.title {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 3.2rem;
-    text-align: center;
-    margin-top: 5rem;
-    margin-bottom: 1rem;
-    border-style: none;
-}
-
-.subtitle {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 2.4rem;
-    text-align: center;
-    margin-top: 5rem;
-    margin-bottom: 1rem;
-    border-style: none;
-}
-
-.author {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.8rem;
-    text-align: center;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border-style: none;
-}
-
-.date {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 1.5rem;
-    text-align: center;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border-style: none;
-}
-
 h1, h2, h3, h4, h5, h6 {
     font-style: normal;
     font-weight: 400;
@@ -173,7 +133,7 @@ sub, sup {
     font-size: 80%;
 }
 
-pre, code, tt, kbd {
+pre, code, tt, kbd, samp {
     font-size: 100%;
     font-family: "Ubuntu Mono", "DejaVu Sans Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
 }
@@ -244,11 +204,15 @@ dl dt {
     font-weight: 700;
 }
 
+cite {
+    font-style: italic;
+}
+
 blockquote {
     margin: auto 1.5rem;
 }
 
-img, video, object {
+img, video, object, embed {
     max-width: 100%;
     height: auto;
 }
@@ -309,12 +273,44 @@ table caption {
     margin-bottom: 0.5rem;
 }
 
-span.citation {
-
+.title {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 3.2rem;
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+    border-style: none;
 }
 
-div.references {
+.subtitle {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.4rem;
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 1rem;
+    border-style: none;
+}
 
+.author {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-style: none;
+}
+
+.date {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-style: none;
 }
 
 .task-list-item {
@@ -327,6 +323,14 @@ div.references {
     vertical-align: middle;
     margin: 0px 0.1em 0.1em -1.5em;
     padding: 0;
+}
+
+span.citation {
+
+}
+
+div.references {
+
 }
 
 div.epigraph {
