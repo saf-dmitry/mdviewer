@@ -138,6 +138,11 @@ a[class^="footnote"] {
     border-style: none;
 }
 
+a img {
+    border: none;
+    outline: none;
+}
+
 abbr[title] {
     border-bottom: 1px dotted #cccccc;
 }
@@ -405,7 +410,7 @@ p, div, li, td {
         border-style: none !important;
     }
 
-    a:after {
+    p a:after, li a:after {
         content: " (" attr(href) ")" !important;
         word-wrap: break-word !important;
     }
@@ -420,10 +425,6 @@ p, div, li, td {
 
     abbr[title] {
         border-bottom: none !important;
-    }
-
-    abbr[title]:after {
-        content: " (" attr(title) ")" !important;
     }
 
     pre > code, code > pre {
