@@ -410,7 +410,7 @@ p, div, li, td {
         border-style: none !important;
     }
 
-    p a:after, li a:after {
+    p a[href]:after, li a[href]:after {
         content: " (" attr(href) ")" !important;
         word-wrap: break-word !important;
     }
