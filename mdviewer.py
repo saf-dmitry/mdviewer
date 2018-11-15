@@ -135,8 +135,7 @@ class App(QtGui.QMainWindow):
                 break
             else:
                 self.toc_menu.setDisabled(False)
-
-            header = u'    '*indent + h.toPlainText().replace("&", "&&")
+            header = u'    '*indent + h.toPlainText().replace("\n", " ").replace("&", "&&")
             vars(self)['toc_nav%d'%n] = QtGui.QAction(header, self)
             vars(self)['toc_nav%d'%n].triggered[()].connect(lambda header=h: self._scroll(header))
             self.toc_menu.addAction(vars(self)['toc_nav%d'%n])
