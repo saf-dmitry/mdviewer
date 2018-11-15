@@ -415,7 +415,7 @@ p, div, li, td {
         word-wrap: break-word !important;
     }
 
-    a[href^="#"]:after {
+    a[href=""]:after, a[href^="#"]:after {
         display: none !important;
     }
 

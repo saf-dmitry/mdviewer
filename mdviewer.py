@@ -83,7 +83,7 @@ class App(QtGui.QMainWindow):
 
         # Display processor warnings, if any
         if warn:
-            QtGui.QMessageBox.warning(self, 'Processor warning', warn)
+            QtGui.QMessageBox.warning(self, 'Processor message', warn)
 
     def create_doc_ast(self, parentElement):
         '''
