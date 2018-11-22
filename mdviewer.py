@@ -141,6 +141,10 @@ class App(QtGui.QMainWindow):
             vars(self)['toc_nav%d'%n].triggered[()].connect(lambda header=h: self._scroll(header))
             self.toc_menu.addAction(vars(self)['toc_nav%d'%n])
 
+    def run_mathjax(self):
+
+        self.web_view.page().currentFrame().evaluateJavaScript('if (window.MathJax) {MathJax.Hub.Queue(function () {MathJax.Hub.Typeset()});}')
+
     def after_update(self):
         '''Update TOC and restore scroll position.'''
 
@@ -157,6 +161,9 @@ class App(QtGui.QMainWindow):
             pass
         else:
             self.curr_doc.setScrollPosition(scroll_pos)
+
+        # Run MathJax typesetting
+        self.run_mathjax()
 
     def _scroll(self, element=0):
         '''Scroll to top of the element.'''
