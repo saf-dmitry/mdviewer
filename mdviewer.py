@@ -90,7 +90,7 @@ class App(QtGui.QMainWindow):
         Create document AST.
 
         Create tree of QWebElements starting from parentElement:
-        [Parent, [[child, [child_of_child, ...], ...]], ...]
+        [Parent, [[child, [child-of-child, ...], ...]], ...]
         where Parent is the first child of parentElement.
         '''
 
@@ -143,7 +143,8 @@ class App(QtGui.QMainWindow):
 
     def run_mathjax(self):
 
-        self.web_view.page().currentFrame().evaluateJavaScript('if (window.MathJax) {MathJax.Hub.Queue(function () {MathJax.Hub.Typeset()});}')
+        mjtypeset = 'if (typeof window.MathJax !== undefined) {MathJax.Hub.Queue(["Typeset", MathJax.Hub]);}'
+        self.web_view.page().currentFrame().evaluateJavaScript(mjtypeset)
 
     def after_update(self):
         '''Update TOC and restore scroll position.'''
@@ -162,7 +163,7 @@ class App(QtGui.QMainWindow):
         else:
             self.curr_doc.setScrollPosition(scroll_pos)
 
-        # Run MathJax typesetting
+        # Enable MathJax typesetting
         self.run_mathjax()
 
     def _scroll(self, element=0):
