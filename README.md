@@ -185,6 +185,8 @@ These variables allows you to script different processes based on the type of fi
             dot -Kdot -Tsvg "$1" ;;
         html | htm | svg )
             cat "$1" ;;
+        * )
+            echo "Unknown format: $MDVIEWER_EXT" >&2 ;;
     esac
 
 make in executable and point the Markdown processor setting to it:
