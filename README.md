@@ -204,15 +204,21 @@ Some text editors will save by writing to an alternate file and then renaming it
 
 Many editors can be configured to update existing file in place when saving instead of replacing it. Below some configuration tips for popular programming editors.
 
-- __Vim:__ Add following line to your `.vimrc` configuration file:
+- __Vim__
+
+     Add following line to your `.vimrc` configuration file:
 
         set backupcopy=yes
 
-- __GNU Emacs:__ Add following line to your `.emacs` configuration file:
+- __GNU Emacs__
+
+    Add following line to your `.emacs` configuration file:
 
         (setq backup-by-copying t)
 
-- __Sublime Text:__ Add following line to your `Preferences.sublime-settings` configuration file:
+- __Sublime Text__
+
+    Add following line to your `Preferences.sublime-settings` configuration file:
 
         "atomic_save": false
 
@@ -221,9 +227,13 @@ Many editors can be configured to update existing file in place when saving inst
 
 The rendering performance can vary greatly based on your configuration settings and the document content. There are several factors that can affect rendering speed:
 
-- __Markdown processor.__ Different Markdown processors have different performance, which depends on the type of content you have in your document.
+- __Markdown processor__
 
-- __Markdown documents containing a lot of math expressions.__ The math rendering performance generally depends on the [MathJax][mathjax] configuration, especially the output processor options. Depending on type and complexity of your math you may consider using [KaTeX][katex] as alternative LaTeX math renderer.
+    Different Markdown processors have different performance, which depends on the type of content you have in your document.
+
+- __Markdown documents containing a lot of math expressions__
+
+    The math rendering performance generally depends on the [MathJax][mathjax] configuration, especially the output processor options. Depending on type and complexity of your math you may consider using [KaTeX][katex] as alternative LaTeX math renderer.
 
 
 # Acknowledgments

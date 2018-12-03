@@ -227,7 +227,7 @@ class App(QtGui.QMainWindow):
         p.findText(text, back | wrap | case)
 
     def about(self):
-        msg_about = QtGui.QMessageBox(0, 'About MDviewer', u'Version: %s' % (VERSION), parent=self)
+        msg_about = QtGui.QMessageBox(0, 'About MDviewer', u'MDviewer\n\nVersion: %s' % (VERSION), parent=self)
         msg_about.show()
 
     def set_menus(self):
