@@ -172,7 +172,7 @@ MDviewer runs the processor in its own shell, meaning standard environment varia
 - `MDVIEWER_EXT`: The extension of the file being viewed
 - `MDVIEWER_ORIGIN`: The location (base directory) of the file being viewed
 
-These variables allows you to script different processes based on the type of file being viewed. For example, on a UNIX-like system you can create a shell script `mdviewer-proc.sh`
+These variables allows you to script different processes based on the type and location of file being viewed. For example, on a UNIX-like system you can create a shell script `mdviewer-proc.sh`
 
     #!/bin/sh
 
