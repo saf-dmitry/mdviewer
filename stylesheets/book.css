@@ -373,8 +373,11 @@ p, div, li, td, pre, code {
 }
 
 p, div, li, td {
-    -webkit-hyphens: auto;
-    hyphens: auto;
+    hyphens: auto !important;
+    -webkit-hyphens: auto !important;
+    -webkit-hyphenate-character: "\2010" !important;
+    -webkit-hyphenate-limit-after: 1 !important;
+    -webkit-hyphenate-limit-before: 3 !important;
 }
 
 ::selection {
