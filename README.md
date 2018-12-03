@@ -86,7 +86,7 @@ You can open Markdown files directly using the "File > Open" menu option. If a f
 
 ## Navigating Preview
 
-There are multiple ways to navigate the Preview window. You may use the scrollbars, your mousewheel or the Up Arrow and Down Arrow keys to scroll the viewing area. In addition to the Page Up and Page Down keys you can also use Vim shortcuts j and k to move one page up and down.
+There are multiple ways to navigate the Preview window. You may use the scrollbars, your mousewheel or the Up Arrow and Down Arrow keys to scroll the viewing area. In addition to the Page Up and Page Down keys you can also use Vim shortcuts j and k to move one page down and up.
 
 If your document has headings in it, the "Goto" drop-down menu will be active. Clicking on it will expand the Table of Contents, and clicking the title of a heading will navigate to that section of the Preview.
 
