@@ -289,8 +289,8 @@ class App(QtGui.QMainWindow):
             help_menu.addAction(action)
 
         # Define navigation shortcuts
-        self.scroll_up   = QtGui.QShortcut("j", self, activated = lambda: self.web_view.page().currentFrame().scroll(0,-self.web_view.page().viewportSize().height()))
-        self.scroll_down = QtGui.QShortcut("k", self, activated = lambda: self.web_view.page().currentFrame().scroll(0,+self.web_view.page().viewportSize().height()))
+        self.scroll_down = QtGui.QShortcut("j", self, activated = lambda: self.web_view.page().currentFrame().scroll(0,+self.web_view.page().viewportSize().height()))
+        self.scroll_up   = QtGui.QShortcut("k", self, activated = lambda: self.web_view.page().currentFrame().scroll(0,-self.web_view.page().viewportSize().height()))
 
         # Redefine context menu for reloading
         reload_action = self.web_view.page().action(QtWebKit.QWebPage.Reload)
