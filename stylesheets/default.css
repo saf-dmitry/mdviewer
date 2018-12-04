@@ -368,11 +368,11 @@ div.sidebar {
     color: 333;
 }
 
-p, div, li, td, pre, code {
+p, li, th, td, caption, figcaption {
     word-break: break-word;
 }
 
-p, div, li, td {
+p, li, th, td, caption, figcaption {
     hyphens: auto !important;
     -webkit-hyphens: auto !important;
     -webkit-hyphenate-character: "\2010" !important;
