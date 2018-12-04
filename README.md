@@ -4,7 +4,7 @@
 
 MDviewer is a cross-platform and editor-agnostic previewer for Markdown files. Use it with your favorite text editor and it updates every time you save. In applications that automatically save in the background, the Preview will be updated at save intervals as you type.
 
-MDviewer can also be extended to work with just about any processor you need, including Textile, reStructuredText, MediaWiki, AsciiDoc, Graphviz and more.
+MDviewer can also be configured to work with just about any processor you need, including Textile, reStructuredText, MediaWiki, AsciiDoc, Graphviz and more.
 
 ![](images/screenshot.png)
 
@@ -42,7 +42,7 @@ MDviewer requires the following packages to run:
 
 - [Python 2][python] version 2.7 or higher
 - [PyQt4][pyqt4] version 4.8 or higher
-- Markdown processor (see the [Setting a Markdown Processor](#setting-a-markdown-processor) section below)
+- Markdown (or other markup) processor (see the [Setting a Markdown Processor](#setting-a-markdown-processor) section below)
 
 
 # Configuration
@@ -64,9 +64,9 @@ Note: In general, you should place your personal settings in `$HOME/.config/mdvi
 
 ## Setting a Markdown Processor
 
-First, you must specify a Markdown processor in the `processor_path` field of the configuration file. Enter a full path to an executable or script which can return HTML or SVG output on STDOUT and it will be used for Preview and Save operations. Examples of cross-plattform Markdown processors include [pandoc][pandoc], [PHP Markdown Extra][php-markdown-extra], or [MultiMarkdown][multimarkdown].
+First, you must specify a Markdown (or other markup) processor in the `processor_path` field of the configuration file. Enter a full path to an executable or script which can return HTML or SVG output on STDOUT and it will be used for Preview and Save operations. Examples of cross-platform Markdown processors include [pandoc][pandoc], [MultiMarkdown][multimarkdown] or [PHP Markdown Extra][php-markdown-extra].
 
-If the specified processor needs additional arguments besides the file name, specify them in the `processor_args` field, separating each argument with a space, just like you would on the command line. If your process is more complicated than a single command, create a self-contained script, make it executable and point the Markdown processor setting to it. In your scripts you can use the MDviewer-specific environment variables as described in the [Evaluating Environment Variables](#evaluating-environment-variables) section.
+If the specified processor needs additional arguments besides the file name, specify them in the `processor_args` field, separating each argument with a space, just like you would on the command line. If your process is more complicated than a single command, create a self-contained script, make it executable and point the processor setting to it. In your scripts you can use the MDviewer-specific environment variables as described in the [Evaluating Environment Variables](#evaluating-environment-variables) section.
 
 Configuration file entry example:
 
@@ -79,7 +79,7 @@ Configuration file entry example:
 
 ## Opening Files
 
-You can open Markdown files directly using the "File > Open" menu option. If a file is currently being displayed it will be closed. Alternatively, you can give the path and name of a particular file as a command-line argument to open that file immediately upon viewer's startup:
+You can open files directly using the "File > Open" menu option. If a file is currently being displayed it will be closed. Alternatively, you can give the path and name of a particular file as a command-line argument to open that file immediately upon viewer's startup:
 
     mdviewer file.md
 
@@ -149,7 +149,7 @@ On UNIX-like systems where MathJax is not packaged, you can download it from [Gi
 
 Alternatively, you can use a third party CDN server, where the JavaScript needed for MathJax to work will be loaded at run time. This simplifies the installation and ensures the latest version of the library is always used, but requires an Internet connection at run time.
 
-To enable MathJax support you have to point your Markdown processor or your document template to the `MathJax.js` load script. The exact way depends on your Markdown processor (see the [Setting a Markdown Processor](#setting-a-markdown-processor) section). E.g., in case of MultiMarkdown you can add following metadata directly to your Markdown document:
+To enable MathJax support you have to point your processor or your document template to the `MathJax.js` load script. The exact way depends on your processor (see the [Setting a Markdown Processor](#setting-a-markdown-processor) section). E.g., in case of MultiMarkdown you can add following metadata directly to your Markdown document:
 
     html header: <script type="text/javascript"
         src="/usr/share/javascript/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
@@ -161,7 +161,7 @@ Pandoc provides the `--mathjax[=URL]` command-line option. The URL should point 
            --mathjax=/usr/share/javascript/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
 
-MathJax supports most of the standard TeX and LaTeX math syntax, as well as some AMS and other LaTeX extensions and custom macros. See [MathJax TeX and LaTeX Support][mathjax-tex] and [Loading and Configuring MathJax][mathjax-config] pages for details. In the MDviewer's `extras/` directory you can find an example of MathJax's local configuration file, which you can use as a starting point for your own configuration.
+MathJax supports most of the standard TeX and LaTeX math syntax, as well as some AMS and other LaTeX extensions and custom macros. See [MathJax TeX and LaTeX Support][mathjax-tex] and [Loading and Configuring MathJax][mathjax-config] pages for details. In the MDviewer's `extras` directory you can find an example of MathJax's local configuration file, which you can use as a starting point for your own configuration.
 
 
 ## Evaluating Environment Variables
@@ -189,7 +189,7 @@ These variables allows you to script different processes based on the type and l
             echo "Unknown format: $MDVIEWER_EXT" >&2 ;;
     esac
 
-make in executable and point the Markdown processor setting to it:
+make in executable and point the processor setting to it:
 
     processor_path: mdviewer-proc.sh
     processor_args: ''
@@ -227,11 +227,11 @@ Many editors can be configured to update existing file in place when saving inst
 
 The rendering performance can vary greatly based on your configuration settings and the document content. There are several factors that can affect rendering speed:
 
-- __Markdown processor__
+- __Document processor__
 
-    Different Markdown processors have different performance, which depends on the type of content you have in your document.
+    Different processors have different performance, which depends on the type of content you have in your document.
 
-- __Markdown documents containing a lot of math expressions__
+- __Documents containing a lot of math expressions__
 
     The math rendering performance generally depends on the [MathJax][mathjax] configuration, especially the output processor options. Depending on type and complexity of your math you may consider using [KaTeX][katex] as alternative LaTeX math renderer.
 
@@ -262,9 +262,9 @@ You should have received a copy of the GNU General Public License along with thi
 
 [pandoc]: https://pandoc.org
 
-[php-markdown-extra]: https://michelf.ca/projects/php-markdown/extra/
-
 [multimarkdown]: http://fletcherpenney.net/multimarkdown/
+
+[php-markdown-extra]: https://michelf.ca/projects/php-markdown/extra/
 
 [mathjax]: https://www.mathjax.org/
 
