@@ -443,9 +443,5 @@ p, li, th, td, caption, figcaption {
         page-break-inside: avoid !important;
     }
 
-    ::selection {
-        display: none !important;
-    }
-
 }
 
