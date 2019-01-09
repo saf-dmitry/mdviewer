@@ -5,7 +5,7 @@ import sys, os, webbrowser, importlib, itertools, locale, io, subprocess, shutil
 from PyQt4 import QtCore, QtGui, QtWebKit
 from PyQt4.QtGui import QDesktopServices
 
-VERSION = '0.1'
+VERSION = '0.2'
 
 sys_enc = locale.getpreferredencoding()
 script_dir = os.path.dirname(os.path.realpath(__file__))

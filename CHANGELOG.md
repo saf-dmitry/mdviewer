@@ -2,6 +2,9 @@
 
 # Development Version
 
+
+# v0.2
+
 Added:
 
 - Added HTML export functionality
