@@ -166,8 +166,8 @@ class App(QtWidgets.QMainWindow):
         else:
             self.curr_doc.setScrollPosition(scroll_pos)
 
-        # Enable MathJax typesetting
-        self.run_mathjax()
+        # TODO: Enable MathJax typesetting only if required
+        # self.run_mathjax()
 
     def _scroll(self, element):
         '''Scroll to the top of the element.'''
