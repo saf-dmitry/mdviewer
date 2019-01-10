@@ -1,19 +1,21 @@
 #!/usr/bin/env python
 # coding: utf8
 
-import sys, os, webbrowser, importlib, itertools, locale, io, subprocess, shutil, urllib2, yaml
-from PyQt4 import QtCore, QtGui, QtWebKit
-from PyQt4.QtCore import *
-from PyQt4.QtGui import QDesktopServices
+import sys, os, webbrowser, importlib, itertools, locale, io, subprocess, shutil, urllib.request, urllib.error, yaml
 
-VERSION = '0.2'
+from PyQt5 import QtCore, QtGui, QtWidgets, QtPrintSupport, QtWebKit, QtWebKitWidgets
+from PyQt5.QtCore import *
+from PyQt5.QtGui import QDesktopServices
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
+from PyQt5.QtWebKit import QWebSettings
+from PyQt5.QtWebKitWidgets import QWebPage, QWebView
 
-sys_enc = locale.getpreferredencoding()
+VERSION = '0.3'
+
 script_dir = os.path.dirname(os.path.realpath(__file__))
-script_dir = script_dir.decode(sys_enc)
 stylesheet_dir = os.path.join(script_dir, 'stylesheets/')
 
-class App(QtGui.QMainWindow):
+class App(QtWidgets.QMainWindow):
 
     @property
     def QSETTINGS(self):
@@ -31,7 +33,7 @@ class App(QtGui.QMainWindow):
         os.environ["MDVIEWER_ORIGIN"] = fpath
 
     def __init__(self, parent=None, filename=''):
-        QtGui.QMainWindow.__init__(self, parent)
+        QtWidgets.QMainWindow.__init__(self, parent)
         self.filename = filename or os.path.join(script_dir, u'README.md')
 
         self.set_env()
@@ -39,11 +41,11 @@ class App(QtGui.QMainWindow):
 
         # Configure window
         self.set_window_title()
-        self.resize(self.QSETTINGS.value('size', QtCore.QSize(800,800)).toSize())
-        self.move(self.QSETTINGS.value('pos', QtCore.QPoint(50,50)).toPoint())
+        self.resize(self.QSETTINGS.value('size', QtCore.QSize(800,800)))
+        self.move(self.QSETTINGS.value('pos', QtCore.QPoint(50,50)))
 
         # Activate WebView
-        self.web_view = QtWebKit.QWebView()
+        self.web_view = QtWebKitWidgets.QWebView()
         self.setCentralWidget(self.web_view)
 
         self.scroll_pos = {}
@@ -73,7 +75,7 @@ class App(QtGui.QMainWindow):
         # Set link policy
         self.web_view.page().linkHovered.connect(lambda link: self.setToolTip(link))
         self.web_view.linkClicked.connect(lambda url: webbrowser.open_new_tab(url.toString()))
-        self.web_view.page().setLinkDelegationPolicy(QtWebKit.QWebPage.DelegateExternalLinks)
+        self.web_view.page().setLinkDelegationPolicy(QtWebKitWidgets.QWebPage.DelegateExternalLinks)
 
         # Save scroll position
         if not self.web_view.page().currentFrame().scrollPosition() == QtCore.QPoint(0,0):
@@ -84,7 +86,7 @@ class App(QtGui.QMainWindow):
 
         # Display processor warnings, if any
         if warn:
-            QtGui.QMessageBox.warning(self, 'Processor message', warn)
+            QtWidgets.QMessageBox.warning(self, 'Processor message', warn)
 
     def create_doc_ast(self, parentElement):
         '''
@@ -123,24 +125,24 @@ class App(QtGui.QMainWindow):
         self.toc_menu.clear()
         self.toc_menu.setDisabled(True)
 
-        headers = []
+        headings = []
 
         for element in flatten(curr_ast):
             if any(t for t in ('H1', 'H2', 'H3', 'H4', 'H5', 'H6') if t == element.tagName()):
-                headers.append(element)
+                headings.append(element)
 
-        for n, h in enumerate(headers, start=1):
+        for h in headings:
             try:
                 indent = int(h.tagName()[1:]) - 1
             except ValueError:
                 break
             else:
                 self.toc_menu.setDisabled(False)
-            header = u'    '*indent + h.toPlainText().replace("\n", " ").replace("&", "&&")
-            header = (header[:42] + '...') if len(header) > 42 else header
-            vars(self)['toc_nav%d'%n] = QtGui.QAction(header, self)
-            vars(self)['toc_nav%d'%n].triggered[()].connect(lambda header=h: self._scroll(header))
-            self.toc_menu.addAction(vars(self)['toc_nav%d'%n])
+            heading = u'    '*indent + h.toPlainText().replace("\n", " ").replace("&", "&&")
+            heading = (heading[:42] + '...') if len(heading) > 42 else heading
+            action = QtWidgets.QAction(heading, self)
+            action.triggered.connect(lambda checked, heading=h: self._scroll(heading))
+            self.toc_menu.addAction(action)
 
     def run_mathjax(self):
 
@@ -167,17 +169,16 @@ class App(QtGui.QMainWindow):
         # Enable MathJax typesetting
         self.run_mathjax()
 
-    def _scroll(self, element=0):
-        '''Scroll to top of the element.'''
+    def _scroll(self, element):
+        '''Scroll to the top of the element.'''
 
-        if element:
-            self.anim = QtCore.QPropertyAnimation(self.curr_doc, 'scrollPosition')
-            start = self.curr_doc.scrollPosition()
+        self.anim = QtCore.QPropertyAnimation(self.curr_doc, 'scrollPosition')
+        start = self.curr_doc.scrollPosition()
 
-            self.anim.setDuration(250)
-            self.anim.setStartValue(QtCore.QPoint(start))
-            self.anim.setEndValue(QtCore.QPoint(0, element.geometry().top()))
-            self.anim.start()
+        self.anim.setDuration(250)
+        self.anim.setStartValue(QtCore.QPoint(start))
+        self.anim.setEndValue(QtCore.QPoint(0, element.geometry().top()))
+        self.anim.start()
 
     @staticmethod
     def set_stylesheet(self, stylesheet='default.css'):
@@ -189,7 +190,7 @@ class App(QtGui.QMainWindow):
         QDesktopServices.openUrl(url)
 
     def open_file(self):
-        filename = unicode(QtGui.QFileDialog.getOpenFileName(self, 'Open File', os.path.dirname(self.filename)))
+        filename, _filter = QtWidgets.QFileDialog.getOpenFileName(self, 'Open File', os.path.dirname(self.filename))
         if filename != '':
             self.filename = self.thread1.filename = filename
             self.set_env()
@@ -199,7 +200,7 @@ class App(QtGui.QMainWindow):
             pass
 
     def save_html(self):
-        filename = unicode(QtGui.QFileDialog.getSaveFileName(self, 'Save File', os.path.dirname(self.filename)))
+        filename, _filter = QtWidgets.QFileDialog.getSaveFileName(self, 'Save File', os.path.dirname(self.filename))
         if filename != '':
             path = Settings.get('processor_path', 'pandoc')
             args = Settings.get('processor_args', '')
@@ -207,9 +208,9 @@ class App(QtGui.QMainWindow):
             caller = QtCore.QProcess()
             caller.start(path, args)
             caller.waitForFinished()
-            html = unicode(caller.readAllStandardOutput(), 'utf8')
+            html = str(caller.readAllStandardOutput(), 'utf8')
             with io.open(filename, 'w', encoding='utf8') as f:
-                f.writelines(unicode(html))
+                f.writelines(str(html))
                 f.close()
         else:
             pass
@@ -229,7 +230,7 @@ class App(QtGui.QMainWindow):
         p.findText(text, back | wrap | case)
 
     def about(self):
-        msg_about = QtGui.QMessageBox(0, 'About MDviewer', u'MDviewer\n\nVersion: %s' % (VERSION), parent=self)
+        msg_about = QtWidgets.QMessageBox(0, 'About MDviewer', u'MDviewer\n\nVersion: %s' % (VERSION), parent=self)
         msg_about.show()
 
     def set_menus(self):
@@ -245,7 +246,7 @@ class App(QtGui.QMainWindow):
                 {'label': u'&Print...',     'keys': 'Ctrl+P', 'func': self.print_doc},
                 {'label': u'&Quit',         'keys': 'Ctrl+Q', 'func': self.quit}
                  ):
-            action = QtGui.QAction(d['label'], self)
+            action = QtWidgets.QAction(d['label'], self)
             action.setShortcut(d['keys'])
             action.triggered.connect(d['func'])
             file_menu.addAction(action)
@@ -257,7 +258,7 @@ class App(QtGui.QMainWindow):
                 {'label': u'Zoom &Out',    'keys': 'Ctrl+-', 'func': lambda: self.web_view.setZoomFactor(self.web_view.zoomFactor()-.1)},
                 {'label': u'&Actual Size', 'keys': 'Ctrl+=', 'func': lambda: self.web_view.setZoomFactor(1)}
                  ):
-            action = QtGui.QAction(d['label'], self)
+            action = QtWidgets.QAction(d['label'], self)
             action.setShortcut(d['keys'])
             action.triggered.connect(d['func'])
             view_menu.addAction(action)
@@ -267,7 +268,7 @@ class App(QtGui.QMainWindow):
             sheets = []
             for f in os.listdir(stylesheet_dir):
                 if not f.endswith('.css'): continue
-                sheets.append(QtGui.QAction(f, self))
+                sheets.append(QtWidgets.QAction(f, self))
                 if len(sheets) < 10:
                     sheets[-1].setShortcut('Ctrl+%d' % len(sheets))
                 sheets[-1].triggered.connect(
@@ -286,32 +287,32 @@ class App(QtGui.QMainWindow):
         for d in (
                 {'label': u'About...', 'func': self.about},
                  ):
-            action = QtGui.QAction(d['label'], self)
+            action = QtWidgets.QAction(d['label'], self)
             action.triggered.connect(d['func'])
             help_menu.addAction(action)
 
         # Define navigation shortcuts
-        self.scroll_down = QtGui.QShortcut("j", self, activated = lambda: self.web_view.page().currentFrame().scroll(0,+self.web_view.page().viewportSize().height()))
-        self.scroll_up   = QtGui.QShortcut("k", self, activated = lambda: self.web_view.page().currentFrame().scroll(0,-self.web_view.page().viewportSize().height()))
+        self.scroll_down = QtWidgets.QShortcut("j", self, activated = lambda: self.web_view.page().currentFrame().scroll(0,+self.web_view.page().viewportSize().height()))
+        self.scroll_up   = QtWidgets.QShortcut("k", self, activated = lambda: self.web_view.page().currentFrame().scroll(0,-self.web_view.page().viewportSize().height()))
 
         # Redefine context menu for reloading
-        reload_action = self.web_view.page().action(QtWebKit.QWebPage.Reload)
+        reload_action = self.web_view.page().action(QtWebKitWidgets.QWebPage.Reload)
         reload_action.setShortcut(QtGui.QKeySequence.Refresh)
         reload_action.triggered.connect(self.thread1.run)
         self.web_view.addAction(reload_action)
 
     def set_search_panel(self):
-        self.search_bar = QtGui.QToolBar()
+        self.search_bar = QtWidgets.QToolBar()
 
         # Define buttons
-        self.done = QtGui.QPushButton(u'Done', self)
-        self.case = QtGui.QPushButton(u'Case', self)
-        self.wrap = QtGui.QPushButton(u'Wrap', self)
-        self.next = QtGui.QPushButton(u'Next', self)
-        self.prev = QtGui.QPushButton(u'Previous', self)
+        self.done = QtWidgets.QPushButton(u'Done', self)
+        self.case = QtWidgets.QPushButton(u'Case', self)
+        self.wrap = QtWidgets.QPushButton(u'Wrap', self)
+        self.next = QtWidgets.QPushButton(u'Next', self)
+        self.prev = QtWidgets.QPushButton(u'Previous', self)
 
         # Define text field
-        class DUMB(QtGui.QLineEdit): pass
+        class DUMB(QtWidgets.QLineEdit): pass
         self.field = DUMB()
 
         # Restart search at button toggling
@@ -327,7 +328,7 @@ class App(QtGui.QMainWindow):
         # Add wigets to search panel
         for w in (self.done, self.case, self.wrap, self.field, self.next, self.prev):
             self.search_bar.addWidget(w)
-            if type(w) == QtGui.QPushButton:
+            if type(w) == QtWidgets.QPushButton:
                 w.setFlat(False)
                 if any(t for t in (self.case, self.wrap) if t is w):
                     w.setCheckable(True)
@@ -340,7 +341,7 @@ class App(QtGui.QMainWindow):
         self.field.textChanged.connect(self.find)
 
     def print_doc(self):
-        dialog = QtGui.QPrintPreviewDialog()
+        dialog = QtPrintSupport.QPrintPreviewDialog()
         dialog.paintRequested.connect(self.web_view.print_)
         dialog.exec_()
 
@@ -350,7 +351,7 @@ class App(QtGui.QMainWindow):
         self.QSETTINGS.setValue('size', self.size())
         self.QSETTINGS.setValue('pos', self.pos())
 
-        QtGui.qApp.quit()
+        QtWidgets.qApp.quit()
 
 class WatcherThread(QtCore.QThread):
 
@@ -372,8 +373,8 @@ class WatcherThread(QtCore.QThread):
         caller = QtCore.QProcess()
         caller.start(path, args)
         caller.waitForFinished()
-        html = unicode(caller.readAllStandardOutput(), 'utf8')
-        warn = unicode(caller.readAllStandardError(), 'utf8')
+        html = str(caller.readAllStandardOutput(), 'utf8')
+        warn = str(caller.readAllStandardError(), 'utf8')
         return (html, warn)
 
 class Settings:
@@ -399,11 +400,11 @@ class Settings:
         print('Settings: %s' % cls().settings_file)
 
 def main():
-    app = QtGui.QApplication(sys.argv)
+    app = QApplication(sys.argv)
     if len(sys.argv) != 2:
         window = App()
     else:
-        window = App(filename=sys.argv[1].decode(sys_enc))
+        window = App(filename=sys.argv[1])
     window.show()
     sys.exit(app.exec_())
 

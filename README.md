@@ -40,9 +40,15 @@ MDviewer can also be configured to work with just about any processor you need, 
 
 MDviewer requires the following packages to run:
 
-- [Python 2][python] version 2.7 or higher
-- [PyQt4][pyqt4] version 4.8 or higher
-- Markdown (or other markup) processor (see the [Setting a Markdown Processor](#setting-a-markdown-processor) section below)
+- [Python 3][python]
+- [PyQt5][pyqt5]
+- Markdown (or other markup) processor
+
+To install Python 3 and PyQT5 on Debian-based systems such as Ubuntu or Mint, issue following command:
+
+    sudo apt-get install python3-yaml python3-pyqt5 python3-pyqt5.qtwebkit
+
+To install and configure Markdown (or other markup) processor see the [Setting a Markdown Processor](#setting-a-markdown-processor) section below.
 
 
 # Configuration
@@ -258,7 +264,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 [python]: https://www.python.org/downloads/
 
-[pyqt4]: https://riverbankcomputing.com/software/pyqt/download
+[pyqt5]: https://riverbankcomputing.com/software/pyqt/download
 
 [pandoc]: https://pandoc.org
 

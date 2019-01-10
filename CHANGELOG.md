@@ -3,6 +3,13 @@
 # Development Version
 
 
+# 0.3
+
+Changed:
+
+- The main module is ported to Python 3 and PyQT5
+
+
 # v0.2
 
 Added:

@@ -1,5 +1,5 @@
 #!/bin/sh
 
 mdviewer=$(dirname "$0")'/mdviewer.py'
-python2 $mdviewer "$1"
+python3 $mdviewer "$1"
 
