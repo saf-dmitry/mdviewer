@@ -191,6 +191,7 @@ class App(QtGui.QMainWindow):
         filename = unicode(QtGui.QFileDialog.getOpenFileName(self, 'Open File', os.path.dirname(self.filename)))
         if filename != '':
             self.filename = self.thread1.filename = filename
+            self.set_env()
             self.set_window_title()
             self.thread1.run()
         else:

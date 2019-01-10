@@ -12,6 +12,7 @@ Added:
 
 Fixed:
 
+- Fixed setting of environment variables
 - Fixed printing styles in CSS
 - Fixed handling of external links
 - Fixed formatting of long multiline items in TOC
