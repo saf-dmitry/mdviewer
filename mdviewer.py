@@ -3,6 +3,7 @@
 
 import sys, os, webbrowser, importlib, itertools, locale, io, subprocess, shutil, urllib2, yaml
 from PyQt4 import QtCore, QtGui, QtWebKit
+from PyQt4.QtCore import *
 from PyQt4.QtGui import QDesktopServices
 
 VERSION = '0.2'
@@ -49,7 +50,7 @@ class App(QtGui.QMainWindow):
 
         # Configure and start file watcher thread
         self.thread1 = WatcherThread(self.filename)
-        self.connect(self.thread1, QtCore.SIGNAL('update(QString,QString)'), self.update)
+        self.thread1.update.connect(self.update)
         self.watcher = QtCore.QFileSystemWatcher([self.filename])
         self.watcher.fileChanged.connect(self.thread1.run)
         self.thread1.start()
@@ -353,6 +354,8 @@ class App(QtGui.QMainWindow):
 
 class WatcherThread(QtCore.QThread):
 
+    update = pyqtSignal(str, str)
+
     def __init__(self, filename):
         QtCore.QThread.__init__(self)
         self.filename = filename
@@ -360,14 +363,13 @@ class WatcherThread(QtCore.QThread):
     def run(self):
         warn = ''
         html, warn = self.processor_rules()
-        self.emit(QtCore.SIGNAL('update(QString,QString)'), html, warn)
+        self.update.emit(html, warn)
 
     def processor_rules(self):
         path = Settings.get('processor_path', 'pandoc')
         args = Settings.get('processor_args', '')
         args = ('%s' % (args)).split() + [self.filename]
         caller = QtCore.QProcess()
-        # status = caller.execute(path, args)
         caller.start(path, args)
         caller.waitForFinished()
         html = unicode(caller.readAllStandardOutput(), 'utf8')
