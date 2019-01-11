@@ -45,7 +45,11 @@ MDviewer requires the following packages to run:
 
 To install Python 3 and PyQt5 on Debian-based systems such as Ubuntu or Mint, you can issue the following command:
 
-    sudo apt-get install python3 python3-yaml python3-pyqt5 python3-pyqt5.qtwebkit
+    sudo apt-get install python3 python3-yaml python3-pyqt5
+
+The current MDviewer version is based on Qt WebKit browser engine, which is dropped from the release since Qt 5.6 and must be installed separately:
+
+    sudo apt-get install python3-pyqt5.qtwebkit
 
 To install and configure Markdown (or other markup) processor see the [Setting a Markdown Processor](#setting-a-markdown-processor) section below.
 
