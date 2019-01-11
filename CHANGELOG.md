@@ -7,7 +7,7 @@
 
 Changed:
 
-- The main module is ported to Python 3 and PyQT5
+- The main module is ported to Python 3 and PyQt5
 
 
 # v0.2
