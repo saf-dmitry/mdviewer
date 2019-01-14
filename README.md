@@ -198,7 +198,7 @@ These variables allows you to script different processes based on the type and l
             echo "Unknown format: $MDVIEWER_EXT" >&2 ;;
     esac
 
-make in executable and point the processor setting to it:
+make it executable and point the processor setting to it:
 
     processor_path: mdviewer-proc.sh
     processor_args: ''
