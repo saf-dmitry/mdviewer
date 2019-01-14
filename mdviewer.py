@@ -172,7 +172,7 @@ class App(QtWidgets.QMainWindow):
     def _scroll(self, element):
         '''Scroll to the top of the element.'''
 
-        self.anim = QtCore.QPropertyAnimation(self.curr_doc, 'scrollPosition')
+        self.anim = QtCore.QPropertyAnimation(self.curr_doc, b'scrollPosition')
         start = self.curr_doc.scrollPosition()
 
         self.anim.setDuration(250)
