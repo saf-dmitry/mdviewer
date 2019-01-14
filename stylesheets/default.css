@@ -163,6 +163,7 @@ pre > code, code > pre {
     padding: 0rem;
     line-height: 1.5;
     overflow-x: scroll;
+    background-color: inherit;
     white-space: pre !important;
 }
 
