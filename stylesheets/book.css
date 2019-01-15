@@ -155,6 +155,7 @@ sub, sup {
 pre, code, tt, kbd, samp {
     font-size: 100%;
     font-family: "Ubuntu Mono", "DejaVu Sans Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    tab-size: 4;
 }
 
 pre {
