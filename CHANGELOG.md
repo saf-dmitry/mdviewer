@@ -2,6 +2,10 @@
 
 # Development Version
 
+Changed:
+
+- Improved Table of Contents feature
+
 
 # v0.3
 

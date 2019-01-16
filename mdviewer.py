@@ -57,7 +57,7 @@ class App(QtWidgets.QMainWindow):
         self.watcher.fileChanged.connect(self.thread1.run)
         self.thread1.start()
 
-        # Update TOC and restore scroll position
+        # Restore scroll position
         self.web_view.loadFinished.connect(self.after_update)
 
         # Set GUI
@@ -73,7 +73,6 @@ class App(QtWidgets.QMainWindow):
         self.web_view.settings().setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
 
         # Set link policy
-        self.web_view.page().linkHovered.connect(lambda link: self.setToolTip(link))
         self.web_view.linkClicked.connect(lambda url: webbrowser.open_new_tab(url.toString()))
         self.web_view.page().setLinkDelegationPolicy(QtWebKitWidgets.QWebPage.DelegateExternalLinks)
 
@@ -84,79 +83,31 @@ class App(QtWidgets.QMainWindow):
         # Update document
         self.web_view.setHtml(text, baseUrl=QtCore.QUrl('file:///' + os.path.join(os.getcwd(), self.filename)))
 
+        # Load JavaScript and core CSS
+        scr = os.path.join(script_dir, 'mdviewer.js')
+        css = os.path.join(script_dir, 'mdviewer.css')
+        addresources = '''
+        (function() {
+        scr = document.createElement('script');
+        scr.type = 'text/javascript';
+        scr.src = '%s'
+        css = document.createElement('link');
+        css.rel = 'stylesheet';
+        css.href = '%s'
+        document.head.appendChild(scr);
+        document.head.appendChild(css);
+        })()
+        ''' % (scr, css)
+        self.web_view.page().currentFrame().evaluateJavaScript(addresources)
+
         # Display processor warnings, if any
         if warn:
             QtWidgets.QMessageBox.warning(self, 'Processor message', warn)
-
-    def create_doc_ast(self, parentElement):
-        '''
-        Create document AST.
-
-        Create tree of QWebElements starting from parentElement:
-        [Parent, [[child, [child-of-child, ...], ...]], ...]
-        where Parent is the first child of parentElement.
-        '''
-
-        children = []
-        element = parentElement.firstChild()
-
-        # Recursively traverse the AST
-        while not element.isNull():
-            if not any(t for t in ('HEAD', 'META', 'TITLE', 'STYLE', 'SCRIPT', 'LINK') if t == element.tagName()):
-                if element not in children:
-                    further = self.create_doc_ast(element)
-                    children.append([element, further])
-            element = element.nextSibling()
-
-        if children:
-            return children
-
-    def generate_toc(self, curr_ast):
-
-        def flatten(ls):
-            for item in ls:
-                if not item: continue
-                if isinstance(item, list):
-                    for x in flatten(item):
-                        yield x
-                else:
-                    yield item
-
-        self.toc_menu.clear()
-        self.toc_menu.setDisabled(True)
-
-        headings = []
-
-        for element in flatten(curr_ast):
-            if any(t for t in ('H1', 'H2', 'H3', 'H4', 'H5', 'H6') if t == element.tagName()):
-                headings.append(element)
-
-        for h in headings:
-            try:
-                indent = int(h.tagName()[1:]) - 1
-            except ValueError:
-                break
-            else:
-                self.toc_menu.setDisabled(False)
-            heading = u'    '*indent + h.toPlainText().replace("\n", " ").replace("&", "&&")
-            heading = (heading[:42] + '...') if len(heading) > 42 else heading
-            action = QtWidgets.QAction(heading, self)
-            action.triggered.connect(lambda checked, heading=h: self._scroll(heading))
-            self.toc_menu.addAction(action)
-
-    def run_mathjax(self):
-
-        mjtypeset = 'if (typeof window.MathJax !== undefined) {MathJax.Hub.Queue(["Typeset", MathJax.Hub]);}'
-        self.web_view.page().currentFrame().evaluateJavaScript(mjtypeset)
 
     def after_update(self):
         '''Update TOC and restore scroll position.'''
 
         self.curr_doc = self.web_view.page().currentFrame()
-
-        # Update TOC
-        curr_ast = self.create_doc_ast(self.curr_doc.documentElement())
-        self.generate_toc(curr_ast)
 
         # Restore scroll position
         try:
@@ -165,20 +116,6 @@ class App(QtWidgets.QMainWindow):
             pass
         else:
             self.curr_doc.setScrollPosition(scroll_pos)
-
-        # TODO: Enable MathJax typesetting only if required
-        # self.run_mathjax()
-
-    def _scroll(self, element):
-        '''Scroll to the top of the element.'''
-
-        self.anim = QtCore.QPropertyAnimation(self.curr_doc, b'scrollPosition')
-        start = self.curr_doc.scrollPosition()
-
-        self.anim.setDuration(250)
-        self.anim.setStartValue(QtCore.QPoint(start))
-        self.anim.setEndValue(QtCore.QPoint(0, element.geometry().top()))
-        self.anim.start()
 
     @staticmethod
     def set_stylesheet(self, stylesheet='default.css'):
@@ -278,10 +215,6 @@ class App(QtWidgets.QMainWindow):
                 style_menu.addAction(item)
             self.set_stylesheet(self, 'default.css')
 
-        self.toc_menu = menubar.addMenu('&Goto')
-        self.toc_menu.setStyleSheet('menu-scrollable: 1')
-        self.toc_menu.setDisabled(True)
-
         help_menu = menubar.addMenu("&Help")
 
         for d in (
@@ -291,9 +224,10 @@ class App(QtWidgets.QMainWindow):
             action.triggered.connect(d['func'])
             help_menu.addAction(action)
 
-        # Define navigation shortcuts
+        # Define shortcuts
         self.scroll_down = QtWidgets.QShortcut("j", self, activated = lambda: self.web_view.page().currentFrame().scroll(0,+self.web_view.page().viewportSize().height()))
         self.scroll_up   = QtWidgets.QShortcut("k", self, activated = lambda: self.web_view.page().currentFrame().scroll(0,-self.web_view.page().viewportSize().height()))
+        self.show_toc    = QtWidgets.QShortcut("t", self, activated = lambda: self.web_view.page().currentFrame().evaluateJavaScript('(function() {generateTOC();})()'))
 
         # Redefine context menu for reloading
         reload_action = self.web_view.page().action(QtWebKitWidgets.QWebPage.Reload)
