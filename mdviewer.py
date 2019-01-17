@@ -13,7 +13,7 @@ from PyQt5.QtWebKitWidgets import QWebPage, QWebView
 VERSION = '0.3'
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
-stylesheet_dir = os.path.join(script_dir, 'stylesheets/')
+stylesheet_dir = os.path.join(script_dir, 'stylesheets')
 
 class App(QtWidgets.QMainWindow):
 
@@ -105,7 +105,7 @@ class App(QtWidgets.QMainWindow):
             QtWidgets.QMessageBox.warning(self, 'Processor message', warn)
 
     def after_update(self):
-        '''Update TOC and restore scroll position.'''
+        '''Restore scroll position.'''
 
         self.curr_doc = self.web_view.page().currentFrame()
 
@@ -119,8 +119,8 @@ class App(QtWidgets.QMainWindow):
 
     @staticmethod
     def set_stylesheet(self, stylesheet='default.css'):
-        full_path = os.path.join(stylesheet_dir, stylesheet)
-        url = QtCore.QUrl.fromLocalFile(full_path)
+        path = os.path.join(stylesheet_dir, stylesheet)
+        url = QtCore.QUrl.fromLocalFile(path)
         self.web_view.settings().setUserStyleSheetUrl(url)
 
     def handle_link_clicked(self, url):
@@ -314,9 +314,9 @@ class WatcherThread(QtCore.QThread):
 class Settings:
     def __init__(self):
         if os.name == 'nt':
-            self.user_source = os.path.join(os.getenv('APPDATA'), 'mdviewer/settings.yml')
+            self.user_source = os.path.join(os.getenv('APPDATA'), 'mdviewer', 'settings.yml')
         else:
-            self.user_source = os.path.join(os.getenv('HOME'), '.config/mdviewer/settings.yml')
+            self.user_source = os.path.join(os.getenv('HOME'), '.config', 'mdviewer', 'settings.yml')
         self.app_source = os.path.join(script_dir, 'settings.yml')
         self.settings_file = self.user_source if os.path.exists(self.user_source) else self.app_source
         self.reload_settings()

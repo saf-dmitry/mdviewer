@@ -55,7 +55,7 @@
     position: fixed;
     text-align: right;
     bottom: 10px;
-    right: 40px;
+    right: 50px;
     height: 19px;
     z-index: 1000;
     -webkit-transition: opacity .2s;
