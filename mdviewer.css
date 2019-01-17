@@ -55,10 +55,11 @@
     #generated-toc a#hideTOC {
         display: block;
         position: fixed;
-        text-align: right;
-        bottom: 10px;
+        max-width: 50px;
+        padding: 2px;
+        text-align: center;
+        bottom: 15px;
         right: 50px;
-        height: 19px;
         z-index: 1000;
         -webkit-transition: opacity .2s;
         transition: opacity .2s;
