@@ -22,15 +22,15 @@ class App(QtWidgets.QMainWindow):
         return QtCore.QSettings(QtCore.QSettings.IniFormat, QtCore.QSettings.UserScope, 'MDviewer', 'MDviewer')
 
     def set_window_title(self):
-        fpath, fname = os.path.split(os.path.abspath(self.filename))
-        self.setWindowTitle(u'%s – MDviewer' % (fname))
+        _path, name = os.path.split(os.path.abspath(self.filename))
+        self.setWindowTitle(u'%s – MDviewer' % (name))
 
     def set_env (self):
-        fpath, fname = os.path.split(os.path.abspath(self.filename))
-        fext = fname.split('.')[-1].lower()
-        os.environ["MDVIEWER_EXT"] = fext
-        os.environ["MDVIEWER_FILE"] = fname
-        os.environ["MDVIEWER_ORIGIN"] = fpath
+        path, name = os.path.split(os.path.abspath(self.filename))
+        ext = name.split('.')[-1].lower()
+        os.environ["MDVIEWER_EXT"] = ext
+        os.environ["MDVIEWER_FILE"] = name
+        os.environ["MDVIEWER_ORIGIN"] = path
 
     def __init__(self, parent=None, filename=''):
         QtWidgets.QMainWindow.__init__(self, parent)
@@ -88,14 +88,14 @@ class App(QtWidgets.QMainWindow):
         css = os.path.join(script_dir, 'mdviewer.css')
         addresources = '''
         (function() {
-        scr = document.createElement('script');
-        scr.type = 'text/javascript';
-        scr.src = '%s'
-        css = document.createElement('link');
-        css.rel = 'stylesheet';
-        css.href = '%s'
-        document.head.appendChild(scr);
-        document.head.appendChild(css);
+            scr = document.createElement('script');
+            scr.type = 'text/javascript';
+            scr.src = '%s'
+            css = document.createElement('link');
+            css.rel = 'stylesheet';
+            css.href = '%s'
+            document.head.appendChild(scr);
+            document.head.appendChild(css);
         })()
         ''' % (scr, css)
         self.web_view.page().currentFrame().evaluateJavaScript(addresources)
@@ -256,7 +256,7 @@ class App(QtWidgets.QMainWindow):
             if self.search_bar.isVisible():
                 self.search_bar.hide()
 
-        # Add widgets to search panel
+        # Add widgets to the search panel
         for w in (self.done, self.case, self.wrap, self.field, self.next, self.prev):
             self.search_bar.addWidget(w)
             if type(w) == QtWidgets.QPushButton:
