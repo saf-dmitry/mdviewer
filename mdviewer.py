@@ -107,7 +107,6 @@ class App(QtWidgets.QMainWindow):
     def after_update(self):
         '''Restore scroll position.'''
 
-        # Restore scroll position
         try:
             pos = self.scroll_pos[self.filename]
         except KeyError:
@@ -137,11 +136,11 @@ class App(QtWidgets.QMainWindow):
     def save_html(self):
         filename, _filter = QtWidgets.QFileDialog.getSaveFileName(self, 'Save File', os.path.dirname(self.filename))
         if filename != '':
-            path = Settings.get('processor_path', 'pandoc')
+            proc = Settings.get('processor_path', 'pandoc')
             args = Settings.get('processor_args', '')
             args = ('%s' % (args)).split() + [self.filename]
             caller = QtCore.QProcess()
-            caller.start(path, args)
+            caller.start(proc, args)
             caller.waitForFinished()
             html = str(caller.readAllStandardOutput(), 'utf8')
             with io.open(filename, 'w', encoding='utf8') as f:
@@ -294,19 +293,22 @@ class WatcherThread(QtCore.QThread):
         self.filename = filename
 
     def run(self):
-        warn = ''
         html, warn = self.processor_rules()
         self.update.emit(html, warn)
 
     def processor_rules(self):
-        path = Settings.get('processor_path', 'pandoc')
+        proc = Settings.get('processor_path', 'pandoc')
         args = Settings.get('processor_args', '')
         args = ('%s' % (args)).split() + [self.filename]
-        caller = QtCore.QProcess()
-        caller.start(path, args)
-        caller.waitForFinished()
-        html = str(caller.readAllStandardOutput(), 'utf8')
-        warn = str(caller.readAllStandardError(), 'utf8')
+        html = ''; warn = ''
+        if shutil.which(proc) is not None:
+            caller = QtCore.QProcess()
+            caller.start(proc, args)
+            caller.waitForFinished()
+            html = str(caller.readAllStandardOutput(), 'utf8')
+            warn = str(caller.readAllStandardError(), 'utf8')
+        else:
+            warn = 'Processor not found: %s' % (proc)
         return (html, warn)
 
 class Settings:

@@ -43,12 +43,12 @@
     color: #96dcff !important;
 }
 
-#generated-toc div.h1 { margin-left: 0em }
-#generated-toc div.h2 { margin-left: 1em }
-#generated-toc div.h3 { margin-left: 2em }
-#generated-toc div.h4 { margin-left: 3em }
-#generated-toc div.h5 { margin-left: 4em }
-#generated-toc div.h6 { margin-left: 5em }
+#generated-toc div.h1 { margin-left: 0em; }
+#generated-toc div.h2 { margin-left: 1em; }
+#generated-toc div.h3 { margin-left: 2em; }
+#generated-toc div.h4 { margin-left: 3em; }
+#generated-toc div.h5 { margin-left: 4em; }
+#generated-toc div.h6 { margin-left: 5em; }
 
 #generated-toc a#hideTOC {
     display: block;
