@@ -308,7 +308,7 @@ class WatcherThread(QtCore.QThread):
             html = str(caller.readAllStandardOutput(), 'utf8')
             warn = str(caller.readAllStandardError(), 'utf8')
         else:
-            warn = 'Processor not found: %s' % (proc)
+            warn = u'Executable not found: %s' % (proc)
         return (html, warn)
 
 class Settings:
