@@ -107,15 +107,13 @@ class App(QtWidgets.QMainWindow):
     def after_update(self):
         '''Restore scroll position.'''
 
-        self.curr_doc = self.web_view.page().currentFrame()
-
         # Restore scroll position
         try:
-            scroll_pos = self.scroll_pos[self.filename]
+            pos = self.scroll_pos[self.filename]
         except KeyError:
             pass
         else:
-            self.curr_doc.setScrollPosition(scroll_pos)
+            self.web_view.page().currentFrame().evaluateJavaScript('window.scrollTo(%s, %s);' % (pos.x(), pos.y()))
 
     @staticmethod
     def set_stylesheet(self, stylesheet='default.css'):
@@ -259,7 +257,7 @@ class App(QtWidgets.QMainWindow):
             if self.search_bar.isVisible():
                 self.search_bar.hide()
 
-        # Add wigets to search panel
+        # Add widgets to search panel
         for w in (self.done, self.case, self.wrap, self.field, self.next, self.prev):
             self.search_bar.addWidget(w)
             if type(w) == QtWidgets.QPushButton:
