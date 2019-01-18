@@ -95,7 +95,7 @@ hr {
 
 a {
     color: #0366d6;
-    padding-bottom: 1px;
+    padding-bottom: 0;
     text-decoration: none;
     -webkit-transition: border-bottom .2s ease-in-out;
     transition: border-bottom .2s ease-in-out;

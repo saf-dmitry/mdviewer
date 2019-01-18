@@ -109,7 +109,7 @@ hr {
 a {
     color: #111;
     text-decoration: none;
-    padding-bottom: 1px;
+    padding-bottom: 0;
     border-bottom: 1px solid #aaa;
     -webkit-transition: border-bottom .2s ease-in-out;
     transition: border-bottom .2s ease-in-out;
