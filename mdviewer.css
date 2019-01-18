@@ -60,7 +60,7 @@
         text-overflow: ellipsis;
     }
 
-    #generated-toc a:hover {
+    #generated-toc a:hover, #generated-toc a:focus {
         color: #96dcff !important;
     }
 

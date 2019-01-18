@@ -7,15 +7,15 @@ function generateTOC(documentRef) {
     var toc = documentRef.getElementById("generated-toc");
 
     if (toc) {
-        while (toc.firstChild) {
-            toc.removeChild(toc.firstChild);
-        }
+        toc.innerHTML = "";
     }
     else {
         toc = document.createElement("div");
         toc.id = "generated-toc";
         document.body.insertBefore(toc, document.body.lastChild);
     }
+
+    toc.style.display = "block";
 
     headings.forEach(function (heading, i) {
 
@@ -35,9 +35,9 @@ function generateTOC(documentRef) {
         div.appendChild(link);
         toc.appendChild(div);
 
-    });
+        if (i === 0) { link.focus(); }
 
-    toc.style.display = "block";
+    });
 
     var hidetoc = documentRef.createElement("a");
 
