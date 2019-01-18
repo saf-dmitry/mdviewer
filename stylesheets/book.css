@@ -68,42 +68,32 @@ h1, h2, h3, h4, h5, h6 {
     font-style: normal;
     font-weight: 400;
     line-height: 1.2;
+    margin-top: 1.8rem;
+    margin-bottom: 1rem;
 }
 
 h1 {
     font-size: 2.4rem;
-    margin-top: 4rem;
-    margin-bottom: 1.5rem;
 }
 
 h2 {
     font-size: 1.8rem;
-    margin-top: 2.1rem;
-    margin-bottom: 1rem;
 }
 
 h3 {
     font-size: 1.5rem;
-    margin-top: 2.1rem;
-    margin-bottom: 1rem;
 }
 
 h4 {
     font-size: 1.3rem;
-    margin-top: 2.1rem;
-    margin-bottom: 1rem;
 }
 
 h5 {
     font-size: 1.3rem;
-    margin-top: 2.1rem;
-    margin-bottom: 1rem;
 }
 
 h6 {
     font-size: 1.3rem;
-    margin-top: 2.1rem;
-    margin-bottom: 1rem;
 }
 
 hr {
@@ -129,7 +119,7 @@ a[href^="#"] {
     color: #111;
 }
 
-a:hover {
+a:hover, a:active {
     border-bottom: 1px solid #111;
 }
 
@@ -162,6 +152,7 @@ pre {
     padding: 0.8rem 1rem;
     overflow: auto;
     white-space: pre !important;
+    word-wrap: normal;
 }
 
 code {
@@ -193,6 +184,10 @@ kbd {
     white-space: pre !important;
 }
 
+small {
+    font-size: 90%;
+}
+
 dl {
     margin-left: 1rem;
 }
@@ -205,13 +200,35 @@ ol {
     list-style-type: outside decimal;
 }
 
+ol ol, ul ol {
+    list-style-type: lower-roman;
+}
+
+ul ul ol, ul ol ol, ol ul ol, ol ol ol {
+    list-style-type: lower-alpha;
+}
+
+ul ul, ul ol {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+ol ol, ol ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
 li {
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 }
 
-li > p:first-of-type {
-    margin: 0;
+li > p {
+    margin-bottom: 0;
+}
+
+li p+p {
+    margin-top: 0.5rem;
 }
 
 dl dt {
@@ -227,9 +244,17 @@ blockquote {
     margin: auto 1.5rem;
 }
 
+blockquote > :first-child {
+    margin-top: 1rem;
+}
+
+blockquote > :last-child {
+    margin-bottom: 1rem;
+}
+
 img, video, object, embed {
     max-width: 100%;
-    height: auto;
+    box-sizing: border-box;
 }
 
 figure, div.figure {
@@ -247,6 +272,7 @@ figure figcaption, div.figure p.caption {
 
 table {
     width: auto;
+    overflow: auto;
     margin: 0 auto;
     line-height: 1.4;
     border-collapse: collapse;
@@ -434,6 +460,7 @@ p, li, th, td, caption, figcaption {
 
     pre > code, code > pre {
         white-space: pre-wrap !important;
+        overflow: visible;
     }
 
     img {
