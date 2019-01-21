@@ -40,20 +40,17 @@ class App(QtWidgets.QMainWindow):
         Settings.print_path()
 
         # Configure window
-
         self.set_window_title()
         self.resize(self.QSETTINGS.value('size', QtCore.QSize(800,800)))
         self.move(self.QSETTINGS.value('pos', QtCore.QPoint(50,50)))
 
         # Activate WebView
-
         self.web_view = QtWebKitWidgets.QWebView()
         self.setCentralWidget(self.web_view)
 
         self.scroll_pos = {}
 
         # Configure and start file watcher thread
-
         self.thread1 = WatcherThread(self.filename)
         self.thread1.update.connect(self.update)
         self.watcher = QtCore.QFileSystemWatcher([self.filename])
@@ -61,16 +58,14 @@ class App(QtWidgets.QMainWindow):
         self.thread1.start()
 
         # Restore scroll position
-
         self.web_view.loadFinished.connect(self.after_update)
 
         # Set GUI
-
         self.set_menus()
         self.set_search_panel()
 
     def update(self, text, warn):
-        '''Update document view.'''
+        '''Update Preview.'''
 
         self.web_view.settings().setAttribute(QtWebKit.QWebSettings.JavascriptEnabled, True)
         self.web_view.settings().setAttribute(QtWebKit.QWebSettings.PluginsEnabled, True)
@@ -80,16 +75,13 @@ class App(QtWidgets.QMainWindow):
         self.web_view.page().setLinkDelegationPolicy(QtWebKitWidgets.QWebPage.DelegateExternalLinks)
 
         # Save scroll position
-
         if not self.web_view.page().currentFrame().scrollPosition() == QtCore.QPoint(0,0):
             self.scroll_pos[self.filename] = self.web_view.page().currentFrame().scrollPosition()
 
         # Update Preview
-
         self.web_view.setHtml(text, baseUrl=QtCore.QUrl('file:///' + os.path.join(os.getcwd(), self.filename)))
 
         # Load JavaScript and core CSS
-
         scr = os.path.join(script_dir, 'mdviewer.js')
         css = os.path.join(script_dir, 'mdviewer.css')
         addresources = '''
@@ -104,11 +96,9 @@ class App(QtWidgets.QMainWindow):
             document.head.appendChild(css);
         })()
         ''' % (scr, css)
-
         self.web_view.page().currentFrame().evaluateJavaScript(addresources)
 
         # Display processor warnings
-
         if warn:
             QtWidgets.QMessageBox.warning(self, 'Processor message', warn)
 
@@ -166,7 +156,6 @@ class App(QtWidgets.QMainWindow):
         self.field.selectAll()
 
     def set_search_panel(self):
-
         self.search_bar = QtWidgets.QToolBar()
 
         self.done = QtWidgets.QPushButton(u'Done', self)
@@ -197,9 +186,6 @@ class App(QtWidgets.QMainWindow):
         for w in (self.prev, self.next):
             w.pressed[()].connect(lambda btn=w: _toggle_btn(btn))
         self.done.pressed.connect(_escape)
-
-        # Activate incremental search
-
         self.field.textChanged.connect(self.find)
 
     def print_doc(self):
@@ -208,7 +194,6 @@ class App(QtWidgets.QMainWindow):
         dialog.exec_()
 
     def quit(self, QCloseEvent):
-
         self.QSETTINGS.setValue('size', self.size())
         self.QSETTINGS.setValue('pos', self.pos())
 
@@ -224,10 +209,10 @@ class App(QtWidgets.QMainWindow):
         self.web_view.setZoomFactor(1)
 
     def scroll_down(self):
-        self.web_view.page().currentFrame().scroll(0,+self.web_view.page().viewportSize().height())
+        self.web_view.page().currentFrame().scroll(0, +self.web_view.page().viewportSize().height())
 
     def scroll_up(self):
-        self.web_view.page().currentFrame().scroll(0,-self.web_view.page().viewportSize().height())
+        self.web_view.page().currentFrame().scroll(0, -self.web_view.page().viewportSize().height())
 
     def show_toc(self):
         self.web_view.page().currentFrame().evaluateJavaScript('(function() {generateTOC();})()')
@@ -243,9 +228,7 @@ class App(QtWidgets.QMainWindow):
         msg_about.show()
 
     def set_menus(self):
-
         menubar = self.menuBar()
-
         file_menu = menubar.addMenu('&File')
 
         for d in (
@@ -296,20 +279,17 @@ class App(QtWidgets.QMainWindow):
             help_menu.addAction(action)
 
         # Redefine context menu for reloading
-
         reload_action = self.web_view.page().action(QtWebKitWidgets.QWebPage.Reload)
         reload_action.setShortcut(QtGui.QKeySequence.Refresh)
         reload_action.triggered.connect(self.thread1.run)
         self.web_view.addAction(reload_action)
 
         # Define additional shortcuts
-
         QtWidgets.QShortcut("j", self, activated = self.scroll_down)
         QtWidgets.QShortcut("k", self, activated = self.scroll_up)
         QtWidgets.QShortcut("t", self, activated = self.show_toc)
 
 class WatcherThread(QtCore.QThread):
-
     update = pyqtSignal(str, str)
 
     def __init__(self, filename):
