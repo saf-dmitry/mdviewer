@@ -142,34 +142,26 @@ class App(QtWidgets.QMainWindow):
             pass
 
     def find(self, text, btn=''):
-        p = self.web_view.page()
-        back = p.FindFlags(1) if btn is self.prev else p.FindFlags(0)
-        case = p.FindFlags(2) if self.case.isChecked() else p.FindFlags(0)
-        wrap = p.FindFlags(4) if self.wrap.isChecked() else p.FindFlags(0)
-        p.findText('', p.FindFlags(8))
-        p.findText(text, back | wrap | case)
-
-    def show_search_panel(self):
-        self.addToolBar(0x8, self.search_bar)
-        self.search_bar.show()
-        self.field.setFocus()
-        self.field.selectAll()
+        page = self.web_view.page()
+        back = page.FindFlags(1) if btn is self.prev else page.FindFlags(0)
+        case = page.FindFlags(2) if self.case.isChecked() else page.FindFlags(0)
+        wrap = page.FindFlags(4) if self.wrap.isChecked() else page.FindFlags(0)
+        page.findText('', page.FindFlags(8))
+        page.findText(text, back | wrap | case)
 
     def set_search_panel(self):
         self.search_bar = QtWidgets.QToolBar()
 
-        self.done = QtWidgets.QPushButton(u'Done', self)
+        self.text = QtWidgets.QLineEdit(self)
         self.case = QtWidgets.QCheckBox(u'Case', self)
         self.wrap = QtWidgets.QCheckBox(u'Wrap', self)
         self.next = QtWidgets.QPushButton(u'\u25b6', self)
         self.prev = QtWidgets.QPushButton(u'\u25c0', self)
-
-        class DUMB(QtWidgets.QLineEdit): pass
-        self.field = DUMB()
+        self.done = QtWidgets.QPushButton(u'Done', self)
 
         def _toggle_btn(btn=''):
-            self.field.setFocus()
-            self.find(self.field.text(), btn)
+            self.text.setFocus()
+            self.find(self.text.text(), btn)
 
         def _escape():
             if self.search_bar.isVisible():
@@ -179,14 +171,20 @@ class App(QtWidgets.QMainWindow):
         self.search_bar.addSeparator()
         self.search_bar.addWidget(self.case)
         self.search_bar.addWidget(self.wrap)
-        self.search_bar.addWidget(self.field)
+        self.search_bar.addWidget(self.text)
         self.search_bar.addSeparator()
         self.search_bar.addWidget(self.prev)
         self.search_bar.addWidget(self.next)
         for w in (self.prev, self.next):
             w.pressed[()].connect(lambda btn=w: _toggle_btn(btn))
         self.done.pressed.connect(_escape)
-        self.field.textChanged.connect(self.find)
+        self.text.textChanged.connect(self.find)
+
+    def show_search_panel(self):
+        self.addToolBar(0x8, self.search_bar)
+        self.search_bar.show()
+        self.text.setFocus()
+        self.text.selectAll()
 
     def print_doc(self):
         dialog = QtPrintSupport.QPrintPreviewDialog()
