@@ -40,17 +40,20 @@ class App(QtWidgets.QMainWindow):
         Settings.print_path()
 
         # Configure window
+
         self.set_window_title()
         self.resize(self.QSETTINGS.value('size', QtCore.QSize(800,800)))
         self.move(self.QSETTINGS.value('pos', QtCore.QPoint(50,50)))
 
         # Activate WebView
+
         self.web_view = QtWebKitWidgets.QWebView()
         self.setCentralWidget(self.web_view)
 
         self.scroll_pos = {}
 
         # Configure and start file watcher thread
+
         self.thread1 = WatcherThread(self.filename)
         self.thread1.update.connect(self.update)
         self.watcher = QtCore.QFileSystemWatcher([self.filename])
@@ -58,32 +61,35 @@ class App(QtWidgets.QMainWindow):
         self.thread1.start()
 
         # Restore scroll position
+
         self.web_view.loadFinished.connect(self.after_update)
 
         # Set GUI
+
         self.set_menus()
         self.set_search_panel()
 
     def update(self, text, warn):
         '''Update document view.'''
 
-        # Set WebView attributes
         self.web_view.settings().setAttribute(QtWebKit.QWebSettings.JavascriptEnabled, True)
         self.web_view.settings().setAttribute(QtWebKit.QWebSettings.PluginsEnabled, True)
         self.web_view.settings().setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
 
-        # Set link policy
         self.web_view.linkClicked.connect(lambda url: webbrowser.open_new_tab(url.toString()))
         self.web_view.page().setLinkDelegationPolicy(QtWebKitWidgets.QWebPage.DelegateExternalLinks)
 
         # Save scroll position
+
         if not self.web_view.page().currentFrame().scrollPosition() == QtCore.QPoint(0,0):
             self.scroll_pos[self.filename] = self.web_view.page().currentFrame().scrollPosition()
 
-        # Update document
+        # Update Preview
+
         self.web_view.setHtml(text, baseUrl=QtCore.QUrl('file:///' + os.path.join(os.getcwd(), self.filename)))
 
         # Load JavaScript and core CSS
+
         scr = os.path.join(script_dir, 'mdviewer.js')
         css = os.path.join(script_dir, 'mdviewer.css')
         addresources = '''
@@ -98,9 +104,11 @@ class App(QtWidgets.QMainWindow):
             document.head.appendChild(css);
         })()
         ''' % (scr, css)
+
         self.web_view.page().currentFrame().evaluateJavaScript(addresources)
 
-        # Display processor warnings, if any
+        # Display processor warnings
+
         if warn:
             QtWidgets.QMessageBox.warning(self, 'Processor message', warn)
 
@@ -113,12 +121,6 @@ class App(QtWidgets.QMainWindow):
             pass
         else:
             self.web_view.page().currentFrame().evaluateJavaScript('window.scrollTo(%s, %s);' % (pos.x(), pos.y()))
-
-    @staticmethod
-    def set_stylesheet(self, stylesheet='default.css'):
-        path = os.path.join(stylesheet_dir, stylesheet)
-        url = QtCore.QUrl.fromLocalFile(path)
-        self.web_view.settings().setUserStyleSheetUrl(url)
 
     def handle_link_clicked(self, url):
         QDesktopServices.openUrl(url)
@@ -149,12 +151,6 @@ class App(QtWidgets.QMainWindow):
         else:
             pass
 
-    def show_search_panel(self):
-        self.addToolBar(0x8, self.search_bar)
-        self.search_bar.show()
-        self.field.setFocus()
-        self.field.selectAll()
-
     def find(self, text, btn=''):
         p = self.web_view.page()
         back = p.FindFlags(1) if btn is self.prev else p.FindFlags(0)
@@ -162,6 +158,85 @@ class App(QtWidgets.QMainWindow):
         wrap = p.FindFlags(4) if self.wrap.isChecked() else p.FindFlags(0)
         p.findText('', p.FindFlags(8))
         p.findText(text, back | wrap | case)
+
+    def show_search_panel(self):
+        self.addToolBar(0x8, self.search_bar)
+        self.search_bar.show()
+        self.field.setFocus()
+        self.field.selectAll()
+
+    def set_search_panel(self):
+
+        self.search_bar = QtWidgets.QToolBar()
+
+        self.done = QtWidgets.QPushButton(u'Done', self)
+        self.case = QtWidgets.QCheckBox(u'Case', self)
+        self.wrap = QtWidgets.QCheckBox(u'Wrap', self)
+        self.next = QtWidgets.QPushButton(u'\u25b6', self)
+        self.prev = QtWidgets.QPushButton(u'\u25c0', self)
+
+        class DUMB(QtWidgets.QLineEdit): pass
+        self.field = DUMB()
+
+        def _toggle_btn(btn=''):
+            self.field.setFocus()
+            self.find(self.field.text(), btn)
+
+        def _escape():
+            if self.search_bar.isVisible():
+                self.search_bar.hide()
+
+        self.search_bar.addWidget(self.done)
+        self.search_bar.addSeparator()
+        self.search_bar.addWidget(self.case)
+        self.search_bar.addWidget(self.wrap)
+        self.search_bar.addWidget(self.field)
+        self.search_bar.addSeparator()
+        self.search_bar.addWidget(self.prev)
+        self.search_bar.addWidget(self.next)
+        for w in (self.prev, self.next):
+            w.pressed[()].connect(lambda btn=w: _toggle_btn(btn))
+        self.done.pressed.connect(_escape)
+
+        # Activate incremental search
+
+        self.field.textChanged.connect(self.find)
+
+    def print_doc(self):
+        dialog = QtPrintSupport.QPrintPreviewDialog()
+        dialog.paintRequested.connect(self.web_view.print_)
+        dialog.exec_()
+
+    def quit(self, QCloseEvent):
+
+        self.QSETTINGS.setValue('size', self.size())
+        self.QSETTINGS.setValue('pos', self.pos())
+
+        QtWidgets.qApp.quit()
+
+    def zoom_in(self):
+        self.web_view.setZoomFactor(self.web_view.zoomFactor()+.1)
+
+    def zoom_out(self):
+        self.web_view.setZoomFactor(self.web_view.zoomFactor()-.1)
+
+    def zoom_reset(self):
+        self.web_view.setZoomFactor(1)
+
+    def scroll_down(self):
+        self.web_view.page().currentFrame().scroll(0,+self.web_view.page().viewportSize().height())
+
+    def scroll_up(self):
+        self.web_view.page().currentFrame().scroll(0,-self.web_view.page().viewportSize().height())
+
+    def show_toc(self):
+        self.web_view.page().currentFrame().evaluateJavaScript('(function() {generateTOC();})()')
+
+    @staticmethod
+    def set_stylesheet(self, stylesheet='default.css'):
+        path = os.path.join(stylesheet_dir, stylesheet)
+        url = QtCore.QUrl.fromLocalFile(path)
+        self.web_view.settings().setUserStyleSheetUrl(url)
 
     def about(self):
         msg_about = QtWidgets.QMessageBox(0, 'About MDviewer', u'MDviewer\n\nVersion: %s' % (VERSION), parent=self)
@@ -188,9 +263,9 @@ class App(QtWidgets.QMainWindow):
         view_menu = menubar.addMenu("&View")
 
         for d in (
-                {'label': u'Zoom &In',     'keys': 'Ctrl++', 'func': lambda: self.web_view.setZoomFactor(self.web_view.zoomFactor()+.1)},
-                {'label': u'Zoom &Out',    'keys': 'Ctrl+-', 'func': lambda: self.web_view.setZoomFactor(self.web_view.zoomFactor()-.1)},
-                {'label': u'&Actual Size', 'keys': 'Ctrl+=', 'func': lambda: self.web_view.setZoomFactor(1)}
+                {'label': u'Zoom &In',     'keys': 'Ctrl++', 'func': self.zoom_in},
+                {'label': u'Zoom &Out',    'keys': 'Ctrl+-', 'func': self.zoom_out},
+                {'label': u'&Actual Size', 'keys': 'Ctrl+=', 'func': self.zoom_reset}
                  ):
             action = QtWidgets.QAction(d['label'], self)
             action.setShortcut(d['keys'])
@@ -198,7 +273,6 @@ class App(QtWidgets.QMainWindow):
             view_menu.addAction(action)
 
         if os.path.exists(stylesheet_dir):
-            default = ''
             sheets = []
             for f in os.listdir(stylesheet_dir):
                 if not f.endswith('.css'): continue
@@ -221,68 +295,18 @@ class App(QtWidgets.QMainWindow):
             action.triggered.connect(d['func'])
             help_menu.addAction(action)
 
-        # Define shortcuts
-        self.scroll_down = QtWidgets.QShortcut("j", self, activated = lambda: self.web_view.page().currentFrame().scroll(0,+self.web_view.page().viewportSize().height()))
-        self.scroll_up   = QtWidgets.QShortcut("k", self, activated = lambda: self.web_view.page().currentFrame().scroll(0,-self.web_view.page().viewportSize().height()))
-        self.show_toc    = QtWidgets.QShortcut("t", self, activated = lambda: self.web_view.page().currentFrame().evaluateJavaScript('(function() {generateTOC();})()'))
-
         # Redefine context menu for reloading
+
         reload_action = self.web_view.page().action(QtWebKitWidgets.QWebPage.Reload)
         reload_action.setShortcut(QtGui.QKeySequence.Refresh)
         reload_action.triggered.connect(self.thread1.run)
         self.web_view.addAction(reload_action)
 
-    def set_search_panel(self):
-        self.search_bar = QtWidgets.QToolBar()
+        # Define additional shortcuts
 
-        # Define buttons
-        self.done = QtWidgets.QPushButton(u'Done', self)
-        self.case = QtWidgets.QPushButton(u'Case', self)
-        self.wrap = QtWidgets.QPushButton(u'Wrap', self)
-        self.next = QtWidgets.QPushButton(u'Next', self)
-        self.prev = QtWidgets.QPushButton(u'Previous', self)
-
-        # Define text field
-        class DUMB(QtWidgets.QLineEdit): pass
-        self.field = DUMB()
-
-        # Restart search at button toggling
-        def _toggle_btn(btn=''):
-            self.field.setFocus()
-            self.find(self.field.text(), btn)
-
-        # Hide search panel
-        def _escape():
-            if self.search_bar.isVisible():
-                self.search_bar.hide()
-
-        # Add widgets to the search panel
-        for w in (self.done, self.case, self.wrap, self.field, self.next, self.prev):
-            self.search_bar.addWidget(w)
-            if type(w) == QtWidgets.QPushButton:
-                w.setFlat(False)
-                if any(t for t in (self.case, self.wrap) if t is w):
-                    w.setCheckable(True)
-                    w.clicked.connect(_toggle_btn)
-                if any(t for t in (self.next, self.prev) if t is w):
-                    w.pressed[()].connect(lambda btn=w: _toggle_btn(btn))
-        self.done.pressed.connect(_escape)
-
-        # Activate incremental search
-        self.field.textChanged.connect(self.find)
-
-    def print_doc(self):
-        dialog = QtPrintSupport.QPrintPreviewDialog()
-        dialog.paintRequested.connect(self.web_view.print_)
-        dialog.exec_()
-
-    def quit(self, QCloseEvent):
-
-        # Save settings
-        self.QSETTINGS.setValue('size', self.size())
-        self.QSETTINGS.setValue('pos', self.pos())
-
-        QtWidgets.qApp.quit()
+        QtWidgets.QShortcut("j", self, activated = self.scroll_down)
+        QtWidgets.QShortcut("k", self, activated = self.scroll_up)
+        QtWidgets.QShortcut("t", self, activated = self.show_toc)
 
 class WatcherThread(QtCore.QThread):
 
