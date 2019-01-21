@@ -358,44 +358,6 @@ table caption {
     padding: 0;
 }
 
-span.citation {
-
-}
-
-div.references {
-
-}
-
-div.epigraph {
-    margin: 1.5rem 2.5rem 0.5rem 2.5rem;
-    font-style: italic;
-}
-
-div.todo, div.note {
-    margin: 0.5rem auto;
-    padding: 0.1rem 1rem;
-}
-
-div.todo {
-    border-left: 4px solid #e44232;
-    background: rgba(245, 245, 235, 0.8);
-    color: #111;
-}
-
-div.note {
-    border-left: 4px solid #6ab0de;
-    background: rgba(245, 245, 235, 0.8);
-    color: #111;
-}
-
-div.sidebar {
-    margin: 0.5rem auto;
-    padding: 0.1rem 1rem;
-    border-left: 4px solid #a8a8a8;
-    background: rgba(245, 245, 235, 0.8);
-    color: #111;
-}
-
 p, li, th, td, caption, figcaption {
     word-break: break-word;
 }
