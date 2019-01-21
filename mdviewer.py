@@ -28,9 +28,9 @@ class App(QtWidgets.QMainWindow):
     def set_env (self):
         path, name = os.path.split(os.path.abspath(self.filename))
         ext = name.split('.')[-1].lower()
-        os.environ["MDVIEWER_EXT"] = ext
-        os.environ["MDVIEWER_FILE"] = name
-        os.environ["MDVIEWER_ORIGIN"] = path
+        os.environ['MDVIEWER_EXT'] = ext
+        os.environ['MDVIEWER_FILE'] = name
+        os.environ['MDVIEWER_ORIGIN'] = path
 
     def __init__(self, parent=None, filename=''):
         QtWidgets.QMainWindow.__init__(self, parent)
@@ -62,7 +62,7 @@ class App(QtWidgets.QMainWindow):
 
         # Set GUI
         self.set_menus()
-        self.set_search_panel()
+        self.set_search_bar()
 
     def update(self, text, warn):
         '''Update Preview.'''
@@ -84,19 +84,19 @@ class App(QtWidgets.QMainWindow):
         # Load JavaScript and core CSS
         scr = os.path.join(script_dir, 'mdviewer.js')
         css = os.path.join(script_dir, 'mdviewer.css')
-        addresources = '''
+        add_resources = '''
         (function() {
-            scr = document.createElement('script');
-            scr.type = 'text/javascript';
-            scr.src = '%s'
-            css = document.createElement('link');
-            css.rel = 'stylesheet';
-            css.href = '%s'
+            var scr = document.createElement("script");
+            scr.type = "text/javascript";
+            scr.src = "%s"
             document.head.appendChild(scr);
+            var css = document.createElement("link");
+            css.rel = "stylesheet";
+            css.href = "%s"
             document.head.appendChild(css);
         })()
         ''' % (scr, css)
-        self.web_view.page().currentFrame().evaluateJavaScript(addresources)
+        self.web_view.page().currentFrame().evaluateJavaScript(add_resources)
 
         # Display processor warnings
         if warn:
@@ -149,7 +149,7 @@ class App(QtWidgets.QMainWindow):
         page.findText('', page.FindFlags(8))
         page.findText(text, back | wrap | case)
 
-    def set_search_panel(self):
+    def set_search_bar(self):
         self.search_bar = QtWidgets.QToolBar()
 
         self.text = QtWidgets.QLineEdit(self)
@@ -163,7 +163,7 @@ class App(QtWidgets.QMainWindow):
             self.text.setFocus()
             self.find(self.text.text(), btn)
 
-        def _escape():
+        def _hide():
             if self.search_bar.isVisible():
                 self.search_bar.hide()
 
@@ -175,12 +175,12 @@ class App(QtWidgets.QMainWindow):
         self.search_bar.addSeparator()
         self.search_bar.addWidget(self.prev)
         self.search_bar.addWidget(self.next)
-        for w in (self.prev, self.next):
-            w.pressed[()].connect(lambda btn=w: _toggle_btn(btn))
-        self.done.pressed.connect(_escape)
+        for btn in (self.prev, self.next):
+            btn.pressed[()].connect(lambda btn = btn: _toggle_btn(btn))
+        self.done.pressed.connect(_hide)
         self.text.textChanged.connect(self.find)
 
-    def show_search_panel(self):
+    def show_search_bar(self):
         self.addToolBar(0x8, self.search_bar)
         self.search_bar.show()
         self.text.setFocus()
@@ -232,7 +232,7 @@ class App(QtWidgets.QMainWindow):
         for d in (
                 {'label': u'&Open...',      'keys': 'Ctrl+O', 'func': self.open_file},
                 {'label': u'&Save HTML...', 'keys': 'Ctrl+S', 'func': self.save_html},
-                {'label': u'&Find...',      'keys': 'Ctrl+F', 'func': self.show_search_panel},
+                {'label': u'&Find...',      'keys': 'Ctrl+F', 'func': self.show_search_bar},
                 {'label': u'&Print...',     'keys': 'Ctrl+P', 'func': self.print_doc},
                 {'label': u'&Quit',         'keys': 'Ctrl+Q', 'func': self.quit}
                  ):
@@ -241,7 +241,7 @@ class App(QtWidgets.QMainWindow):
             action.triggered.connect(d['func'])
             file_menu.addAction(action)
 
-        view_menu = menubar.addMenu("&View")
+        view_menu = menubar.addMenu('&View')
 
         for d in (
                 {'label': u'Zoom &In',     'keys': 'Ctrl++', 'func': self.zoom_in},
@@ -261,13 +261,13 @@ class App(QtWidgets.QMainWindow):
                 if len(sheets) < 10:
                     sheets[-1].setShortcut('Ctrl+%d' % len(sheets))
                 sheets[-1].triggered.connect(
-                    lambda x, stylesheet=f: self.set_stylesheet(self, stylesheet))
+                    lambda x, stylesheet = f: self.set_stylesheet(self, stylesheet))
             style_menu = menubar.addMenu('&Style')
             for item in sheets:
                 style_menu.addAction(item)
             self.set_stylesheet(self, 'default.css')
 
-        help_menu = menubar.addMenu("&Help")
+        help_menu = menubar.addMenu('&Help')
 
         for d in (
                 {'label': u'About...', 'func': self.about},
@@ -276,16 +276,16 @@ class App(QtWidgets.QMainWindow):
             action.triggered.connect(d['func'])
             help_menu.addAction(action)
 
-        # Redefine context menu for reloading
+        # Redefine reload action
         reload_action = self.web_view.page().action(QtWebKitWidgets.QWebPage.Reload)
         reload_action.setShortcut(QtGui.QKeySequence.Refresh)
         reload_action.triggered.connect(self.thread1.run)
         self.web_view.addAction(reload_action)
 
         # Define additional shortcuts
-        QtWidgets.QShortcut("j", self, activated = self.scroll_down)
-        QtWidgets.QShortcut("k", self, activated = self.scroll_up)
-        QtWidgets.QShortcut("t", self, activated = self.show_toc)
+        QtWidgets.QShortcut('j', self, activated = self.scroll_down)
+        QtWidgets.QShortcut('k', self, activated = self.scroll_up)
+        QtWidgets.QShortcut('t', self, activated = self.show_toc)
 
 class WatcherThread(QtCore.QThread):
     update = pyqtSignal(str, str)

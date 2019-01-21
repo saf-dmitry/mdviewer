@@ -6,16 +6,12 @@ function generateTOC(documentRef) {
 
     var toc = documentRef.getElementById("generated-toc");
 
-    if (toc) {
-        toc.innerHTML = "";
-    }
-    else {
-        toc = document.createElement("div");
-        toc.id = "generated-toc";
-        document.body.insertBefore(toc, document.body.lastChild);
-    }
+    if (toc) { toc.outerHTML = ""; }
 
+    toc = document.createElement("div");
+    toc.id = "generated-toc";
     toc.style.display = "block";
+    document.body.insertBefore(toc, document.body.lastChild);
 
     headings.forEach(function (heading, i) {
 
