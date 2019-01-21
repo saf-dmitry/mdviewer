@@ -80,6 +80,7 @@
     }
 
     #generated-toc a#hideTOC:hover {
+        color: #fff !important;
         -webkit-transition: opacity .2s;
         transition: opacity .2s;
         opacity: 1 !important;
