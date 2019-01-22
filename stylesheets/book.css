@@ -37,7 +37,10 @@ body {
 }
 
 p {
+    line-height: 1.5;
     vertical-align: baseline;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 q {
