@@ -15,7 +15,7 @@ function generateTOC(documentRef) {
 
     headings.forEach(function (heading, i) {
 
-        var ref = "toc" + i;
+        var ref = "toc-" + i;
 
         if (heading.id)
             ref = heading.getAttribute("id");
@@ -37,7 +37,7 @@ function generateTOC(documentRef) {
 
     var hidetoc = documentRef.createElement("a");
 
-    hidetoc.id = "hideTOC";
+    hidetoc.id = "hide-toc";
     hidetoc.textContent = "Hide";
 
     hidetoc.addEventListener ("click", function() {
