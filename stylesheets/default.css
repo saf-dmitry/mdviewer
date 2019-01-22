@@ -362,7 +362,7 @@ table caption {
 }
 
 .tag {
-    color: #aaa;
+    color: rgba(113, 124, 125, 0.6);
 }
 
 p, li, th, td, caption, figcaption {
