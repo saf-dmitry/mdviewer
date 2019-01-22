@@ -141,7 +141,7 @@ You can save the Preview as paginated PDF by choosing "Print to File (PDF)" in t
 
 ## Adding Custom Styles
 
-If you're familiar with CSS, you can create your own style sheets and copy them to the MDviewer's `stylesheets` directory. New styles will be added to the "Style" drop-down menu and named based on the CSS file name.
+If you're familiar with CSS, you can create your own style sheets and copy them to the MDviewer's `stylesheets` directory. CSS files should have the `.css` extension and use the UTF-8 encoding. New styles will be added to the "Style" drop-down menu and named based on the CSS file name.
 
 All CSS3 options that work in WebKit will work in MDviewer. See existing style sheets in the application's `stylesheets` directory for details.
 

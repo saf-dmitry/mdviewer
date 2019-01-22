@@ -88,11 +88,11 @@ class App(QtWidgets.QMainWindow):
         (function() {
             var scr = document.createElement("script");
             scr.type = "text/javascript";
-            scr.src = "%s"
+            scr.src = "%s";
             document.head.appendChild(scr);
             var css = document.createElement("link");
             css.rel = "stylesheet";
-            css.href = "%s"
+            css.href = "%s";
             document.head.appendChild(css);
         })()
         ''' % (scr, css)
@@ -153,7 +153,7 @@ class App(QtWidgets.QMainWindow):
         self.search_bar = QtWidgets.QToolBar()
 
         self.text = QtWidgets.QLineEdit(self)
-        self.case = QtWidgets.QCheckBox(u'Case', self)
+        self.case = QtWidgets.QCheckBox(u'Case sensitive', self)
         self.wrap = QtWidgets.QCheckBox(u'Wrap', self)
         self.next = QtWidgets.QPushButton(u'\u25b6', self)
         self.prev = QtWidgets.QPushButton(u'\u25c0', self)
@@ -253,6 +253,10 @@ class App(QtWidgets.QMainWindow):
             action.triggered.connect(d['func'])
             view_menu.addAction(action)
 
+        style_menu = menubar.addMenu('&Style')
+        style_menu.setStyleSheet('menu-scrollable: 1')
+        style_menu.setDisabled(True)
+
         if os.path.exists(stylesheet_dir):
             sheets = []
             for f in os.listdir(stylesheet_dir):
@@ -262,9 +266,9 @@ class App(QtWidgets.QMainWindow):
                     sheets[-1].setShortcut('Ctrl+%d' % len(sheets))
                 sheets[-1].triggered.connect(
                     lambda x, stylesheet = f: self.set_stylesheet(self, stylesheet))
-            style_menu = menubar.addMenu('&Style')
             for item in sheets:
                 style_menu.addAction(item)
+            style_menu.setDisabled(False)
             self.set_stylesheet(self, 'default.css')
 
         help_menu = menubar.addMenu('&Help')
