@@ -121,7 +121,7 @@ Clicking an external link in your document's Preview will open it in your defaul
 
 The search bar on the bottom of the viewing area can be accessed with the "File > Find" menu option and allows you to incrementally search through the Preview for a word or phrase. Once you search, you can use "Next" and "Previous" buttons on the right side of the search bar to navigate forward and backward through additional results.
 
-The buttons on the left side of the search bar allow you to narrow the search down by case sensitivity and wrap the search around the document boundaries.
+The checkboxes on the left side of the search bar allow you to narrow the search down by case sensitivity and wrap the search around the document boundaries.
 
 
 ## Exporting HTML
