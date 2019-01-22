@@ -361,6 +361,10 @@ table caption {
     padding: 0;
 }
 
+.tag {
+    color: #aaa;
+}
+
 p, li, th, td, caption, figcaption {
     word-break: break-word;
 }
