@@ -362,7 +362,9 @@ table caption {
 }
 
 .tag {
-    color: rgba(113, 124, 125, 0.6);
+    color: rgba(148, 148, 148, 0.8);
+    font-size: 98%;
+    font-family: inherit;
 }
 
 p, li, th, td, caption, figcaption {
