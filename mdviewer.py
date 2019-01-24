@@ -266,8 +266,11 @@ class App(QtWidgets.QMainWindow):
                     sheets[-1].setShortcut('Ctrl+%d' % len(sheets))
                 sheets[-1].triggered.connect(
                     lambda x, stylesheet = f: self.set_stylesheet(self, stylesheet))
+            group = QtWidgets.QActionGroup(self, exclusive=True)
             for item in sheets:
-                style_menu.addAction(item)
+                item.setCheckable(True)
+                action = group.addAction(item)
+                style_menu.addAction(action)
             style_menu.setDisabled(False)
             self.set_stylesheet(self, 'default.css')
 
