@@ -362,9 +362,13 @@ table caption {
 }
 
 .tag {
-    color: rgba(148, 148, 148, 0.8);
+    color: #5b5f61;
+    background-color: rgba(238, 241, 243, 0.8);
+    padding: 0.1rem 0.4rem;
+    border: none;
+    border-radius: 0.8rem;
     font-size: 98%;
-    font-family: inherit;
+    font-family: "Liberation Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 p, li, th, td, caption, figcaption {
