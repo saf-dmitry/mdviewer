@@ -277,7 +277,7 @@ class App(QtWidgets.QMainWindow):
         help_menu = menubar.addMenu('&Help')
 
         for d in (
-                {'label': u'About...', 'func': self.about},
+                {'label': u'&About...', 'func': self.about},
                  ):
             action = QtWidgets.QAction(d['label'], self)
             action.triggered.connect(d['func'])
