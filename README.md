@@ -63,12 +63,10 @@ MDviewer stores all of its configuration data in YAML files which have the `.yml
 
 By default, MDviewer checks the following places for configuration files, in the following order:
 
-1. `$HOME/.config/mdviewer/settings.yml` on macOS and GNU/Linux or `%APPDATA%\mdviewer\settings.yml` on MS Windows
-2. `settings.yml` in the application's root directory
+- `$HOME/.config/mdviewer/settings.yml` on macOS and GNU/Linux or `%APPDATA%\mdviewer\settings.yml` on MS Windows
+- `settings.yml` in the application's root directory
 
-A path to the configuration file being used is printed to STDOUT during application's startup.
-
-Note: In general, you should place your personal settings in `$HOME/.config/mdviewer/settings.yml` (or `%APPDATA%\mdviewer\settings.yml`), so they will be preserved between software updates.
+In general, you should place your personal settings in `$HOME/.config/mdviewer/settings.yml` (or `%APPDATA%\mdviewer\settings.yml`), so they will be preserved between software updates.
 
 
 ## Setting a Markdown Processor

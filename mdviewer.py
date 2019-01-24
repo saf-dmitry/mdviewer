@@ -37,7 +37,7 @@ class App(QtWidgets.QMainWindow):
         self.filename = filename or os.path.join(script_dir, u'README.md')
 
         self.set_env()
-        Settings.print_path()
+        # Settings.print_path()
 
         # Configure window
         self.set_window_title()
