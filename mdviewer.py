@@ -259,7 +259,7 @@ class App(QtWidgets.QMainWindow):
 
         if os.path.exists(stylesheet_dir):
             sheets = []
-            for f in os.listdir(stylesheet_dir):
+            for f in sorted(os.listdir(stylesheet_dir)):
                 if not f.endswith('.css'): continue
                 sheets.append(QtWidgets.QAction(f, self))
                 if len(sheets) < 10:
