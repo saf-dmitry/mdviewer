@@ -1,5 +1,27 @@
-﻿
+
 @media screen {
+
+    #status-bar {
+        display: block;
+        position: fixed;
+        max-width: 80%;
+        bottom: 4px;
+        left: 4px;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 2px 8px;
+        border: none;
+        border-radius: 0px;
+        font-family: "Liberation Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        z-index: 1000;
+        user-select: none;
+        -webkit-user-select: none
+    }
 
     #generated-toc {
         display: block;
@@ -45,11 +67,11 @@
     }
 
     #generated-toc a {
+        display: block;
         text-decoration: none !important;
         border: none !important;
         outline: none !important;
         color: #fff !important;
-        display: block;
         width: 320px;
         font-size: 14px;
         line-height: 1.4;
@@ -90,7 +112,7 @@
 
 @media print {
 
-    #generated-toc {
+    #status-bar, #generated-toc {
         display: none !important;
     }
 

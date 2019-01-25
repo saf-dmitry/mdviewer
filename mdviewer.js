@@ -1,4 +1,27 @@
 
+(function () {
+
+    function showURL (ev) {
+        var href = this.href;
+        var sbar = document.createElement("div");
+        sbar.id = "status-bar";
+        sbar.appendChild(document.createTextNode(href));
+        document.body.insertBefore(sbar, document.body.lastChild);
+    }
+
+    function hideURL (ev) {
+        document.querySelector("#status-bar").remove();
+    }
+
+    var links = document.links;
+    for(var i=0; i < links.length; i++){
+        var a = links[i];
+        a.addEventListener('mouseover', showURL);
+        a.addEventListener('mouseout',  hideURL);
+    }
+
+})()
+
 function generateTOC(documentRef) {
 
     var documentRef = documentRef || document;
