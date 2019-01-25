@@ -6,7 +6,7 @@ MDviewer is a cross-platform and editor-agnostic previewer for Markdown files. U
 
 MDviewer can also be configured to work with just about any processor you need, including Textile, reStructuredText, MediaWiki, AsciiDoc, Graphviz and more.
 
-![](images/screenshot.png)
+![](images/screenshot_01.png)
 
 
 # Contents
@@ -94,6 +94,8 @@ You can open files directly using the "File > Open" menu option. If a file is cu
 ## Navigating Preview
 
 There are multiple ways to navigate the Preview window. You may use the scrollbars, your mousewheel or the Up Arrow and Down Arrow keys to scroll the viewing area. In addition to the Page Up and Page Down keys you can also use the Vim shortcuts "j" and "k" to move one page down and up.
+
+![](images/screenshot_02.png)
 
 Pressing the "t" key will expand the Table of Contents, and clicking the title of a heading will navigate to that section of the Preview.
 
