@@ -15,6 +15,7 @@
         font-family: "Helvetica Neue", "Tahoma", "Helvetica", "Liberation Sans", Helvetica, Arial, sans-serif;
         font-size: 12px;
         font-weight: 700;
+        line-height: 1.5;
         text-align: left;
         white-space: nowrap;
         overflow: hidden;
@@ -43,27 +44,27 @@
         -webkit-user-select: none;
     }
 
-    #generated-toc div.h1 {
+    #generated-toc div.toc-h1 {
         margin-left: 0px;
     }
 
-    #generated-toc div.h2 {
+    #generated-toc div.toc-h2 {
         margin-left: 10px;
     }
 
-    #generated-toc div.h3 {
+    #generated-toc div.toc-h3 {
         margin-left: 20px;
     }
 
-    #generated-toc div.h4 {
+    #generated-toc div.toc-h4 {
         margin-left: 30px;
     }
 
-    #generated-toc div.h5 {
+    #generated-toc div.toc-h5 {
         margin-left: 40px;
     }
 
-    #generated-toc div.h6 {
+    #generated-toc div.toc-h6 {
         margin-left: 50px;
     }
 

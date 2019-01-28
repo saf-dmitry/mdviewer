@@ -50,7 +50,7 @@ function generateTOC(documentRef) {
         link.textContent = heading.textContent;
 
         var div = documentRef.createElement("div");
-        div.className = heading.tagName.toLowerCase();
+        div.className = "toc-" + heading.tagName.toLowerCase();
         div.appendChild(link);
         toc.appendChild(div);
 
