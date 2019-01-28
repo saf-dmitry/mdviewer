@@ -2,9 +2,16 @@
 
 # Development Version
 
+Added:
+
+- Status bar for links
+
 Changed:
 
 - Improved Table of Contents feature
+- Improved Search bar
+- Improved Style menu selection
+- Fixed Zoom keyboard shortcuts
 
 
 # v0.3
