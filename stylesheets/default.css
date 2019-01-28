@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    font-family: "Liberation Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", "Tahoma", "Helvetica", "Liberation Sans", Helvetica, Arial, sans-serif;
     max-width: 740px;
     margin-left: auto;
     margin-right: auto;
@@ -236,7 +236,10 @@ cite {
 }
 
 blockquote {
-    margin: auto 1.5rem;
+    display: block;
+    margin: 0.5rem 0;
+    padding: 0 0.8rem;
+    border-left: 4px solid #dfe2e5;
 }
 
 blockquote > :first-child {
@@ -245,6 +248,10 @@ blockquote > :first-child {
 
 blockquote > :last-child {
     margin-bottom: 1rem;
+}
+
+blockquote blockquote {
+    padding-right: 0;
 }
 
 img, video, object, embed {
@@ -366,9 +373,9 @@ table caption {
     background-color: rgba(241, 248, 255, 0.8);
     padding: 0.1rem 0.4rem;
     border: none;
-    border-radius: 0.8rem;
+    border-radius: 0.2rem;
     font-size: 98%;
-    font-family: "Liberation Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Helvetica Neue", "Tahoma", "Helvetica", "Liberation Sans", Helvetica, Arial, sans-serif;
 }
 
 p, li, th, td, caption, figcaption {
