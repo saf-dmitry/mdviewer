@@ -246,7 +246,7 @@ class App(QtWidgets.QMainWindow):
         for d in (
                 {'label': u'Zoom &In',     'keys': 'Ctrl++', 'func': self.zoom_in},
                 {'label': u'Zoom &Out',    'keys': 'Ctrl+-', 'func': self.zoom_out},
-                {'label': u'&Actual Size', 'keys': 'Ctrl+=', 'func': self.zoom_reset}
+                {'label': u'&Actual Size', 'keys': 'Ctrl+0', 'func': self.zoom_reset}
                  ):
             action = QtWidgets.QAction(d['label'], self)
             action.setShortcut(d['keys'])
