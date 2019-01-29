@@ -136,7 +136,7 @@ class App(QtWidgets.QMainWindow):
             caller.waitForFinished()
             html = str(caller.readAllStandardOutput(), 'utf8')
             with io.open(filename, 'w', encoding='utf8') as f:
-                f.writelines(str(html))
+                f.writelines(html)
                 f.close()
         else:
             pass
