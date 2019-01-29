@@ -261,7 +261,8 @@ class App(QtWidgets.QMainWindow):
             sheets = []
             for f in sorted(os.listdir(stylesheet_dir)):
                 if not f.endswith('.css'): continue
-                sheets.append(QtWidgets.QAction(os.path.splitext(f)[0], self))
+                a = os.path.splitext(f)[0].replace("&", "&&")
+                sheets.append(QtWidgets.QAction(a, self))
                 if len(sheets) < 10:
                     sheets[-1].setShortcut('Ctrl+%d' % len(sheets))
                 sheets[-1].triggered.connect(
