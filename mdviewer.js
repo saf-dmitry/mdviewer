@@ -10,7 +10,10 @@
     }
 
     function hideURL (ev) {
-        document.querySelector("#status-bar").remove();
+        var sbar = document.getElementById("status-bar");
+        if (sbar) {
+            sbar.parentNode.removeChild(sbar);
+        }
     }
 
     var links = document.links;
@@ -29,11 +32,12 @@ function generateTOC(documentRef) {
 
     var toc = documentRef.getElementById("generated-toc");
 
-    if (toc) { toc.outerHTML = ""; }
+    if (toc) {
+        toc.parentNode.removeChild(toc);
+    }
 
     toc = document.createElement("div");
     toc.id = "generated-toc";
-    toc.style.display = "block";
     document.body.insertBefore(toc, document.body.lastChild);
 
     headings.forEach(function (heading, i) {
@@ -54,7 +58,9 @@ function generateTOC(documentRef) {
         div.appendChild(link);
         toc.appendChild(div);
 
-        if (i === 0) { link.focus(); }
+        if (i === 0) {
+            link.focus();
+        }
 
     });
 
@@ -64,7 +70,7 @@ function generateTOC(documentRef) {
     hidetoc.textContent = "Hide";
 
     hidetoc.addEventListener ("click", function() {
-        toc.style.display = "none";
+        toc.parentNode.removeChild(toc);
     });
 
     toc.appendChild(hidetoc);
