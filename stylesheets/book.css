@@ -1,28 +1,10 @@
 
-@font-face {
-    font-family: ETBook;
-    src: url("et-book-roman-line-figures.ttf"); }
-
-@font-face {
-    font-family: ETBook;
-    src: url("et-book-display-italic-old-style-figures.ttf");
-    font-weight: normal;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: ETBook;
-    src: url("et-book-bold-line-figures.ttf");
-    font-weight: bold;
-    font-style: normal;
-}
-
 html {
     font-size: 12pt;
 }
 
 body {
-    font-family: ETBook, "DejaVu Serif", "Liberation Serif", "Palatino Linotype", "Palatino LT STD", Palatino, "Book Antiqua", Georgia, serif;
+    font-family: DejaVu Serif, Liberation Serif, Palatino Linotype, Palatino LT STD, Palatino, Book Antiqua, Georgia, serif;
     max-width: 740px;
     margin-left: auto;
     margin-right: auto;
@@ -147,7 +129,7 @@ sub, sup {
 
 pre, code, tt, kbd, samp {
     font-size: 100%;
-    font-family: "Ubuntu Mono", "DejaVu Sans Mono", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-family: SFMono-Regular, Consolas, Ubuntu Mono, DejaVu Sans Mono, Liberation Mono, Menlo, Courier, monospace;
     tab-size: 4;
 }
 
@@ -374,7 +356,6 @@ table caption {
     border: none;
     border-radius: 0.2rem;
     font-size: 98%;
-    font-family: "Helvetica Neue", "Tahoma", "Helvetica", "Liberation Sans", Helvetica, Arial, sans-serif;
 }
 
 p, li, th, td, caption, figcaption {
