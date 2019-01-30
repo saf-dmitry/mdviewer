@@ -11,6 +11,7 @@ Changed:
 - Improved Table of Contents feature
 - Improved Search bar
 - Improved Style menu selection
+- Improved Style sheets
 - Fixed Zoom keyboard shortcuts
 
 
