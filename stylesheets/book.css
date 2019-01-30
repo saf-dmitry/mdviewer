@@ -4,7 +4,7 @@ html {
 }
 
 body {
-    font-family: DejaVu Serif, Liberation Serif, Palatino Linotype, Palatino LT STD, Palatino, Book Antiqua, Georgia, serif;
+    font-family: Palatino Linotype, Palatino LT STD, Palatino, Book Antiqua, Georgia, DejaVu Serif, Liberation Serif, serif;
     max-width: 740px;
     margin-left: auto;
     margin-right: auto;
@@ -129,7 +129,7 @@ sub, sup {
 
 pre, code, tt, kbd, samp {
     font-size: 100%;
-    font-family: SFMono-Regular, Consolas, Ubuntu Mono, DejaVu Sans Mono, Liberation Mono, Menlo, Courier, monospace;
+    font-family: SFMono-Regular, Consolas, Ubuntu Mono, DejaVu Sans Mono, Source Code Pro, Liberation Mono, Menlo, Courier, monospace;
     tab-size: 4;
 }
 
