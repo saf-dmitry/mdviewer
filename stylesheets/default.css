@@ -450,7 +450,7 @@ p, li, th, td, caption, figcaption {
 
     img {
         max-width: 160mm !important;
-        max-height: 220mm !important
+        max-height: 220mm !important;
     }
 
     figure, div.figure {

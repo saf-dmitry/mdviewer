@@ -145,7 +145,7 @@ pre {
 
 code {
     padding: 0rem 0.2rem;
-    white-space: pre-wrap;
+    white-space: pre-wrap !important;
 }
 
 pre > code, code > pre {
