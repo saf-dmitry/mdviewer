@@ -21,6 +21,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         z-index: 1000;
+        zoom: reset;
         user-select: none;
         -webkit-user-select: none;
     }
@@ -40,9 +41,31 @@
         text-align: left;
         z-index: 1010;
         box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.4);
+        zoom: reset;
         user-select: none;
         -webkit-user-select: none;
     }
+
+    #generated-toc::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    #generated-toc::-webkit-scrollbar-track {
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+
+    #generated-toc::-webkit-scrollbar-track:disabled {
+        display: none;
+    }
+
+    #generated-toc::-webkit-scrollbar-thumb {
+        background: rgba(256, 256, 256, 0.2);
+        border-radius: 3px;
+        min-height: 40px;
+    }
+
+}
 
     #generated-toc div.toc-h1 {
         margin-left: 0px;
@@ -120,4 +143,3 @@
     }
 
 }
-

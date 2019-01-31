@@ -68,6 +68,7 @@ function generateTOC(documentRef) {
 
     hidetoc.id = "hide-toc";
     hidetoc.textContent = "Hide";
+    hidetoc.title = "Hide Contents";
 
     hidetoc.addEventListener ("click", function() {
         toc.parentNode.removeChild(toc);
