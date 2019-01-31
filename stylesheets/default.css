@@ -25,6 +25,10 @@ p {
     margin-bottom: 1rem;
 }
 
+p:empty {
+    display: none;
+}
+
 q {
     quotes: "“" "”";
 }
@@ -369,8 +373,8 @@ table caption {
 }
 
 .tag {
-    color: #0366d6;
-    background-color: rgba(241, 248, 255, 0.8);
+    color: #333;
+    background-color: rgba(245, 245, 233, 0.8);
     padding: 0.1rem 0.4rem;
     border: none;
     border-radius: 0.2rem;

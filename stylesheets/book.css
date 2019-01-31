@@ -12,7 +12,7 @@ body {
     text-align: left;
     padding-left: 2.5%;
     padding-right: 2.5%;
-    color: #111;
+    color: #000;
     background-color: #fffff8;
     font-smooth: always;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -23,6 +23,10 @@ p {
     vertical-align: baseline;
     margin-top: 1rem;
     margin-bottom: 1rem;
+}
+
+p:empty {
+    display: none;
 }
 
 q {
@@ -92,24 +96,23 @@ hr {
 }
 
 a {
-    color: #111;
-    text-decoration: none;
+    color: #482082;
     padding-bottom: 0;
-    border-bottom: 1px solid #aaa;
+    text-decoration: none;
     -webkit-transition: border-bottom .2s ease-in-out;
     transition: border-bottom .2s ease-in-out;
 }
 
 a[href^="#"] {
-    color: #111;
+    color: #482082;
 }
 
 a:hover, a:active {
-    border-bottom: 1px solid #111;
+    border-bottom: 1px solid;
 }
 
 a[class^="footnote"] {
-    color: #f00000;
+    color: #482082;
     border-style: none;
 }
 
@@ -350,7 +353,7 @@ table caption {
 }
 
 .tag {
-    color: #5b5f61;
+    color: #555;
     background-color: rgba(238, 241, 243, 0.8);
     padding: 0.1rem 0.4rem;
     border: none;
