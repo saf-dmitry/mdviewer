@@ -12,8 +12,8 @@ body {
     text-align: left;
     padding-left: 2.5%;
     padding-right: 2.5%;
-    color: #000;
-    background-color: #fffff8;
+    color: #111;
+    background-color: #fff;
     font-smooth: always;
     -webkit-font-smoothing: subpixel-antialiased;
 }
@@ -96,7 +96,7 @@ hr {
 }
 
 a {
-    color: #482082;
+    color: #0366d6;
     padding-bottom: 0;
     text-decoration: none;
     -webkit-transition: border-bottom .2s ease-in-out;
@@ -104,7 +104,7 @@ a {
 }
 
 a[href^="#"] {
-    color: #482082;
+    color: #0366d6;
 }
 
 a:hover, a:active {
@@ -112,7 +112,7 @@ a:hover, a:active {
 }
 
 a[class^="footnote"] {
-    color: #482082;
+    color: #0366d6;
     border-style: none;
 }
 
@@ -353,8 +353,8 @@ table caption {
 }
 
 .tag {
-    color: #555;
-    background-color: rgba(238, 241, 243, 0.8);
+    color: #333;
+    background-color: rgba(245, 245, 233, 0.8);
     padding: 0.1rem 0.4rem;
     border: none;
     border-radius: 0.2rem;

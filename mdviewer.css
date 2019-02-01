@@ -51,8 +51,8 @@
     }
 
     #generated-toc::-webkit-scrollbar-track {
-        margin-top: 4px;
-        margin-bottom: 4px;
+        margin-top: 5px;
+        margin-bottom: 5px;
     }
 
     #generated-toc::-webkit-scrollbar-track:disabled {
@@ -60,7 +60,8 @@
     }
 
     #generated-toc::-webkit-scrollbar-thumb {
-        background: rgba(256, 256, 256, 0.2);
+        background: #000;
+        border: 1px solid rgba(256, 256, 256, 0.4);
         border-radius: 3px;
         min-height: 40px;
     }
