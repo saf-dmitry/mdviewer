@@ -8,6 +8,7 @@ Added:
 
 Changed:
 
+- Renamed style sheets
 - Improved Table of Contents feature
 - Improved Search bar
 - Improved Style menu selection
