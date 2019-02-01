@@ -358,6 +358,7 @@ table caption {
     padding: 0.1rem 0.4rem;
     border: none;
     border-radius: 0.2rem;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, DejaVu Sans, Liberation Sans, sans-serif;
     font-size: 98%;
 }
 
