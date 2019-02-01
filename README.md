@@ -114,7 +114,7 @@ Note: Depending on the selected style zooming will change the size of everything
 
 ## Clicking External Links
 
-Clicking an external link in your document's Preview will open it in an external application. For links to resources on the local filing system a suitable application will be used to open the file; otherwise, the link will be opened in your default web browser.
+Clicking an external link in your document's Preview will open it in your default web browser. If the link points to a local file then it will be opened with a suitable application instead of a web browser.
 
 The user's desktop settings control whether certain executable file types are opened for browsing, or if they are executed instead. Some desktop environments are configured to prevent users from executing files obtained from non-local URLs, or to ask the user's permission before doing so.
 
