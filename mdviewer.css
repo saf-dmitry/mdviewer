@@ -51,8 +51,8 @@
     }
 
     #generated-toc::-webkit-scrollbar-track {
-        margin-top: 5px;
-        margin-bottom: 5px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     #generated-toc::-webkit-scrollbar-track:disabled {
