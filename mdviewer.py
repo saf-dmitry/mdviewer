@@ -71,7 +71,8 @@ class App(QtWidgets.QMainWindow):
         self.web_view.settings().setAttribute(QtWebKit.QWebSettings.PluginsEnabled, True)
         self.web_view.settings().setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
 
-        self.web_view.linkClicked.connect(lambda url: webbrowser.open_new_tab(url.toString()))
+        # Configure link behavior
+        self.web_view.linkClicked.connect(lambda url: self.handle_link_clicked(url))
         self.web_view.page().setLinkDelegationPolicy(QtWebKitWidgets.QWebPage.DelegateExternalLinks)
 
         # Save scroll position
@@ -111,9 +112,6 @@ class App(QtWidgets.QMainWindow):
             pass
         else:
             self.web_view.page().currentFrame().evaluateJavaScript('window.scrollTo(%s, %s);' % (pos.x(), pos.y()))
-
-    def handle_link_clicked(self, url):
-        QDesktopServices.openUrl(url)
 
     def open_file(self):
         filename, _filter = QtWidgets.QFileDialog.getOpenFileName(self, 'Open File', os.path.dirname(self.filename))
@@ -213,7 +211,10 @@ class App(QtWidgets.QMainWindow):
         self.web_view.page().currentFrame().scroll(0, -self.web_view.page().viewportSize().height())
 
     def show_toc(self):
-        self.web_view.page().currentFrame().evaluateJavaScript('(function() {generateTOC();})()')
+        self.web_view.page().currentFrame().evaluateJavaScript('(function() { generateTOC(); })()')
+
+    def handle_link_clicked(self, url):
+        QDesktopServices.openUrl(url)
 
     @staticmethod
     def set_stylesheet(self, stylesheet='default.css'):
