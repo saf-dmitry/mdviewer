@@ -383,15 +383,8 @@ table caption {
 }
 
 p, li, th, td, caption, figcaption {
-    word-break: break-word;
-}
-
-p, li, th, td, caption, figcaption {
-    hyphens: auto !important;
-    -webkit-hyphens: auto !important;
-    -webkit-hyphenate-character: "\2010" !important;
-    -webkit-hyphenate-limit-after: 1 !important;
-    -webkit-hyphenate-limit-before: 3 !important;
+    hyphens: auto;
+    -webkit-hyphens: auto;
 }
 
 ::selection {
