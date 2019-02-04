@@ -8,13 +8,13 @@
         bottom: 2px;
         left: 2px;
         color: #000;
-        background: rgb(225, 225, 225);
+        background: #efefef;
         padding: 0 4px;
         border: none;
         border-radius: 2px;
         font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, DejaVu Sans, Liberation Sans, sans-serif;
         font-size: 12px;
-        font-weight: 700;
+        font-weight: 400;
         line-height: 1.5;
         text-align: left;
         white-space: nowrap;
@@ -47,12 +47,12 @@
     }
 
     #generated-toc::-webkit-scrollbar {
-        width: 6px;
+        width: 8px;
     }
 
     #generated-toc::-webkit-scrollbar-track {
-        margin-top: 10px;
-        margin-bottom: 10px;
+        margin-top: 0;
+        margin-bottom: 0;
     }
 
     #generated-toc::-webkit-scrollbar-track:disabled {
@@ -60,9 +60,9 @@
     }
 
     #generated-toc::-webkit-scrollbar-thumb {
-        background: #000;
+        background: rgba(0, 0, 0, 0.8);
         border: 1px solid rgba(256, 256, 256, 0.4);
-        border-radius: 3px;
+        border-radius: 4px;
         min-height: 40px;
     }
 
