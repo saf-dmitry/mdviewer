@@ -14,6 +14,7 @@ Changed:
 - Improved Style menu selection
 - Improved Style sheets
 - Fixed Zoom keyboard shortcuts
+- Fixed handling of local links
 
 
 # v0.3
