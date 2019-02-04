@@ -109,7 +109,7 @@ You can select a preview and print style in the "Style" drop-down menu. You can 
 
 You can increase or decrease the magnification of the document view using the "View" menu options.
 
-Note: Depending on the selected style zooming will change the size of everything on the Preview, including text and images, or just the size of the font.
+Depending on the selected style zooming will change the size of everything on the Preview, including text and images, or just the size of the font.
 
 
 ## Clicking External Links
