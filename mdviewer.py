@@ -80,7 +80,7 @@ class App(QtWidgets.QMainWindow):
             self.scroll_pos[self.filename] = self.web_view.page().currentFrame().scrollPosition()
 
         # Update Preview
-        self.web_view.setHtml(text, baseUrl=QtCore.QUrl('file://' + os.path.join(os.getcwd(), self.filename)))
+        self.web_view.setHtml(text, baseUrl=QtCore.QUrl.fromLocalFile(os.path.join(os.getcwd(), self.filename)))
 
         # Load JavaScript and core CSS
         scr = os.path.join(script_dir, 'mdviewer.js')
