@@ -12,7 +12,7 @@ Changed:
 - Improved Table of Contents feature
 - Improved Search bar
 - Improved Style menu selection
-- Improved Style sheets
+- Improved style sheets
 - Fixed Zoom keyboard shortcuts
 - Fixed handling of local links
 
