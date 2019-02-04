@@ -154,11 +154,11 @@ class App(QtWidgets.QMainWindow):
         self.case = QtWidgets.QCheckBox(u'Case sensitive', self)
         self.wrap = QtWidgets.QCheckBox(u'Wrap', self)
         self.next = QtWidgets.QPushButton(u'\u25b6', self)
-        self.next.setToolTip('Go to next match')
+        self.next.setToolTip('Find next')
         self.prev = QtWidgets.QPushButton(u'\u25c0', self)
-        self.prev.setToolTip('Go to previous match')
+        self.prev.setToolTip('Find previous')
         self.done = QtWidgets.QPushButton(u'Done', self)
-        self.done.setToolTip('Hide search bar')
+        self.done.setToolTip('Hide Search bar')
 
         def _toggle_btn(btn=''):
             self.text.setFocus()
