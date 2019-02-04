@@ -213,8 +213,8 @@ class App(QtWidgets.QMainWindow):
     def scroll_up(self):
         self.web_view.page().currentFrame().scroll(0, -self.web_view.page().viewportSize().height())
 
-    def show_toc(self):
-        self.web_view.page().currentFrame().evaluateJavaScript('(function() { generateTOC(); })()')
+    def toggle_toc(self):
+        self.web_view.page().currentFrame().evaluateJavaScript('toggleTOC()')
 
     def handle_link_clicked(self, url):
         if url.isLocalFile():
@@ -304,7 +304,7 @@ class App(QtWidgets.QMainWindow):
         # Define additional shortcuts
         QtWidgets.QShortcut('j', self, activated = self.scroll_down)
         QtWidgets.QShortcut('k', self, activated = self.scroll_up)
-        QtWidgets.QShortcut('t', self, activated = self.show_toc)
+        QtWidgets.QShortcut('t', self, activated = self.toggle_toc)
 
 class WatcherThread(QtCore.QThread):
     update = pyqtSignal(str, str)

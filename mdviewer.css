@@ -113,7 +113,7 @@
         color: #96dcff !important;
     }
 
-    #generated-toc a#hide-toc {
+    #generated-toc a#generated-toc-hide-toc {
         display: block;
         position: fixed;
         max-width: 50px;
@@ -128,7 +128,7 @@
         opacity: 0.25 !important;
     }
 
-    #generated-toc a#hide-toc:hover {
+    #generated-toc a#generated-toc-hide-toc:hover {
         color: #fff !important;
         -webkit-transition: opacity .2s;
         transition: opacity .2s;
@@ -144,3 +144,4 @@
     }
 
 }
+

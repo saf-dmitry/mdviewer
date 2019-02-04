@@ -97,7 +97,7 @@ There are multiple ways to navigate the Preview window. You may use the scrollba
 
 ![](images/screenshot_02.png)
 
-Pressing the "t" key will expand the navigation pane showing the Table of Contents, and clicking the title of a heading will navigate to that section of the Preview.
+Pressing the "t" key will toggle the navigation pane showing the Table of Contents, and clicking the title of a heading will navigate to that section of the Preview.
 
 
 ## Choosing a Style
