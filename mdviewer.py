@@ -72,15 +72,15 @@ class App(QtWidgets.QMainWindow):
         self.web_view.settings().setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
 
         # Configure link behavior
+        self.web_view.page().setLinkDelegationPolicy(QtWebKitWidgets.QWebPage.DelegateAllLinks)
         self.web_view.linkClicked.connect(lambda url: self.handle_link_clicked(url))
-        self.web_view.page().setLinkDelegationPolicy(QtWebKitWidgets.QWebPage.DelegateExternalLinks)
 
         # Save scroll position
         if not self.web_view.page().currentFrame().scrollPosition() == QtCore.QPoint(0,0):
             self.scroll_pos[self.filename] = self.web_view.page().currentFrame().scrollPosition()
 
         # Update Preview
-        self.web_view.setHtml(text, baseUrl=QtCore.QUrl('file:///' + os.path.join(os.getcwd(), self.filename)))
+        self.web_view.setHtml(text, baseUrl=QtCore.QUrl('file://' + os.path.join(os.getcwd(), self.filename)))
 
         # Load JavaScript and core CSS
         scr = os.path.join(script_dir, 'mdviewer.js')
@@ -217,7 +217,14 @@ class App(QtWidgets.QMainWindow):
         self.web_view.page().currentFrame().evaluateJavaScript('(function() { generateTOC(); })()')
 
     def handle_link_clicked(self, url):
-        QDesktopServices.openUrl(url)
+        if url.isLocalFile():
+            if url.toLocalFile() == os.path.join(os.getcwd(), self.filename) and url.hasFragment():
+                self.web_view.page().currentFrame().scrollToAnchor(url.fragment())
+                return
+            else:
+                QDesktopServices.openUrl(url)
+        else:
+            QDesktopServices.openUrl(url)
 
     @staticmethod
     def set_stylesheet(self, stylesheet='default.css'):
