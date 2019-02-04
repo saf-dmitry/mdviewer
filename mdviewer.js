@@ -11,7 +11,9 @@
         } else if (this.protocol == "mailto:") {
             msg.innerHTML = "Send email to <strong>" + this.hostname + this.pathname + "</strong>";
         } else {
-            msg.innerHTML = "Open <strong>" + this.hostname + "</strong>" + this.pathname + this.search + this.hash;
+            msg.innerHTML = "Open " + this.protocol + "//"
+                + "<strong>" + this.hostname + "</strong>"
+                + this.port + this.pathname + this.search + this.hash;
         }
 
         var sbar = document.createElement("div");
