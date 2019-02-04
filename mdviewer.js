@@ -2,10 +2,22 @@
 (function () {
 
     function showURL (ev) {
-        var href = this.href;
+
+        var msg = document.createElement("span");
+        if (this.pathname == window.location.pathname &&
+            this.protocol == window.location.protocol &&
+            this.host     == window.location.host) {
+            msg.innerHTML = "Go to <strong>" + this.hash + "</strong>";
+        } else if (this.protocol == "mailto:") {
+            msg.innerHTML = "Send email to <strong>" + this.hostname + this.pathname + "</strong>";
+        } else {
+            msg.innerHTML = "Open <strong>" + this.hostname + "</strong>" + this.pathname + this.search + this.hash;
+        }
+
         var sbar = document.createElement("div");
         sbar.id = "status-bar";
-        sbar.appendChild(document.createTextNode(href));
+        sbar.appendChild(msg);
+
         document.body.insertBefore(sbar, document.body.lastChild);
     }
 
@@ -17,10 +29,10 @@
     }
 
     var links = document.links;
-    for(var i=0; i < links.length; i++){
-        var a = links[i];
-        a.addEventListener('mouseover', showURL);
-        a.addEventListener('mouseout',  hideURL);
+    for(var i = 0; i < links.length; i++){
+        var link = links[i];
+        link.addEventListener('mouseover', showURL);
+        link.addEventListener('mouseout',  hideURL);
     }
 
 })()
@@ -42,22 +54,24 @@ function generateTOC(documentRef) {
 
     headings.forEach(function (heading, i) {
 
-        var ref = "toc-" + i;
+        var ref = "";
 
-        if (heading.id)
+        if (heading.id) {
             ref = heading.getAttribute("id");
-        else
+        } else {
+            ref = "toc-" + i;
             heading.id = ref;
+        }
 
         var link = documentRef.createElement("a");
         link.href = "#" + ref;
         link.textContent = heading.innerText || heading.textContent;
         // link.appendChild(document.createTextNode(heading.innerText));
 
-        var div = documentRef.createElement("div");
-        div.className = "toc-" + heading.tagName.toLowerCase();
-        div.appendChild(link);
-        toc.appendChild(div);
+        var entry = documentRef.createElement("div");
+        entry.className = "toc-" + heading.tagName.toLowerCase();
+        entry.appendChild(link);
+        toc.appendChild(entry);
 
         if (i === 0) {
             link.focus();
@@ -69,7 +83,7 @@ function generateTOC(documentRef) {
 
     hidetoc.id = "hide-toc";
     hidetoc.textContent = "Hide";
-    hidetoc.title = "Hide Contents";
+    hidetoc.title = "Hide Navigation pane";
 
     hidetoc.addEventListener ("click", function() {
         toc.parentNode.removeChild(toc);
