@@ -7,7 +7,7 @@
     }
 
     body ::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.1);
+        background: #e8e8e8;
         margin: 0 0;
     }
 
@@ -16,7 +16,7 @@
     }
 
     body ::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.2);
+        background: #c2c2c2;
         min-width: 40px;
         min-height: 40px;
     }
