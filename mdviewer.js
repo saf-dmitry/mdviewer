@@ -9,12 +9,11 @@
         if (this.pathname == window.location.pathname &&
             this.protocol == window.location.protocol &&
             this.host     == window.location.host) {
-            msg.innerHTML = "Go to <strong>" + this.hash + "</strong>";
+            msg.innerHTML = "<strong>" + this.hash + "</strong>";
         } else if (this.protocol == "mailto:") {
-            msg.innerHTML = "Send email to <strong>" + this.hostname + this.pathname + "</strong>";
+            msg.innerHTML = "<strong>" + this.hostname + this.pathname + "</strong>";
         } else {
-            msg.innerHTML = "Open " + this.protocol + "//"
-                + "<strong>" + this.hostname + "</strong>"
+            msg.innerHTML = "<strong>" + this.protocol + "//" + this.hostname + "</strong>"
                 + this.port + this.pathname + this.search + this.hash;
         }
 
