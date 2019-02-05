@@ -1,6 +1,26 @@
 
 @media screen {
 
+    body ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    body ::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        margin: 0 0;
+    }
+
+    body ::-webkit-scrollbar-track:disabled {
+        display: none;
+    }
+
+    body ::-webkit-scrollbar-thumb {
+        background: rgba(0, 0, 0, 0.2);
+        min-width: 40px;
+        min-height: 40px;
+    }
+
     #status-bar {
         display: block;
         position: fixed;
@@ -51,8 +71,8 @@
     }
 
     #generated-toc::-webkit-scrollbar-track {
-        margin-top: 0;
-        margin-bottom: 0;
+        background: transparent;
+        margin: 0 0;
     }
 
     #generated-toc::-webkit-scrollbar-track:disabled {
