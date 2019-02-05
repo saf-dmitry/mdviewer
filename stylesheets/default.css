@@ -358,6 +358,36 @@ table caption {
     font-size: 98%;
 }
 
+div.todo, div.warning, div.note, div.tip {
+    display: block;
+    margin: 0.5rem auto;
+    padding: 0.1rem 1rem;
+}
+
+div.todo {
+    border-left: 4px solid #d93025;
+    background: #fce8eb;
+    color: #d93025;
+}
+
+div.warning {
+    border-left: 4px solid #fa7b17;
+    background: #feefe3;
+    color: #fa7b17;
+}
+
+div.note {
+    border-left: 4px solid #1a73e8;
+    background: #e8f0fe;
+    color: #1a73e8;
+}
+
+div.tip {
+    border-left: 4px solid #a142f4;
+    background: #f3e8fd;
+    color: #a142f4;
+}
+
 p, li, th, td, caption, figcaption {
     hyphens: auto;
     -webkit-hyphens: auto;
