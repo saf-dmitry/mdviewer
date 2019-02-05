@@ -37,7 +37,7 @@
         background: rgba(0, 0, 0, 0.8);
         padding: 20px 20px 40px 20px;
         border: none;
-        border-radius: 4px;
+        border-radius: 3px;
         text-align: left;
         z-index: 1010;
         box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.4);
@@ -60,8 +60,7 @@
     }
 
     #generated-toc::-webkit-scrollbar-thumb {
-        background: rgba(0, 0, 0, 0.8);
-        border: 1px solid rgba(256, 256, 256, 0.4);
+        background: rgba(256, 256, 256, 0.2);
         border-radius: 4px;
         min-height: 40px;
     }
