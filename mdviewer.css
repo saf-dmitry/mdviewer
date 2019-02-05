@@ -7,7 +7,7 @@
     }
 
     body ::-webkit-scrollbar-track {
-        background: #e8e8e8;
+        background: #f2f2f2;
         margin: 0 0;
     }
 
@@ -16,9 +16,17 @@
     }
 
     body ::-webkit-scrollbar-thumb {
-        background: #c2c2c2;
         min-width: 40px;
         min-height: 40px;
+        -webkit-transition: background .2s;
+        transition: background .2s;
+        background: #dfdfdf;
+    }
+
+    body ::-webkit-scrollbar-thumb:hover {
+        -webkit-transition: background .2s;
+        transition: background .2s;
+        background: #c2c2c2;
     }
 
     #status-bar {
@@ -80,9 +88,17 @@
     }
 
     #generated-toc::-webkit-scrollbar-thumb {
-        background: rgba(256, 256, 256, 0.2);
         border-radius: 4px;
         min-height: 40px;
+        -webkit-transition: background .2s;
+        transition: background .2s;
+        background: rgba(256, 256, 256, 0.2);
+    }
+
+    #generated-toc::-webkit-scrollbar-thumb:hover {
+        -webkit-transition: background .2s;
+        transition: background .2s;
+        background: rgba(256, 256, 256, 0.4);
     }
 
 }
