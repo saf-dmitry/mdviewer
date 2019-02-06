@@ -150,11 +150,13 @@ If you just want to add small snippets of CSS for changes you'd like to make to 
     @import "default.css";
 
     body {
-        color: #333;
+        color: #111;
         background-color: #fffff8;
     }
 
-All CSS3 options that work in WebKit will work in MDviewer. See existing style sheets in the application's `stylesheets` directory for details.
+All CSS3 options that work in WebKit will work in MDviewer. See the existing style sheets in the application's `stylesheets` directory for details.
+
+Tip: Use the Web Inspector to see what elements and attributes exist and what CSS rules are applying to them. You can launch the Web Inspector by selecting "Inspect" in the context menu.
 
 
 ## Using Math Formulas
