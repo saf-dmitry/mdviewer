@@ -88,14 +88,13 @@
 
     // Startup
 
-    var links = document.links;
-    for(var i = 0; i < links.length; i++){
-        var link = links[i];
+    generateTOC();
+
+    var links = [].slice.call(document.links);
+    links.forEach(function (link) {
         link.addEventListener("mouseover", showURL);
         link.addEventListener("mouseout",  hideURL);
-    }
-
-    generateTOC();
+    });
 
 })()
 
