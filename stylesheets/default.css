@@ -92,11 +92,6 @@ a:hover, a:active {
     border-bottom: 1px solid;
 }
 
-a[class^="footnote"] {
-    color: #0366d6;
-    border-style: none;
-}
-
 a img {
     border: none;
     outline: none;
@@ -140,11 +135,6 @@ pre > code, code > pre {
     overflow-x: scroll;
     background: transparent;
     white-space: pre !important;
-}
-
-table.sourceCode pre {
-    border: none;
-    line-height: 1.5;
 }
 
 h1 > code, h2 > code, h3 > code {
@@ -255,7 +245,7 @@ figure figcaption, div.figure p.caption {
 table {
     width: auto;
     overflow: auto;
-    margin: 0 auto;
+    margin: 0.5rem auto;
     line-height: 1.4;
     border: 1px solid #dfe2e5;
     border-collapse: collapse;
@@ -265,7 +255,7 @@ table {
 table th {
     height: 2rem;
     font-weight: 400;
-    background-color: #f6f8fa;
+    background-color: rgba(246, 248, 250, 0.8)
 }
 
 table td {
@@ -334,6 +324,10 @@ table caption {
     margin-top: 1rem;
     margin-bottom: 1rem;
     border-style: none;
+}
+
+pre.sourceCode {
+    border: none;
 }
 
 input[type=checkbox] {
