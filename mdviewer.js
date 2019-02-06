@@ -9,12 +9,14 @@
         if (this.pathname == window.location.pathname &&
             this.protocol == window.location.protocol &&
             this.host     == window.location.host) {
-            msg.innerHTML = "<strong>" + this.hash + "</strong>";
+            msg.innerHTML = this.hash;
         } else if (this.protocol == "mailto:") {
-            msg.innerHTML = "<strong>" + this.hostname + this.pathname + "</strong>";
+            msg.innerHTML = this.hostname + this.pathname;
         } else {
-            msg.innerHTML = "<strong>" + this.protocol + "//" + this.hostname + "</strong>"
-                + this.port + this.pathname + this.search + this.hash;
+            msg.innerHTML = this.protocol + "//" + this.hostname
+                + "<span class=\"href-path\">"
+                + this.port + this.pathname + this.search + this.hash
+                + "</span>";
         }
 
         var sbar = document.createElement("div");

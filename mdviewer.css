@@ -54,6 +54,10 @@
         -webkit-user-select: none;
     }
 
+    #status-bar .href-path {
+        color: #777;
+    }
+
     #generated-toc {
         display: block;
         position: fixed;
