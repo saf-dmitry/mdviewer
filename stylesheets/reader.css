@@ -355,7 +355,7 @@ input[type=checkbox]:checked:before {
     font-size: 98%;
 }
 
-div.todo, div.warning, div.note, div.tip {
+div.todo, div.warning, div.note, div.tip, div.example {
     display: block;
     margin: 0.5rem auto;
     padding: 0.1rem 1rem;
@@ -383,6 +383,12 @@ div.tip {
     border-left: 4px solid #a142f4;
     background: #f3e8fd;
     color: #a142f4;
+}
+
+div.example {
+    border-left: 4px solid #888;
+    background: #f5f5e9;
+    color: #456;
 }
 
 p, li, th, td, caption, figcaption {
