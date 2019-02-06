@@ -151,14 +151,16 @@ class App(QtWidgets.QMainWindow):
         self.search_bar = QtWidgets.QToolBar()
 
         self.text = QtWidgets.QLineEdit(self)
+        self.text.setClearButtonEnabled(True)
+        self.text.setPlaceholderText(u'Search')
         self.case = QtWidgets.QCheckBox(u'Case sensitive', self)
         self.wrap = QtWidgets.QCheckBox(u'Wrap', self)
         self.next = QtWidgets.QPushButton(u'Next', self)
-        self.next.setToolTip('Find next')
+        self.next.setToolTip(u'Find next')
         self.prev = QtWidgets.QPushButton(u'Previous', self)
-        self.prev.setToolTip('Find previous')
+        self.prev.setToolTip(u'Find previous')
         self.done = QtWidgets.QPushButton(u'Done', self)
-        self.done.setToolTip('Hide Search bar')
+        self.done.setToolTip(u'Hide Search bar')
 
         def _toggle_btn(btn=''):
             self.text.setFocus()
