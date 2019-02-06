@@ -96,6 +96,14 @@
         link.addEventListener("mouseout",  hideURL);
     });
 
+    var items = [].slice.call(document.body.querySelectorAll('li'));
+    items.forEach(function (item) {
+        if (item.firstChild.nodeName == "INPUT" &&
+            item.firstChild.getAttribute("type") == "checkbox") {
+            item.classList.add("task-list-item");
+        }
+    });
+
 })()
 
 function toggleTOC() {
