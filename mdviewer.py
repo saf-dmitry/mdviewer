@@ -55,7 +55,7 @@ class App(QtWidgets.QMainWindow):
         self.thread1.update.connect(self.update)
         self.watcher = QtCore.QFileSystemWatcher([self.filename])
         self.watcher.fileChanged.connect(self.thread1.run)
-        self.thread1.start()
+        self.thread1.run()
 
         # Restore scroll position
         self.web_view.loadFinished.connect(self.after_update)

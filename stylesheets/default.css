@@ -332,6 +332,7 @@ pre.sourceCode {
 
 input[type=checkbox] {
     -webkit-appearance: none;
+    position: relative;
 }
 
 input[type=checkbox]:before {
