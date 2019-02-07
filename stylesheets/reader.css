@@ -318,26 +318,27 @@ input[type=checkbox] {
 input[type=checkbox]:before {
     display: inline-block;
     content: "";
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUBAMAAAB/pwA+AAAAGFBMVEW7u7uBgYGCgoKDg4O8vLza2trc3Nz///8h6hclAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAABkwAAAZMAalulTIAAAAHdElNRQfjAgcJDSLUDKxzAAAALElEQVQI12NgEFICA0UGBiYlKFBgUDIvB4NiJQalcigYfEyEI5GczgBjMgAADDJDrDlORUsAAAAASUVORK5CYII=);
-    background-size: 100% 100%;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWBAMAAAA2mnEIAAAAFVBMVEW8vLyBgYGCgoKDg4Pa2trc3Nz///+kML1iAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAABkwAAAZMAalulTIAAAAHdElNRQfjAgcNGBAsZ7M7AAAAMUlEQVQY02NgQAaMShAgAGQrwQADA5NyGgQYKTAwqUHZSYOcjeRmZL8wMEGZCig+BwB3QDtOboSLsAAAAABJRU5ErkJggg==);
+    background-size: 100%;
     background-repeat: no-repeat;
-    width: 1rem;
-    height: 1rem;
+    width: 1.2rem;
+    height: 1.2rem;
     vertical-align: middle;
+    text-decoration: none;
     -webkit-user-select: none;
 }
 
 input[type=checkbox]:checked:before {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAdVBMVEUAAAAvgvswgvsxgvsvg/swg/sxg/syhPs0hfs3h/s9i/s/jPtLk/xMlPxNlfxYm/xxqvxyqvxzq/yCtP2IuP2JuP2Svv2dxP2kyf2rzf2tzv210/620/631P641P7L4P7N4f7O4v7s9P/t9P/2+v/3+v/////qAXpzAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAABkwAAAZMAalulTIAAAAHdElNRQfjAgcJBBtay58yAAAAiUlEQVQY023Q2RKCMAwF0EBJXXDBBcVdEe//f6JtR6Ik3oc+nGkmmUtEBQ9SUEjOKjmRYxNHmcWMFEx8eBRusDc469Bo9Dc8S41bYM0fHC99snmHK/d4wGkUh+9oS8EdktbAigW5ibp44cI/mPTRD8v2oEDFQ4x6ltOkkPo4/RbytzqyGKt35t8bZQgNhhkvEQYAAAAASUVORK5CYII=);
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAAdVBMVEVzC+Ivgvswgvsxgvsvg/swg/sxg/syhPs0hfs3h/s9i/s/jPtLk/xMlPxNlfxYm/xxqvxyqvxzq/yCtP2IuP2JuP2Svv2dxP2kyf2rzf2tzv210/620/631P641P7L4P7N4f7O4v7s9P/t9P/2+v/3+v////+I84CWAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAABkwAAAZMAalulTIAAAAHdElNRQfjAgcNFxXblVt7AAAAjklEQVQY03XRyRKDIBAEUBSbLGZPTMy+mf7/TwxgmSCDfeDwipqa6lFqMAV6KVrNESV3qiGiLWeSM8sRTYx9BG95SPCsYS3Z3PkuJe/IDX48Xhqv84Y3/PnI88iNePBVBryn94pcI2DUzhcfXtFj789uRLCJdXKFmJ1fEHBXVXWahlUNFKskt+fRib/pfAGZ2g2GAh3BtQAAAABJRU5ErkJggg==);
 }
 
 li.task-list-item {
-    list-style-type: none !important;
+    list-style-type: none;
 }
 
 li.task-list-item > input[type=checkbox] {
     margin-right: 0.4rem;
-    margin-left: -1.6rem;
+    margin-left: -1.8rem;
 }
 
 .tag {
