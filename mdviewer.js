@@ -11,7 +11,7 @@
             this.host     == window.location.host) {
             msg.innerHTML = this.hash;
         } else if (this.protocol == "mailto:") {
-            msg.innerHTML = this.hostname + this.pathname;
+            msg.innerHTML = this.protocol + this.hostname + this.pathname;
         } else {
             msg.innerHTML = this.protocol + "//" + this.hostname
                 + "<span class=\"href-path\">"
