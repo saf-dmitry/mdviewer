@@ -159,10 +159,13 @@ class App(QtWidgets.QMainWindow):
         self.wrap = QtWidgets.QCheckBox(u'Wrap', self)
         self.next = QtWidgets.QPushButton(u'Next', self)
         self.next.setToolTip(u'Find next')
+        self.next.setShortcut('Return')
         self.prev = QtWidgets.QPushButton(u'Previous', self)
         self.prev.setToolTip(u'Find previous')
+        self.prev.setShortcut('Shift+Return')
         self.done = QtWidgets.QPushButton(u'Done', self)
         self.done.setToolTip(u'Hide Search bar')
+        self.done.setShortcut('Esc')
 
         def _toggle_btn(btn=''):
             self.text.setFocus()
