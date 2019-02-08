@@ -8,13 +8,13 @@ Added:
 
 Changed:
 
-- Renamed style sheets
-- Improved Table of Contents feature
-- Improved Search bar
+- Goto menu replaced by Navigation pane
 - Improved Style menu selection
+- Improved Search bar
+- Renamed style sheets
 - Improved style sheets
-- Fixed Zoom keyboard shortcuts
 - Fixed handling of local links
+- Fixed Zoom keyboard shortcuts
 
 
 # v0.3
