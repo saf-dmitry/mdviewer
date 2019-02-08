@@ -378,25 +378,25 @@ div.todo, div.warning, div.note, div.tip, div.example {
 }
 
 div.todo {
-    border-left: 4px solid #d93025;
+    border-top: 4px solid #d93025;
     background-color: #fce8eb;
     color: #d93025;
 }
 
 div.warning {
-    border-left: 4px solid #fa7b17;
+    border-top: 4px solid #fa7b17;
     background-color: #feefe3;
     color: #fa7b17;
 }
 
 div.note {
-    border-left: 4px solid #1a73e8;
+    border-top: 4px solid #1a73e8;
     background-color: #e8f0fe;
     color: #1a73e8;
 }
 
 div.tip {
-    border-left: 4px solid #a142f4;
+    border-top: 4px solid #a142f4;
     background-color: #f3e8fd;
     color: #a142f4;
 }
