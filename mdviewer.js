@@ -88,8 +88,6 @@
 
     // Startup
 
-    generateTOC();
-
     var links = [].slice.call(document.links);
     links.forEach(function (link) {
         link.addEventListener("mouseover", showURL);
@@ -106,6 +104,8 @@
             }
         }
     });
+
+    generateTOC();
 
 })()
 
