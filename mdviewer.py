@@ -150,6 +150,7 @@ class App(QtWidgets.QMainWindow):
         self.search_bar = QtWidgets.QToolBar()
         self.search_bar.setMovable(False)
         self.search_bar.setFloatable(False)
+        self.search_bar.layout().setSpacing(1)
 
         self.text = QtWidgets.QLineEdit(self)
         self.text.setClearButtonEnabled(True)
@@ -177,8 +178,8 @@ class App(QtWidgets.QMainWindow):
         self.search_bar.addWidget(self.wrap)
         self.search_bar.addWidget(self.text)
         self.search_bar.addSeparator()
-        self.search_bar.addWidget(self.prev)
         self.search_bar.addWidget(self.next)
+        self.search_bar.addWidget(self.prev)
         for btn in (self.prev, self.next):
             btn.pressed[()].connect(lambda btn = btn: _toggle_btn(btn))
         self.done.pressed.connect(_hide)
