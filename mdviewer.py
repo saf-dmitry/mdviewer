@@ -57,10 +57,9 @@ class App(QtWidgets.QMainWindow):
         self.watcher.fileChanged.connect(self.thread1.run)
         self.thread1.run()
 
-        # Restore scroll position
         self.web_view.loadFinished.connect(self.after_update)
 
-        # Set GUI
+        # Set GUI menus and toolbars
         self.set_menus()
         self.set_search_bar()
 
@@ -149,6 +148,8 @@ class App(QtWidgets.QMainWindow):
 
     def set_search_bar(self):
         self.search_bar = QtWidgets.QToolBar()
+        self.search_bar.setMovable(False)
+        self.search_bar.setFloatable(False)
 
         self.text = QtWidgets.QLineEdit(self)
         self.text.setClearButtonEnabled(True)
@@ -240,6 +241,7 @@ class App(QtWidgets.QMainWindow):
 
     def set_menus(self):
         menubar = self.menuBar()
+
         file_menu = menubar.addMenu('&File')
 
         for d in (
