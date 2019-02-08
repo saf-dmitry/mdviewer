@@ -121,9 +121,9 @@ The user's desktop settings control whether certain executable file types are op
 
 ## Searching
 
-The search bar on the bottom of the viewing area can be accessed with the "File > Find" menu option and allows you to incrementally search through the Preview for a word or phrase. Once you search, you can use "Next" and "Previous" buttons on the right side of the search bar to navigate forward and backward through additional results.
+The search bar on the bottom of the viewing area can be accessed with the "File > Find" menu option and allows you to incrementally search through the Preview for a word or phrase. Once you search, you can use the "Next" (Return) and "Previous" (Shift-Return) buttons on the right side of the search bar to navigate forward and backward through additional results.
 
-The checkboxes on the left side of the search bar allow you to narrow the search down by case sensitivity and wrap the search around the document boundaries.
+The checkboxes on the left side of the search field allow you to narrow the search down by case sensitivity and wrap the search around the document boundaries. Clicking the "Done" (Esc) button will hide the search bar.
 
 
 ## Exporting HTML
