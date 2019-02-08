@@ -149,17 +149,7 @@ All CSS3 options that work in WebKit will work in MDviewer. See the existing sty
 
 Tip: Use the Web Inspector to see what elements and attributes exist and what CSS rules are applying to them. You can launch the Web Inspector by selecting "Inspect" in the context menu.
 
-If you just want to add small snippets of CSS for changes you'd like to make to an existing style, you can first import the existing CSS file using the CSS `@import` rule and add formatting rules as desired:
-
-    @import url("default.css");
-
-    @media screen {
-        li.task-list-item-checked {
-            text-decoration: line-through;
-        }
-    }
-
-The current drawback of the importing solution is that you will probably need to reload the Preview ("F5" or selecting "Reload" in the context menu) first time after selecting the custom style sheet to evaluate the importing step.
+Note: Importing existing CSS files in custom style sheets via the `@import` rule currently has a drawback that you will probably need to reload the Preview ("F5" or selecting "Reload" in the context menu) first time after selecting the custom style sheet to evaluate the importing step.
 
 
 ## Using Math Formulas
