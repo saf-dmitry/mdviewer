@@ -359,32 +359,30 @@ div.todo, div.warning, div.note, div.tip, div.example {
 
 div.todo {
     border-left: 4px solid #d93025;
-    background: #fce8eb;
+    background-color: #fce8eb;
     color: #d93025;
 }
 
 div.warning {
     border-left: 4px solid #fa7b17;
-    background: #feefe3;
+    background-color: #feefe3;
     color: #fa7b17;
 }
 
 div.note {
     border-left: 4px solid #1a73e8;
-    background: #e8f0fe;
+    background-color: #e8f0fe;
     color: #1a73e8;
 }
 
 div.tip {
     border-left: 4px solid #a142f4;
-    background: #f3e8fd;
+    background-color: #f3e8fd;
     color: #a142f4;
 }
 
 div.example {
-    border-left: 4px solid #888;
-    background: #f5f5e9;
-    color: #456;
+    background-color: #f5f5e9;
 }
 
 p, li, th, td, caption, figcaption {
