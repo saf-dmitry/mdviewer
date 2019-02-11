@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
 from PyQt5.QtWebKit import QWebSettings
 from PyQt5.QtWebKitWidgets import QWebPage, QWebView
 
-VERSION = '0.3'
+VERSION = '0.4'
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
 stylesheet_dir = os.path.join(script_dir, 'stylesheets')

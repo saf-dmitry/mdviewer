@@ -2,6 +2,9 @@
 
 # Development Version
 
+
+# v0.4
+
 Added:
 
 - Status bar for links
@@ -15,6 +18,8 @@ Changed:
 - Improved style sheets
 - Fixed handling of local links
 - Fixed Zoom keyboard shortcuts
+- Remember selected style sheet
+- Save settings on window closing
 
 
 # v0.3
