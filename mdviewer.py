@@ -59,6 +59,9 @@ class App(QtWidgets.QMainWindow):
 
         self.web_view.loadFinished.connect(self.after_update)
 
+        # Get style sheet
+        self.stylesheet = self.QSETTINGS.value('stylesheet', 'default.css')
+
         # Set GUI menus and toolbars
         self.set_menus()
         self.set_search_bar()
@@ -202,6 +205,7 @@ class App(QtWidgets.QMainWindow):
     def quit(self, QCloseEvent):
         self.QSETTINGS.setValue('size', self.size())
         self.QSETTINGS.setValue('pos', self.pos())
+        self.QSETTINGS.setValue('stylesheet', self.stylesheet)
 
         QtWidgets.qApp.quit()
 
@@ -238,6 +242,7 @@ class App(QtWidgets.QMainWindow):
         path = os.path.join(stylesheet_dir, stylesheet)
         url = QtCore.QUrl.fromLocalFile(path)
         self.web_view.settings().setUserStyleSheetUrl(url)
+        self.stylesheet = stylesheet
 
     def about(self):
         msg_about = QtWidgets.QMessageBox(0, 'About MDviewer', u'MDviewer\n\nVersion: %s' % (VERSION), parent=self)
@@ -277,22 +282,21 @@ class App(QtWidgets.QMainWindow):
         style_menu.setDisabled(True)
 
         if os.path.exists(stylesheet_dir):
-            sheets = []
-            for f in sorted(os.listdir(stylesheet_dir)):
-                if not f.endswith('.css'): continue
-                a = os.path.splitext(f)[0].replace("&", "&&")
-                sheets.append(QtWidgets.QAction(a, self))
-                if len(sheets) < 10:
-                    sheets[-1].setShortcut('Ctrl+%d' % len(sheets))
-                sheets[-1].triggered.connect(
-                    lambda x, stylesheet = f: self.set_stylesheet(self, stylesheet))
-            group = QtWidgets.QActionGroup(self, exclusive=True)
-            for item in sheets:
-                item.setCheckable(True)
-                action = group.addAction(item)
-                style_menu.addAction(action)
-            style_menu.setDisabled(False)
-            self.set_stylesheet(self, 'default.css')
+            files = sorted(os.listdir(stylesheet_dir))
+            for f in files:
+                if not f.endswith('.css'): files.remove(f)
+            if len(files) > 0:
+                style_menu.setDisabled(False)
+                group = QtWidgets.QActionGroup(self, exclusive=True)
+                for i, f in enumerate(files, start=1):
+                    a = os.path.splitext(f)[0].replace("&", "&&")
+                    action = group.addAction(QtWidgets.QAction(a, self))
+                    action.triggered.connect(
+                        lambda x, stylesheet = f: self.set_stylesheet(self, stylesheet))
+                    if i < 10: action.setShortcut('Ctrl+%d' % i)
+                    action.setCheckable(True)
+                    style_menu.addAction(action)
+                    if f == self.stylesheet: action.trigger()
 
         help_menu = menubar.addMenu('&Help')
 
