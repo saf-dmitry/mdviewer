@@ -254,26 +254,26 @@ class App(QtWidgets.QMainWindow):
         file_menu = menubar.addMenu('&File')
 
         for d in (
-                {'label': u'&Open...',      'keys': 'Ctrl+O', 'func': self.open_file},
-                {'label': u'&Save HTML...', 'keys': 'Ctrl+S', 'func': self.save_html},
-                {'label': u'&Find...',      'keys': 'Ctrl+F', 'func': self.show_search_bar},
-                {'label': u'&Print...',     'keys': 'Ctrl+P', 'func': self.print_doc},
-                {'label': u'&Quit',         'keys': 'Ctrl+Q', 'func': self.quit}
+                {'label': u'&Open...',      'shortcut': 'Ctrl+O', 'func': self.open_file},
+                {'label': u'&Save HTML...', 'shortcut': 'Ctrl+S', 'func': self.save_html},
+                {'label': u'&Find...',      'shortcut': 'Ctrl+F', 'func': self.show_search_bar},
+                {'label': u'&Print...',     'shortcut': 'Ctrl+P', 'func': self.print_doc},
+                {'label': u'&Quit',         'shortcut': 'Ctrl+Q', 'func': self.quit}
                  ):
             action = QtWidgets.QAction(d['label'], self)
-            action.setShortcut(d['keys'])
+            action.setShortcut(d['shortcut'])
             action.triggered.connect(d['func'])
             file_menu.addAction(action)
 
         view_menu = menubar.addMenu('&View')
 
         for d in (
-                {'label': u'Zoom &In',     'keys': 'Ctrl++', 'func': self.zoom_in},
-                {'label': u'Zoom &Out',    'keys': 'Ctrl+-', 'func': self.zoom_out},
-                {'label': u'&Actual Size', 'keys': 'Ctrl+0', 'func': self.zoom_reset}
+                {'label': u'Zoom &In',     'shortcut': 'Ctrl++', 'func': self.zoom_in},
+                {'label': u'Zoom &Out',    'shortcut': 'Ctrl+-', 'func': self.zoom_out},
+                {'label': u'&Actual Size', 'shortcut': 'Ctrl+0', 'func': self.zoom_reset}
                  ):
             action = QtWidgets.QAction(d['label'], self)
-            action.setShortcut(d['keys'])
+            action.setShortcut(d['shortcut'])
             action.triggered.connect(d['func'])
             view_menu.addAction(action)
 
