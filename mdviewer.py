@@ -318,6 +318,10 @@ class App(QtWidgets.QMainWindow):
         QtWidgets.QShortcut('k', self, activated = self.scroll_up)
         QtWidgets.QShortcut('t', self, activated = self.toggle_toc)
 
+    def closeEvent(self, event):
+        self.quit(event)
+        event.accept()
+
 class WatcherThread(QtCore.QThread):
     update = pyqtSignal(str, str)
 
