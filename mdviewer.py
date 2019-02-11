@@ -170,7 +170,7 @@ class App(QtWidgets.QMainWindow):
         self.done.setToolTip(u'Hide Search bar')
         self.done.setShortcut('Esc')
 
-        def _toggle_btn(btn=''):
+        def _toggle_btn(btn = ''):
             self.text.setFocus()
             self.find(self.text.text(), btn)
 
@@ -238,14 +238,15 @@ class App(QtWidgets.QMainWindow):
             QDesktopServices.openUrl(url)
 
     @staticmethod
-    def set_stylesheet(self, stylesheet='default.css'):
+    def set_stylesheet(self, stylesheet = 'default.css'):
         path = os.path.join(stylesheet_dir, stylesheet)
         url = QtCore.QUrl.fromLocalFile(path)
         self.web_view.settings().setUserStyleSheetUrl(url)
         self.stylesheet = stylesheet
 
     def about(self):
-        msg_about = QtWidgets.QMessageBox(0, 'About MDviewer', u'MDviewer\n\nVersion: %s' % (VERSION), parent=self)
+        msg_about = QtWidgets.QMessageBox(
+            0, 'About MDviewer', u'MDviewer\n\nVersion: %s' % (VERSION), parent=self)
         msg_about.show()
 
     def set_menus(self):
@@ -283,12 +284,11 @@ class App(QtWidgets.QMainWindow):
 
         if os.path.exists(stylesheet_dir):
             files = sorted(os.listdir(stylesheet_dir))
-            for f in files:
-                if not f.endswith('.css'): files.remove(f)
+            files = [f for f in files if f.endswith('.css')]
             if len(files) > 0:
                 style_menu.setDisabled(False)
-                group = QtWidgets.QActionGroup(self, exclusive=True)
-                for i, f in enumerate(files, start=1):
+                group = QtWidgets.QActionGroup(self, exclusive = True)
+                for i, f in enumerate(files, start = 1):
                     a = os.path.splitext(f)[0].replace("&", "&&")
                     action = group.addAction(QtWidgets.QAction(a, self))
                     action.triggered.connect(
