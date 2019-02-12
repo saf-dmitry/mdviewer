@@ -141,7 +141,7 @@ class App(QtWidgets.QMainWindow):
         else:
             pass
 
-    def find(self, text, btn=''):
+    def find(self, text, btn = ''):
         page = self.web_view.page()
         back = page.FindFlags(1) if btn is self.prev else page.FindFlags(0)
         case = page.FindFlags(2) if self.case.isChecked() else page.FindFlags(0)
@@ -163,12 +163,22 @@ class App(QtWidgets.QMainWindow):
         self.next = QtWidgets.QPushButton(u'Next', self)
         self.next.setToolTip(u'Find next')
         self.next.setShortcut('Return')
+        self.next.setDisabled(True)
         self.prev = QtWidgets.QPushButton(u'Previous', self)
         self.prev.setToolTip(u'Find previous')
         self.prev.setShortcut('Shift+Return')
+        self.prev.setDisabled(True)
         self.done = QtWidgets.QPushButton(u'Done', self)
         self.done.setToolTip(u'Hide Search bar')
         self.done.setShortcut('Esc')
+
+        def _enable_nav():
+            if self.text.text() == '':
+                self.next.setDisabled(True)
+                self.prev.setDisabled(True)
+            else:
+                self.next.setDisabled(False)
+                self.prev.setDisabled(False)
 
         def _toggle_btn(btn = ''):
             self.text.setFocus()
@@ -190,6 +200,7 @@ class App(QtWidgets.QMainWindow):
             btn.pressed[()].connect(lambda btn = btn: _toggle_btn(btn))
         self.done.pressed.connect(_hide)
         self.text.textChanged.connect(self.find)
+        self.text.textChanged.connect(_enable_nav)
 
     def show_search_bar(self):
         self.addToolBar(0x8, self.search_bar)
