@@ -331,6 +331,10 @@ pre.sourceCode {
     border: none;
 }
 
+.emoji {
+    font-family: Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, Noto Emoji, EmojiSymbols, EmojiOne;
+}
+
 input[type=checkbox] {
     -webkit-appearance: none;
     position: relative;
