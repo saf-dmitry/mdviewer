@@ -108,7 +108,7 @@ function toggleTOC() {
     if (toc) {
         if (toc.style.display == "none") {
             toc.style.display = "block";
-            toc.getElementsByTagName('a')[0].focus()
+            toc.getElementsByTagName("a")[0].focus()
         } else {
             toc.style.display = "none";
             document.body.focus();
