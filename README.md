@@ -70,7 +70,7 @@ In general, you should place your personal settings in `$HOME/.config/mdviewer/s
 
 ## Setting a Markdown Processor
 
-First, you must specify a Markdown (or other markup) processor in the `processor_path` field of the configuration file. Enter a full path to an executable or script which can return HTML or SVG output on STDOUT and it will be used for Preview and Save operations. Examples of cross-platform Markdown processors include [pandoc][pandoc], [MultiMarkdown][multimarkdown] or [PHP Markdown Extra][php-markdown-extra].
+First, you must specify a Markdown (or other markup) processor in the `processor_path` field of the configuration file. Enter a full path to an executable or script which can return HTML or SVG output on STDOUT and it will be used for Preview and Save operations. Examples of cross-platform Markdown processors include [pandoc][pandoc], [MultiMarkdown][multimarkdown], and [PHP Markdown Extra][php-markdown-extra].
 
 If the specified processor needs additional arguments besides the file name, specify them in the `processor_args` field, separating each argument with a space, just like you would on the command line. If your process is more complicated than a single command, create a self-contained script, make it executable and point the processor setting to it. In your scripts you can use the MDviewer-specific environment variables as described in the [Evaluating Environment Variables](#evaluating-environment-variables) section.
 
