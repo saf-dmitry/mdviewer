@@ -99,9 +99,7 @@
         if (item.firstChild.nodeName == "INPUT" &&
             item.firstChild.getAttribute("type") == "checkbox") {
             item.classList.add("task-list-item");
-            if (item.firstChild.hasAttribute("checked")) {
-                item.classList.add("task-list-item-checked");
-            }
+            item.firstChild.classList.add("task-list-item-checkbox");
         }
     });
 
