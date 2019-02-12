@@ -54,8 +54,8 @@
         -webkit-user-select: none;
     }
 
-    #status-bar .href-path {
-        color: #777;
+    #status-bar .fade {
+        opacity: 0.5;
     }
 
     #generated-toc {

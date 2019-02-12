@@ -14,7 +14,7 @@
             msg.innerHTML = this.protocol + this.hostname + this.pathname;
         } else {
             msg.innerHTML = this.protocol + "//" + this.hostname
-                + "<span class=\"href-path\">"
+                + "<span class=\"fade\">"
                 + this.port + this.pathname + this.search + this.hash
                 + "</span>";
         }
@@ -66,10 +66,6 @@
             link.textContent = heading.innerText || heading.textContent;
             // link.appendChild(document.createTextNode(heading.innerText));
 
-            if (i == 0) {
-                link.id = "generated-toc-first-link";
-            }
-
             var entry = document.createElement("div");
             entry.className = "toc-" + heading.tagName.toLowerCase();
             entry.appendChild(link);
@@ -112,7 +108,7 @@ function toggleTOC() {
     if (toc) {
         if (toc.style.display == "none") {
             toc.style.display = "block";
-            document.getElementById("generated-toc-first-link").focus();
+            toc.getElementsByTagName('a')[0].focus()
         } else {
             toc.style.display = "none";
             document.body.focus();
