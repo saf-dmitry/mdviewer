@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 # coding: utf8
 
-import sys, os, webbrowser, importlib, itertools, locale, io, subprocess, shutil, urllib.request, urllib.error, yaml
+import sys, os, io, shutil, yaml
+# import locale, importlib, subprocess
 
-from PyQt5 import QtCore, QtGui, QtWidgets, QtPrintSupport, QtWebKit, QtWebKitWidgets
+from PyQt5 import QtCore, QtGui, QtWidgets, QtWebKit, QtWebKitWidgets, QtPrintSupport
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QDesktopServices, QIcon, QKeySequence
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
@@ -300,8 +301,8 @@ class App(QtWidgets.QMainWindow):
                 style_menu.setDisabled(False)
                 group = QtWidgets.QActionGroup(self, exclusive = True)
                 for i, f in enumerate(files, start = 1):
-                    a = os.path.splitext(f)[0].replace("&", "&&")
-                    action = group.addAction(QtWidgets.QAction(a, self))
+                    name = os.path.splitext(f)[0].replace("&", "&&")
+                    action = group.addAction(QtWidgets.QAction(name, self))
                     action.triggered.connect(
                         lambda x, stylesheet = f: self.set_stylesheet(self, stylesheet))
                     if i < 10: action.setShortcut(QKeySequence('Ctrl+%d' % i))

@@ -10,7 +10,7 @@
             this.protocol == window.location.protocol &&
             this.host     == window.location.host) {
             msg.innerHTML = this.hash;
-        } else if (this.protocol == "mailto:") {
+        } else if (this.protocol === "mailto:") {
             msg.innerHTML = this.protocol + this.hostname + this.pathname;
         } else {
             msg.innerHTML = this.protocol + "//" + this.hostname
@@ -38,10 +38,7 @@
     function generateTOC() {
 
         var toc = document.getElementById("generated-toc");
-
-        if (toc) {
-            toc.parentNode.removeChild(toc);
-        }
+        if (toc) { toc.parentNode.removeChild(toc) }
 
         toc = document.createElement("div");
         toc.id = "generated-toc";
@@ -50,9 +47,9 @@
 
         var headings = [].slice.call(document.body.querySelectorAll("h1, h2, h3, h4, h5, h6"));
 
-        headings.forEach(function(heading, i) {
+        headings.forEach(function (heading, i) {
 
-            var ref = "";
+            var ref;
 
             if (heading.id) {
                 ref = heading.getAttribute("id");
@@ -63,8 +60,8 @@
 
             var link = document.createElement("a");
             link.href = "#" + ref;
-            link.textContent = heading.innerText || heading.textContent;
-            // link.appendChild(document.createTextNode(heading.innerText));
+            // link.textContent = heading.innerText;
+            link.appendChild(document.createTextNode(heading.innerText || heading.textContent));
 
             var entry = document.createElement("div");
             entry.className = "toc-" + heading.tagName.toLowerCase();
@@ -85,15 +82,15 @@
     // Startup
 
     var links = [].slice.call(document.links);
-    links.forEach(function(link) {
+    links.forEach(function (link) {
         link.addEventListener("mouseover", showURL);
         link.addEventListener("mouseout",  hideURL);
     });
 
     var items = [].slice.call(document.body.querySelectorAll('li'));
-    items.forEach(function(item) {
-        if (item.firstChild.nodeName == "INPUT" &&
-            item.firstChild.getAttribute("type") == "checkbox") {
+    items.forEach(function (item) {
+        if (item.firstChild.nodeName === "INPUT" &&
+            item.firstChild.getAttribute("type") === "checkbox") {
             item.classList.add("task-list-item");
             item.firstChild.classList.add("task-list-item-checkbox");
         }
@@ -106,7 +103,7 @@
 function toggleTOC() {
     var toc = document.getElementById("generated-toc");
     if (toc) {
-        if (toc.style.display == "none") {
+        if (toc.style.display === "none") {
             toc.style.display = "block";
             toc.getElementsByTagName("a")[0].focus()
         } else {
