@@ -50,7 +50,7 @@
 
         var headings = [].slice.call(document.body.querySelectorAll("h1, h2, h3, h4, h5, h6"));
 
-        headings.forEach(function (heading, i) {
+        headings.forEach(function(heading, i) {
 
             var ref = "";
 
@@ -85,13 +85,13 @@
     // Startup
 
     var links = [].slice.call(document.links);
-    links.forEach(function (link) {
+    links.forEach(function(link) {
         link.addEventListener("mouseover", showURL);
         link.addEventListener("mouseout",  hideURL);
     });
 
     var items = [].slice.call(document.body.querySelectorAll('li'));
-    items.forEach(function (item) {
+    items.forEach(function(item) {
         if (item.firstChild.nodeName == "INPUT" &&
             item.firstChild.getAttribute("type") == "checkbox") {
             item.classList.add("task-list-item");

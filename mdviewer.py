@@ -5,7 +5,7 @@ import sys, os, webbrowser, importlib, itertools, locale, io, subprocess, shutil
 
 from PyQt5 import QtCore, QtGui, QtWidgets, QtPrintSupport, QtWebKit, QtWebKitWidgets
 from PyQt5.QtCore import *
-from PyQt5.QtGui import QDesktopServices
+from PyQt5.QtGui import QDesktopServices, QIcon, QKeySequence
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
 from PyQt5.QtWebKit import QWebSettings
 from PyQt5.QtWebKitWidgets import QWebPage, QWebView
@@ -162,15 +162,15 @@ class App(QtWidgets.QMainWindow):
         self.wrap = QtWidgets.QCheckBox(u'Wrap', self)
         self.next = QtWidgets.QPushButton(u'Next', self)
         self.next.setToolTip(u'Find next')
-        self.next.setShortcut('Return')
+        self.next.setShortcut(QKeySequence('Return'))
         self.next.setDisabled(True)
         self.prev = QtWidgets.QPushButton(u'Previous', self)
         self.prev.setToolTip(u'Find previous')
-        self.prev.setShortcut('Shift+Return')
+        self.prev.setShortcut(QKeySequence('Shift+Return'))
         self.prev.setDisabled(True)
         self.done = QtWidgets.QPushButton(u'Done', self)
         self.done.setToolTip(u'Hide Search bar')
-        self.done.setShortcut('Esc')
+        self.done.setShortcut(QKeySequence('Esc'))
 
         def _enable_nav():
             if self.text.text() == '':
@@ -266,26 +266,26 @@ class App(QtWidgets.QMainWindow):
         file_menu = menubar.addMenu('&File')
 
         for d in (
-                {'label': u'&Open...',      'shortcut': 'Ctrl+O', 'func': self.open_file},
-                {'label': u'&Save HTML...', 'shortcut': 'Ctrl+S', 'func': self.save_html},
-                {'label': u'&Find...',      'shortcut': 'Ctrl+F', 'func': self.show_search_bar},
-                {'label': u'&Print...',     'shortcut': 'Ctrl+P', 'func': self.print_doc},
-                {'label': u'&Quit',         'shortcut': 'Ctrl+Q', 'func': self.quit}
+                {'name': u'&Open...',      'shct': 'Ctrl+O', 'func': self.open_file},
+                {'name': u'&Save HTML...', 'shct': 'Ctrl+S', 'func': self.save_html},
+                {'name': u'&Find...',      'shct': 'Ctrl+F', 'func': self.show_search_bar},
+                {'name': u'&Print...',     'shct': 'Ctrl+P', 'func': self.print_doc},
+                {'name': u'&Quit',         'shct': 'Ctrl+Q', 'func': self.quit}
                  ):
-            action = QtWidgets.QAction(d['label'], self)
-            action.setShortcut(d['shortcut'])
+            action = QtWidgets.QAction(d['name'], self)
+            action.setShortcut(QKeySequence(d['shct']))
             action.triggered.connect(d['func'])
             file_menu.addAction(action)
 
         view_menu = menubar.addMenu('&View')
 
         for d in (
-                {'label': u'Zoom &In',     'shortcut': 'Ctrl++', 'func': self.zoom_in},
-                {'label': u'Zoom &Out',    'shortcut': 'Ctrl+-', 'func': self.zoom_out},
-                {'label': u'&Actual Size', 'shortcut': 'Ctrl+0', 'func': self.zoom_reset}
+                {'name': u'Zoom &In',     'shct': 'Ctrl++', 'func': self.zoom_in},
+                {'name': u'Zoom &Out',    'shct': 'Ctrl+-', 'func': self.zoom_out},
+                {'name': u'&Actual Size', 'shct': 'Ctrl+0', 'func': self.zoom_reset}
                  ):
-            action = QtWidgets.QAction(d['label'], self)
-            action.setShortcut(d['shortcut'])
+            action = QtWidgets.QAction(d['name'], self)
+            action.setShortcut(QKeySequence(d['shct']))
             action.triggered.connect(d['func'])
             view_menu.addAction(action)
 
@@ -304,7 +304,7 @@ class App(QtWidgets.QMainWindow):
                     action = group.addAction(QtWidgets.QAction(a, self))
                     action.triggered.connect(
                         lambda x, stylesheet = f: self.set_stylesheet(self, stylesheet))
-                    if i < 10: action.setShortcut('Ctrl+%d' % i)
+                    if i < 10: action.setShortcut(QKeySequence('Ctrl+%d' % i))
                     action.setCheckable(True)
                     style_menu.addAction(action)
                     if f == self.stylesheet: action.trigger()
@@ -312,22 +312,22 @@ class App(QtWidgets.QMainWindow):
         help_menu = menubar.addMenu('&Help')
 
         for d in (
-                {'label': u'&About...', 'func': self.about},
+                {'name': u'&About...', 'func': self.about},
                  ):
-            action = QtWidgets.QAction(d['label'], self)
+            action = QtWidgets.QAction(d['name'], self)
             action.triggered.connect(d['func'])
             help_menu.addAction(action)
 
         # Redefine reload action
         reload_action = self.web_view.page().action(QtWebKitWidgets.QWebPage.Reload)
-        reload_action.setShortcut(QtGui.QKeySequence.Refresh)
+        reload_action.setShortcut(QKeySequence.Refresh)
         reload_action.triggered.connect(self.thread1.run)
         self.web_view.addAction(reload_action)
 
         # Define additional shortcuts
-        QtWidgets.QShortcut('j', self, activated = self.scroll_down)
-        QtWidgets.QShortcut('k', self, activated = self.scroll_up)
-        QtWidgets.QShortcut('t', self, activated = self.toggle_toc)
+        QtWidgets.QShortcut(QKeySequence('j'), self, activated = self.scroll_down)
+        QtWidgets.QShortcut(QKeySequence('k'), self, activated = self.scroll_up)
+        QtWidgets.QShortcut(QKeySequence('t'), self, activated = self.toggle_toc)
 
     def closeEvent(self, event):
         self.quit(event)
