@@ -120,9 +120,9 @@ The user's desktop settings control whether certain executable file types are op
 
 ## Searching
 
-The search bar on the bottom of the viewing area can be accessed with the "File > Find" menu option and allows you to incrementally search through the Preview for a word or phrase. Once you search, you can use the "Next" (Return) and "Previous" (Shift-Return) buttons on the right side of the search bar to navigate forward and backward through additional results.
+The search bar on the bottom of the viewing area can be accessed with the "File > Find" menu option and allows you to incrementally search through the Preview for a word or phrase. Once you search, you can use the "Next" and "Previous" buttons on the right side of the search bar to navigate forward and backward through additional results.
 
-The checkboxes on the left side of the search field allow you to narrow the search down by case sensitivity and wrap the search around the document boundaries. Clicking the "Done" (Esc) button will hide the search bar.
+The checkboxes on the left side of the search field allow you to narrow the search down by case sensitivity and wrap the search around the document boundaries. Clicking the "Done" button will hide the search bar.
 
 
 ## Exporting HTML
@@ -148,7 +148,7 @@ All CSS3 options that work in WebKit will work in MDviewer. See the existing sty
 
 Tip: Use the Web Inspector to see what elements and attributes exist and what CSS rules are applying to them. You can launch the Web Inspector by selecting "Inspect" in the context menu.
 
-Note: Importing existing CSS files in custom style sheets via the `@import` rule currently has a drawback that you will probably need to reload the Preview ("F5" or selecting "Reload" in the context menu) first time after selecting the custom style sheet to evaluate the importing step.
+Note: Importing existing CSS files in custom style sheets via the `@import` rule currently has a drawback that you will probably need to reload the Preview (by pressing F5 or selecting "Reload" in the context menu) first time after selecting the custom style sheet to evaluate the importing step.
 
 
 ## Using Math Formulas
