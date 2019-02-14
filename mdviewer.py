@@ -33,7 +33,7 @@ class App(QtWidgets.QMainWindow):
         os.environ['MDVIEWER_FILE'] = name
         os.environ['MDVIEWER_ORIGIN'] = path
 
-    def __init__(self, parent=None, filename=''):
+    def __init__(self, parent = None, filename = ''):
         QtWidgets.QMainWindow.__init__(self, parent)
         self.filename = filename or os.path.join(script_dir, u'README.md')
 
@@ -83,7 +83,7 @@ class App(QtWidgets.QMainWindow):
             self.scroll_pos[self.filename] = self.web_view.page().currentFrame().scrollPosition()
 
         # Update Preview
-        self.web_view.setHtml(text, baseUrl=QtCore.QUrl.fromLocalFile(os.path.join(os.getcwd(), self.filename)))
+        self.web_view.setHtml(text, baseUrl = QtCore.QUrl.fromLocalFile(os.path.join(os.getcwd(), self.filename)))
 
         # Load JavaScript and core CSS
         scr = os.path.join(script_dir, 'mdviewer.js')
@@ -136,7 +136,7 @@ class App(QtWidgets.QMainWindow):
             caller.start(proc, args)
             caller.waitForFinished()
             html = str(caller.readAllStandardOutput(), 'utf8')
-            with io.open(filename, 'w', encoding='utf8') as f:
+            with io.open(filename, 'w', encoding = 'utf8') as f:
                 f.writelines(html)
                 f.close()
         else:
@@ -258,7 +258,7 @@ class App(QtWidgets.QMainWindow):
 
     def about(self):
         msg_about = QtWidgets.QMessageBox(
-            0, 'About MDviewer', u'MDviewer\n\nVersion: %s' % (VERSION), parent=self)
+            0, 'About MDviewer', u'MDviewer\n\nVersion: %s' % (VERSION), parent = self)
         msg_about.show()
 
     def set_menus(self):
@@ -371,7 +371,7 @@ class Settings:
         self.reload_settings()
 
     def reload_settings(self):
-        with io.open(self.settings_file, 'r', encoding='utf8') as f:
+        with io.open(self.settings_file, 'r', encoding = 'utf8') as f:
             self.settings = yaml.safe_load(f)
 
     @classmethod
@@ -387,7 +387,7 @@ def main():
     if len(sys.argv) != 2:
         window = App()
     else:
-        window = App(filename=sys.argv[1])
+        window = App(filename = sys.argv[1])
     window.show()
     sys.exit(app.exec_())
 
