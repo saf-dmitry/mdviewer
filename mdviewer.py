@@ -7,9 +7,11 @@ import sys, os, io, shutil, yaml
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebKit, QtWebKitWidgets, QtPrintSupport
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QDesktopServices, QIcon, QKeySequence
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QFileDialog
+from PyQt5.QtWidgets import QToolBar, QCheckBox, QPushButton, QLineEdit, QAction, QActionGroup, QShortcut
 from PyQt5.QtWebKit import QWebSettings
 from PyQt5.QtWebKitWidgets import QWebPage, QWebView
+from PyQt5.QtPrintSupport import QPrintPreviewDialog
 
 VERSION = '0.4'
 
@@ -20,7 +22,7 @@ class App(QtWidgets.QMainWindow):
 
     @property
     def QSETTINGS(self):
-        return QtCore.QSettings(QtCore.QSettings.IniFormat, QtCore.QSettings.UserScope, 'MDviewer', 'MDviewer')
+        return QSettings(QSettings.IniFormat, QSettings.UserScope, 'MDviewer', 'MDviewer')
 
     def set_window_title(self):
         _path, name = os.path.split(os.path.abspath(self.filename))
@@ -34,7 +36,7 @@ class App(QtWidgets.QMainWindow):
         os.environ['MDVIEWER_ORIGIN'] = path
 
     def __init__(self, parent = None, filename = ''):
-        QtWidgets.QMainWindow.__init__(self, parent)
+        QMainWindow.__init__(self, parent)
         self.filename = filename or os.path.join(script_dir, u'README.md')
 
         self.set_env()
@@ -42,11 +44,11 @@ class App(QtWidgets.QMainWindow):
 
         # Configure window
         self.set_window_title()
-        self.resize(self.QSETTINGS.value('size', QtCore.QSize(800,800)))
-        self.move(self.QSETTINGS.value('pos', QtCore.QPoint(50,50)))
+        self.resize(self.QSETTINGS.value('size', QSize(800,800)))
+        self.move(self.QSETTINGS.value('pos', QPoint(50,50)))
 
         # Activate WebView
-        self.web_view = QtWebKitWidgets.QWebView()
+        self.web_view = QWebView()
         self.setCentralWidget(self.web_view)
 
         self.scroll_pos = {}
@@ -54,7 +56,7 @@ class App(QtWidgets.QMainWindow):
         # Configure and start file watcher thread
         self.thread1 = WatcherThread(self.filename)
         self.thread1.update.connect(self.update)
-        self.watcher = QtCore.QFileSystemWatcher([self.filename])
+        self.watcher = QFileSystemWatcher([self.filename])
         self.watcher.fileChanged.connect(self.thread1.run)
         self.thread1.run()
 
@@ -70,20 +72,20 @@ class App(QtWidgets.QMainWindow):
     def update(self, text, warn):
         '''Update Preview.'''
 
-        self.web_view.settings().setAttribute(QtWebKit.QWebSettings.JavascriptEnabled, True)
-        self.web_view.settings().setAttribute(QtWebKit.QWebSettings.PluginsEnabled, True)
-        self.web_view.settings().setAttribute(QtWebKit.QWebSettings.DeveloperExtrasEnabled, True)
+        self.web_view.settings().setAttribute(QWebSettings.JavascriptEnabled, True)
+        self.web_view.settings().setAttribute(QWebSettings.PluginsEnabled, True)
+        self.web_view.settings().setAttribute(QWebSettings.DeveloperExtrasEnabled, True)
 
         # Configure link behavior
-        self.web_view.page().setLinkDelegationPolicy(QtWebKitWidgets.QWebPage.DelegateAllLinks)
+        self.web_view.page().setLinkDelegationPolicy(QWebPage.DelegateAllLinks)
         self.web_view.linkClicked.connect(lambda url: self.handle_link_clicked(url))
 
         # Save scroll position
-        if not self.web_view.page().currentFrame().scrollPosition() == QtCore.QPoint(0,0):
+        if not self.web_view.page().currentFrame().scrollPosition() == QPoint(0,0):
             self.scroll_pos[self.filename] = self.web_view.page().currentFrame().scrollPosition()
 
         # Update Preview
-        self.web_view.setHtml(text, baseUrl = QtCore.QUrl.fromLocalFile(os.path.join(os.getcwd(), self.filename)))
+        self.web_view.setHtml(text, baseUrl = QUrl.fromLocalFile(os.path.join(os.getcwd(), self.filename)))
 
         # Load JavaScript and core CSS
         scr = os.path.join(script_dir, 'mdviewer.js')
@@ -103,8 +105,7 @@ class App(QtWidgets.QMainWindow):
         self.web_view.page().currentFrame().evaluateJavaScript(add_resources)
 
         # Display processor warnings
-        if warn:
-            QtWidgets.QMessageBox.warning(self, 'Processor message', warn)
+        if warn: QMessageBox.warning(self, 'Processor message', warn)
 
     def after_update(self):
         '''Restore scroll position.'''
@@ -117,7 +118,7 @@ class App(QtWidgets.QMainWindow):
             self.web_view.page().currentFrame().evaluateJavaScript('window.scrollTo(%s, %s);' % (pos.x(), pos.y()))
 
     def open_file(self):
-        filename, _filter = QtWidgets.QFileDialog.getOpenFileName(self, 'Open File', os.path.dirname(self.filename))
+        filename, _filter = QFileDialog.getOpenFileName(self, 'Open File', os.path.dirname(self.filename))
         if filename != '':
             self.filename = self.thread1.filename = filename
             self.set_env()
@@ -127,12 +128,12 @@ class App(QtWidgets.QMainWindow):
             pass
 
     def save_html(self):
-        filename, _filter = QtWidgets.QFileDialog.getSaveFileName(self, 'Save File', os.path.dirname(self.filename))
+        filename, _filter = QFileDialog.getSaveFileName(self, 'Save File', os.path.dirname(self.filename))
         if filename != '':
             proc = Settings.get('processor_path', 'pandoc')
             args = Settings.get('processor_args', '')
             args = ('%s' % (args)).split() + [self.filename]
-            caller = QtCore.QProcess()
+            caller = QProcess()
             caller.start(proc, args)
             caller.waitForFinished()
             html = str(caller.readAllStandardOutput(), 'utf8')
@@ -151,25 +152,25 @@ class App(QtWidgets.QMainWindow):
         page.findText(text, back | wrap | case)
 
     def set_search_bar(self):
-        self.search_bar = QtWidgets.QToolBar()
+        self.search_bar = QToolBar()
         self.search_bar.setMovable(False)
         self.search_bar.setFloatable(False)
         self.search_bar.layout().setSpacing(1)
 
-        self.text = QtWidgets.QLineEdit(self)
+        self.text = QLineEdit(self)
         self.text.setClearButtonEnabled(True)
         self.text.setPlaceholderText(u'Search')
-        self.case = QtWidgets.QCheckBox(u'Case sensitive', self)
-        self.wrap = QtWidgets.QCheckBox(u'Wrap', self)
-        self.next = QtWidgets.QPushButton(u'Next', self)
+        self.case = QCheckBox(u'Case sensitive', self)
+        self.wrap = QCheckBox(u'Wrap', self)
+        self.next = QPushButton(u'Next', self)
         self.next.setToolTip(u'Find next')
         self.next.setShortcut(QKeySequence('Return'))
         self.next.setDisabled(True)
-        self.prev = QtWidgets.QPushButton(u'Previous', self)
+        self.prev = QPushButton(u'Previous', self)
         self.prev.setToolTip(u'Find previous')
         self.prev.setShortcut(QKeySequence('Shift+Return'))
         self.prev.setDisabled(True)
-        self.done = QtWidgets.QPushButton(u'Done', self)
+        self.done = QPushButton(u'Done', self)
         self.done.setToolTip(u'Hide Search bar')
         self.done.setShortcut(QKeySequence('Esc'))
 
@@ -210,7 +211,7 @@ class App(QtWidgets.QMainWindow):
         self.text.selectAll()
 
     def print_doc(self):
-        dialog = QtPrintSupport.QPrintPreviewDialog()
+        dialog = QPrintPreviewDialog()
         dialog.paintRequested.connect(self.web_view.print_)
         dialog.exec_()
 
@@ -252,13 +253,12 @@ class App(QtWidgets.QMainWindow):
     @staticmethod
     def set_stylesheet(self, stylesheet = 'default.css'):
         path = os.path.join(stylesheet_dir, stylesheet)
-        url = QtCore.QUrl.fromLocalFile(path)
+        url = QUrl.fromLocalFile(path)
         self.web_view.settings().setUserStyleSheetUrl(url)
         self.stylesheet = stylesheet
 
     def about(self):
-        msg_about = QtWidgets.QMessageBox(
-            0, 'About MDviewer', u'MDviewer\n\nVersion: %s' % (VERSION), parent = self)
+        msg_about = QMessageBox(0, 'About MDviewer', u'MDviewer\n\nVersion: %s' % (VERSION), parent = self)
         msg_about.show()
 
     def set_menus(self):
@@ -273,7 +273,7 @@ class App(QtWidgets.QMainWindow):
                 {'name': u'&Print...',     'shct': 'Ctrl+P', 'func': self.print_doc},
                 {'name': u'&Quit',         'shct': 'Ctrl+Q', 'func': self.quit}
                  ):
-            action = QtWidgets.QAction(d['name'], self)
+            action = QAction(d['name'], self)
             action.setShortcut(QKeySequence(d['shct']))
             action.triggered.connect(d['func'])
             file_menu.addAction(action)
@@ -285,7 +285,7 @@ class App(QtWidgets.QMainWindow):
                 {'name': u'Zoom &Out',    'shct': 'Ctrl+-', 'func': self.zoom_out},
                 {'name': u'&Actual Size', 'shct': 'Ctrl+0', 'func': self.zoom_reset}
                  ):
-            action = QtWidgets.QAction(d['name'], self)
+            action = QAction(d['name'], self)
             action.setShortcut(QKeySequence(d['shct']))
             action.triggered.connect(d['func'])
             view_menu.addAction(action)
@@ -299,7 +299,7 @@ class App(QtWidgets.QMainWindow):
             files = [f for f in files if f.endswith('.css')]
             if len(files) > 0:
                 style_menu.setDisabled(False)
-                group = QtWidgets.QActionGroup(self, exclusive = True)
+                group = QActionGroup(self, exclusive = True)
                 for i, f in enumerate(files, start = 1):
                     name = os.path.splitext(f)[0].replace("&", "&&")
                     action = group.addAction(QtWidgets.QAction(name, self))
@@ -315,30 +315,30 @@ class App(QtWidgets.QMainWindow):
         for d in (
                 {'name': u'&About...', 'func': self.about},
                  ):
-            action = QtWidgets.QAction(d['name'], self)
+            action = QAction(d['name'], self)
             action.triggered.connect(d['func'])
             help_menu.addAction(action)
 
         # Redefine reload action
-        reload_action = self.web_view.page().action(QtWebKitWidgets.QWebPage.Reload)
+        reload_action = self.web_view.page().action(QWebPage.Reload)
         reload_action.setShortcut(QKeySequence.Refresh)
         reload_action.triggered.connect(self.thread1.run)
         self.web_view.addAction(reload_action)
 
         # Define additional shortcuts
-        QtWidgets.QShortcut(QKeySequence('j'), self, activated = self.scroll_down)
-        QtWidgets.QShortcut(QKeySequence('k'), self, activated = self.scroll_up)
-        QtWidgets.QShortcut(QKeySequence('t'), self, activated = self.toggle_toc)
+        QShortcut(QKeySequence('j'), self, activated = self.scroll_down)
+        QShortcut(QKeySequence('k'), self, activated = self.scroll_up)
+        QShortcut(QKeySequence('t'), self, activated = self.toggle_toc)
 
     def closeEvent(self, event):
         self.quit(event)
         event.accept()
 
-class WatcherThread(QtCore.QThread):
+class WatcherThread(QThread):
     update = pyqtSignal(str, str)
 
     def __init__(self, filename):
-        QtCore.QThread.__init__(self)
+        QThread.__init__(self)
         self.filename = filename
 
     def run(self):
@@ -351,7 +351,7 @@ class WatcherThread(QtCore.QThread):
         args = ('%s' % (args)).split() + [self.filename]
         html = ''; warn = ''
         if shutil.which(proc) is not None:
-            caller = QtCore.QProcess()
+            caller = QProcess()
             caller.start(proc, args)
             caller.waitForFinished()
             html = str(caller.readAllStandardOutput(), 'utf8')
