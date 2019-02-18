@@ -7,45 +7,45 @@ import sys, os, io, shutil, yaml
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebKit, QtWebKitWidgets, QtPrintSupport
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QDesktopServices, QIcon, QKeySequence
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QMessageBox, QFileDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow, QMessageBox, QFileDialog
 from PyQt5.QtWidgets import QToolBar, QCheckBox, QPushButton, QLineEdit, QAction, QActionGroup, QShortcut
 from PyQt5.QtWebKit import QWebSettings
 from PyQt5.QtWebKitWidgets import QWebPage, QWebView
 from PyQt5.QtPrintSupport import QPrintPreviewDialog
 
-VERSION = '0.4'
+VERSION = "0.4"
 
 script_dir = os.path.dirname(os.path.realpath(__file__))
-stylesheet_dir = os.path.join(script_dir, 'stylesheets')
+stylesheet_dir = os.path.join(script_dir, "stylesheets")
 
-class App(QtWidgets.QMainWindow):
+class App(QMainWindow):
 
     @property
     def QSETTINGS(self):
-        return QSettings(QSettings.IniFormat, QSettings.UserScope, 'MDviewer', 'MDviewer')
+        return QSettings(QSettings.IniFormat, QSettings.UserScope, "mdviewer", "session")
 
     def set_window_title(self):
         _path, name = os.path.split(os.path.abspath(self.filename))
-        self.setWindowTitle(u'%s – MDviewer' % (name))
+        self.setWindowTitle(u"%s – MDviewer" % (name))
 
     def set_env (self):
         path, name = os.path.split(os.path.abspath(self.filename))
-        ext = name.split('.')[-1].lower()
-        os.environ['MDVIEWER_EXT'] = ext
-        os.environ['MDVIEWER_FILE'] = name
-        os.environ['MDVIEWER_ORIGIN'] = path
+        ext = name.split(".")[-1].lower()
+        os.environ["MDVIEWER_EXT"] = ext
+        os.environ["MDVIEWER_FILE"] = name
+        os.environ["MDVIEWER_ORIGIN"] = path
 
-    def __init__(self, parent = None, filename = ''):
+    def __init__(self, parent = None, filename = ""):
         QMainWindow.__init__(self, parent)
-        self.filename = filename or os.path.join(script_dir, u'README.md')
+        self.filename = filename or os.path.join(script_dir, u"README.md")
 
+        # Set environment variables
         self.set_env()
-        # Settings.print_path()
 
-        # Configure window
+        # Configure Preview window
         self.set_window_title()
-        self.resize(self.QSETTINGS.value('size', QSize(800,800)))
-        self.move(self.QSETTINGS.value('pos', QPoint(50,50)))
+        self.resize(self.QSETTINGS.value("size", QSize(800,400)))
+        self.move(self.QSETTINGS.value("pos", QPoint(0,0)))
 
         # Activate WebView
         self.web_view = QWebView()
@@ -63,14 +63,14 @@ class App(QtWidgets.QMainWindow):
         self.web_view.loadFinished.connect(self.after_update)
 
         # Get style sheet
-        self.stylesheet = self.QSETTINGS.value('stylesheet', 'default.css')
+        self.stylesheet = self.QSETTINGS.value("stylesheet", "default.css")
 
         # Set GUI menus and toolbars
         self.set_menus()
         self.set_search_bar()
 
     def update(self, text, warn):
-        '''Update Preview.'''
+        "Update Preview."
 
         self.web_view.settings().setAttribute(QWebSettings.JavascriptEnabled, True)
         self.web_view.settings().setAttribute(QWebSettings.PluginsEnabled, True)
@@ -88,9 +88,9 @@ class App(QtWidgets.QMainWindow):
         self.web_view.setHtml(text, baseUrl = QUrl.fromLocalFile(os.path.join(os.getcwd(), self.filename)))
 
         # Load JavaScript and core CSS
-        scr = os.path.join(script_dir, 'mdviewer.js')
-        css = os.path.join(script_dir, 'mdviewer.css')
-        add_resources = '''
+        scr = os.path.join(script_dir, "mdviewer.js")
+        css = os.path.join(script_dir, "mdviewer.css")
+        add_resources = """
         (function() {
             var scr = document.createElement("script");
             scr.type = "text/javascript";
@@ -101,25 +101,25 @@ class App(QtWidgets.QMainWindow):
             css.href = "%s";
             document.head.appendChild(css);
         })()
-        ''' % (scr, css)
+        """ % (scr, css)
         self.web_view.page().currentFrame().evaluateJavaScript(add_resources)
 
         # Display processor warnings
-        if warn: QMessageBox.warning(self, 'Processor message', warn)
+        if warn: QMessageBox.warning(self, "Processor message", warn)
 
     def after_update(self):
-        '''Restore scroll position.'''
+        "Restore scroll position."
 
         try:
             pos = self.scroll_pos[self.filename]
         except KeyError:
             pass
         else:
-            self.web_view.page().currentFrame().evaluateJavaScript('window.scrollTo(%s, %s);' % (pos.x(), pos.y()))
+            self.web_view.page().currentFrame().evaluateJavaScript("window.scrollTo(%s, %s);" % (pos.x(), pos.y()))
 
     def open_file(self):
-        filename, _filter = QFileDialog.getOpenFileName(self, 'Open File', os.path.dirname(self.filename))
-        if filename != '':
+        filename, _filter = QFileDialog.getOpenFileName(self, "Open File", os.path.dirname(self.filename))
+        if filename != "":
             self.filename = self.thread1.filename = filename
             self.set_env()
             self.set_window_title()
@@ -128,27 +128,27 @@ class App(QtWidgets.QMainWindow):
             pass
 
     def save_html(self):
-        filename, _filter = QFileDialog.getSaveFileName(self, 'Save File', os.path.dirname(self.filename))
-        if filename != '':
-            proc = Settings.get('processor_path', 'pandoc')
-            args = Settings.get('processor_args', '')
-            args = ('%s' % (args)).split() + [self.filename]
+        filename, _filter = QFileDialog.getSaveFileName(self, "Save File", os.path.dirname(self.filename))
+        if filename != "":
+            proc = Settings.get("processor_path", "pandoc")
+            args = Settings.get("processor_args", "")
+            args = ("%s" % (args)).split() + [self.filename]
             caller = QProcess()
             caller.start(proc, args)
             caller.waitForFinished()
-            html = str(caller.readAllStandardOutput(), 'utf8')
-            with io.open(filename, 'w', encoding = 'utf8') as f:
+            html = str(caller.readAllStandardOutput(), "utf8")
+            with io.open(filename, "w", encoding = "utf8") as f:
                 f.writelines(html)
                 f.close()
         else:
             pass
 
-    def find(self, text, btn = ''):
+    def find(self, text, btn = ""):
         page = self.web_view.page()
         back = page.FindFlags(1) if btn is self.prev else page.FindFlags(0)
         case = page.FindFlags(2) if self.case.isChecked() else page.FindFlags(0)
         wrap = page.FindFlags(4) if self.wrap.isChecked() else page.FindFlags(0)
-        page.findText('', page.FindFlags(8))
+        page.findText("", page.FindFlags(8))
         page.findText(text, back | wrap | case)
 
     def set_search_bar(self):
@@ -159,30 +159,30 @@ class App(QtWidgets.QMainWindow):
 
         self.text = QLineEdit(self)
         self.text.setClearButtonEnabled(True)
-        self.text.setPlaceholderText(u'Search')
-        self.case = QCheckBox(u'Case sensitive', self)
-        self.wrap = QCheckBox(u'Wrap', self)
-        self.next = QPushButton(u'Next', self)
-        self.next.setToolTip(u'Find next')
-        self.next.setShortcut(QKeySequence('Return'))
+        self.text.setPlaceholderText(u"Search")
+        self.case = QCheckBox(u"Case sensitive", self)
+        self.wrap = QCheckBox(u"Wrap", self)
+        self.next = QPushButton(u"Next", self)
+        self.next.setToolTip(u"Find next")
+        self.next.setShortcut(QKeySequence("Return"))
         self.next.setDisabled(True)
-        self.prev = QPushButton(u'Previous', self)
-        self.prev.setToolTip(u'Find previous')
-        self.prev.setShortcut(QKeySequence('Shift+Return'))
+        self.prev = QPushButton(u"Previous", self)
+        self.prev.setToolTip(u"Find previous")
+        self.prev.setShortcut(QKeySequence("Shift+Return"))
         self.prev.setDisabled(True)
-        self.done = QPushButton(u'Done', self)
-        self.done.setToolTip(u'Hide Search bar')
-        self.done.setShortcut(QKeySequence('Esc'))
+        self.done = QPushButton(u"Done", self)
+        self.done.setToolTip(u"Hide Search bar")
+        self.done.setShortcut(QKeySequence("Esc"))
 
         def _enable_nav():
-            if self.text.text() == '':
+            if self.text.text() == "":
                 self.next.setDisabled(True)
                 self.prev.setDisabled(True)
             else:
                 self.next.setDisabled(False)
                 self.prev.setDisabled(False)
 
-        def _toggle_btn(btn = ''):
+        def _toggle_btn(btn = ""):
             self.text.setFocus()
             self.find(self.text.text(), btn)
 
@@ -216,9 +216,9 @@ class App(QtWidgets.QMainWindow):
         dialog.exec_()
 
     def quit(self, QCloseEvent):
-        self.QSETTINGS.setValue('size', self.size())
-        self.QSETTINGS.setValue('pos', self.pos())
-        self.QSETTINGS.setValue('stylesheet', self.stylesheet)
+        self.QSETTINGS.setValue("size", self.size())
+        self.QSETTINGS.setValue("pos", self.pos())
+        self.QSETTINGS.setValue("stylesheet", self.stylesheet)
 
         QtWidgets.qApp.quit()
 
@@ -238,7 +238,7 @@ class App(QtWidgets.QMainWindow):
         self.web_view.page().currentFrame().scroll(0, -self.web_view.page().viewportSize().height())
 
     def toggle_toc(self):
-        self.web_view.page().currentFrame().evaluateJavaScript('toggleTOC()')
+        self.web_view.page().currentFrame().evaluateJavaScript("toggleTOC()")
 
     def handle_link_clicked(self, url):
         if url.isLocalFile():
@@ -251,52 +251,52 @@ class App(QtWidgets.QMainWindow):
             QDesktopServices.openUrl(url)
 
     @staticmethod
-    def set_stylesheet(self, stylesheet = 'default.css'):
+    def set_stylesheet(self, stylesheet = "default.css"):
         path = os.path.join(stylesheet_dir, stylesheet)
         url = QUrl.fromLocalFile(path)
         self.web_view.settings().setUserStyleSheetUrl(url)
         self.stylesheet = stylesheet
 
     def about(self):
-        msg_about = QMessageBox(0, 'About MDviewer', u'MDviewer\n\nVersion: %s' % (VERSION), parent = self)
+        msg_about = QMessageBox(0, "About MDviewer", u"MDviewer\n\nVersion: %s" % (VERSION), parent = self)
         msg_about.show()
 
     def set_menus(self):
         menubar = self.menuBar()
 
-        file_menu = menubar.addMenu('&File')
+        file_menu = menubar.addMenu("&File")
 
         for d in (
-                {'name': u'&Open...',      'shct': 'Ctrl+O', 'func': self.open_file},
-                {'name': u'&Save HTML...', 'shct': 'Ctrl+S', 'func': self.save_html},
-                {'name': u'&Find...',      'shct': 'Ctrl+F', 'func': self.show_search_bar},
-                {'name': u'&Print...',     'shct': 'Ctrl+P', 'func': self.print_doc},
-                {'name': u'&Quit',         'shct': 'Ctrl+Q', 'func': self.quit}
+                {"name": u"&Open...",      "shct": "Ctrl+O", "func": self.open_file},
+                {"name": u"&Save HTML...", "shct": "Ctrl+S", "func": self.save_html},
+                {"name": u"&Find...",      "shct": "Ctrl+F", "func": self.show_search_bar},
+                {"name": u"&Print...",     "shct": "Ctrl+P", "func": self.print_doc},
+                {"name": u"&Quit",         "shct": "Ctrl+Q", "func": self.quit}
                  ):
-            action = QAction(d['name'], self)
-            action.setShortcut(QKeySequence(d['shct']))
-            action.triggered.connect(d['func'])
+            action = QAction(d["name"], self)
+            action.setShortcut(QKeySequence(d["shct"]))
+            action.triggered.connect(d["func"])
             file_menu.addAction(action)
 
-        view_menu = menubar.addMenu('&View')
+        view_menu = menubar.addMenu("&View")
 
         for d in (
-                {'name': u'Zoom &In',     'shct': 'Ctrl++', 'func': self.zoom_in},
-                {'name': u'Zoom &Out',    'shct': 'Ctrl+-', 'func': self.zoom_out},
-                {'name': u'&Actual Size', 'shct': 'Ctrl+0', 'func': self.zoom_reset}
+                {"name": u"Zoom &In",     "shct": "Ctrl++", "func": self.zoom_in},
+                {"name": u"Zoom &Out",    "shct": "Ctrl+-", "func": self.zoom_out},
+                {"name": u"&Actual Size", "shct": "Ctrl+0", "func": self.zoom_reset}
                  ):
-            action = QAction(d['name'], self)
-            action.setShortcut(QKeySequence(d['shct']))
-            action.triggered.connect(d['func'])
+            action = QAction(d["name"], self)
+            action.setShortcut(QKeySequence(d["shct"]))
+            action.triggered.connect(d["func"])
             view_menu.addAction(action)
 
-        style_menu = menubar.addMenu('&Style')
-        style_menu.setStyleSheet('menu-scrollable: 1')
+        style_menu = menubar.addMenu("&Style")
+        style_menu.setStyleSheet("menu-scrollable: 1")
         style_menu.setDisabled(True)
 
         if os.path.exists(stylesheet_dir):
             files = sorted(os.listdir(stylesheet_dir))
-            files = [f for f in files if f.endswith('.css')]
+            files = [f for f in files if f.endswith(".css")]
             if len(files) > 0:
                 style_menu.setDisabled(False)
                 group = QActionGroup(self, exclusive = True)
@@ -305,18 +305,18 @@ class App(QtWidgets.QMainWindow):
                     action = group.addAction(QtWidgets.QAction(name, self))
                     action.triggered.connect(
                         lambda x, stylesheet = f: self.set_stylesheet(self, stylesheet))
-                    if i < 10: action.setShortcut(QKeySequence('Ctrl+%d' % i))
+                    if i < 10: action.setShortcut(QKeySequence("Ctrl+%d" % i))
                     action.setCheckable(True)
                     style_menu.addAction(action)
                     if f == self.stylesheet: action.trigger()
 
-        help_menu = menubar.addMenu('&Help')
+        help_menu = menubar.addMenu("&Help")
 
         for d in (
-                {'name': u'&About...', 'func': self.about},
+                {"name": u"&About...", "func": self.about},
                  ):
-            action = QAction(d['name'], self)
-            action.triggered.connect(d['func'])
+            action = QAction(d["name"], self)
+            action.triggered.connect(d["func"])
             help_menu.addAction(action)
 
         # Redefine reload action
@@ -326,9 +326,9 @@ class App(QtWidgets.QMainWindow):
         self.web_view.addAction(reload_action)
 
         # Define additional shortcuts
-        QShortcut(QKeySequence('j'), self, activated = self.scroll_down)
-        QShortcut(QKeySequence('k'), self, activated = self.scroll_up)
-        QShortcut(QKeySequence('t'), self, activated = self.toggle_toc)
+        QShortcut(QKeySequence("j"), self, activated = self.scroll_down)
+        QShortcut(QKeySequence("k"), self, activated = self.scroll_up)
+        QShortcut(QKeySequence("t"), self, activated = self.toggle_toc)
 
     def closeEvent(self, event):
         self.quit(event)
@@ -346,32 +346,32 @@ class WatcherThread(QThread):
         self.update.emit(html, warn)
 
     def processor_rules(self):
-        proc = Settings.get('processor_path', 'pandoc')
-        args = Settings.get('processor_args', '')
-        args = ('%s' % (args)).split() + [self.filename]
-        html = ''; warn = ''
+        proc = Settings.get("processor_path", "pandoc")
+        args = Settings.get("processor_args", "")
+        args = args.split() + [self.filename]
+        html = ""; warn = ""
         if shutil.which(proc) is not None:
             caller = QProcess()
             caller.start(proc, args)
             caller.waitForFinished()
-            html = str(caller.readAllStandardOutput(), 'utf8')
-            warn = str(caller.readAllStandardError(), 'utf8')
+            html = str(caller.readAllStandardOutput(), "utf8")
+            warn = str(caller.readAllStandardError(), "utf8")
         else:
-            warn = u'Executable not found: %s' % (proc)
+            warn = u"Executable not found: %s" % (proc)
         return (html, warn)
 
 class Settings:
     def __init__(self):
-        if os.name == 'nt':
-            self.user_source = os.path.join(os.getenv('APPDATA'), 'mdviewer', 'settings.yml')
+        if os.name == "nt":
+            self.user_source = os.path.join(os.getenv("APPDATA"), "mdviewer", "settings.yml")
         else:
-            self.user_source = os.path.join(os.getenv('HOME'), '.config', 'mdviewer', 'settings.yml')
-        self.app_source = os.path.join(script_dir, 'settings.yml')
+            self.user_source = os.path.join(os.getenv("HOME"), ".config", "mdviewer", "settings.yml")
+        self.app_source = os.path.join(script_dir, "settings.yml")
         self.settings_file = self.user_source if os.path.exists(self.user_source) else self.app_source
-        self.reload_settings()
+        self.load_settings()
 
-    def reload_settings(self):
-        with io.open(self.settings_file, 'r', encoding = 'utf8') as f:
+    def load_settings(self):
+        with io.open(self.settings_file, "r", encoding = "utf8") as f:
             self.settings = yaml.safe_load(f)
 
     @classmethod
@@ -380,7 +380,7 @@ class Settings:
 
     @classmethod
     def print_path(cls):
-        print('Settings: %s' % cls().settings_file)
+        print("Settings: %s" % cls().settings_file)
 
 def main():
     app = QApplication(sys.argv)
@@ -391,6 +391,6 @@ def main():
     window.show()
     sys.exit(app.exec_())
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
 
