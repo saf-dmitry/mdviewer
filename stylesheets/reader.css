@@ -256,6 +256,10 @@ table th, td {
     vertical-align: center;
 }
 
+tbody tr:hover {
+    background-color: rgba(209, 232, 255, 0.5);
+}
+
 table caption {
     caption-side: top;
     font-style: normal;

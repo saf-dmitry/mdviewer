@@ -277,6 +277,10 @@ tbody tr:nth-child(odd) {
     background-color: rgba(246, 248, 250, 0.02);
 }
 
+tbody tr:hover {
+    background-color: rgba(209, 232, 255, 0.5);
+}
+
 table caption {
     caption-side: top;
     font-style: normal;
