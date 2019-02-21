@@ -89,10 +89,19 @@
 
     var items = [].slice.call(document.body.querySelectorAll('li'));
     items.forEach(function (item) {
-        if (item.firstChild.nodeName === "INPUT" &&
-            item.firstChild.getAttribute("type") === "checkbox") {
+        element = item.firstChild;
+        if (element.nodeName === "INPUT" &&
+            element.getAttribute("type") === "checkbox") {
+            element.classList.add("task-list-item-checkbox");
             item.classList.add("task-list-item");
-            item.firstChild.classList.add("task-list-item-checkbox");
+        } else {
+            if (element.tagName === "P") {
+                if (element.firstChild.nodeName === "INPUT" &&
+                    element.firstChild.getAttribute("type") === "checkbox") {
+                    element.firstChild.classList.add("task-list-item-checkbox");
+                    item.classList.add("task-list-item");
+                }
+            }
         }
     });
 
