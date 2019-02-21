@@ -347,7 +347,7 @@ input[type=checkbox] {
 input[type=checkbox]:before {
     display: inline-block;
     content: "";
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWBAMAAAA2mnEIAAAAElBMVEVjb2x4eHh5eXl+fn6mpqb///9l1pNpAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAABigAAAYoATuadt0AAAAHdElNRQfjAhUJDjNvgUBWAAAAMElEQVQY02NgQAaKghAgxMDAJAgDCgyMwi4QYCjAwCgSCgGOg5yN5GZkvyD7EQkAAExdLUt4Ys2XAAAAAElFTkSuQmCC);
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWBAMAAAA2mnEIAAAAElBMVEVjb2ygoKChoaGkpKTAwMD///9ivA55AAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAABkwAAAZMAalulTIAAAAHdElNRQfjAhULOixaJ2o6AAAAMElEQVQY02NgQAaKghAgxMDAJAgDCgyMwi4QYCjAwCgSCgGOg5yN5GZkvyD7EQkAAExdLUt4Ys2XAAAAAElFTkSuQmCC);
     background-size: 100%;
     background-repeat: no-repeat;
     width: 1rem;
@@ -358,7 +358,7 @@ input[type=checkbox]:before {
 }
 
 input[type=checkbox]:checked:before {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAAeFBMVEUAAAAAAAAHBwcMDAwSEhIUFBQVFRUYGBgZGRkcHBwlJSU2NjY/Pz9CQkJDQ0NbW1tcXFxdXV1ubm6VlZWWlpaXl5etra2urq6wsLCxsbG+vr7Hx8fKysrOzs7Y2NjZ2dnb29vc3Nze3t7f39/t7e3u7u7+/v7///8RxDVrAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAABkwAAAZMAalulTIAAAAHdElNRQfjAhUJBhl84wOIAAAAfklEQVQY02NgwAUYMQB2UbA4JcJMPGzYhMXUpbEI86ury2AKs6uoq/FhCkuoq4sirOQSYgWLCqirKzMjhOXVFTiBFAfQCF4kB0qpg8Ul1dVFkN3NIgsSF4QZAbcSJK6oCjMC4RKQuLq6MIbnQeJKzJhhwiIux01+wOKINKwAAIZ+CZsVLr5AAAAAAElFTkSuQmCC);
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAAe1BMVEXRAwAvgvswg/sxhPw2hvs6ifs/jPtAjftBjftDj/tEj/tHkftOlfxcnfxjovxmo/xmpPx6r/x7sPyJuP2py/2qzP2rzP281/692P6/2f7A2f7L4P7S5P7U5f7X5/7f7P7g7f7i7f7j7v7k7/7l7/7w9v/x9//+//////8o8BZEAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAABigAAAYoATuadt0AAAAHdElNRQfjAhULFjEAEG1NAAAAhklEQVQY043R1w6DMAwFUJKwOmjphA5KGS33/7+wOFIJwkbivkQ6D7Zje95cjJ5EkSqtJddClrK/iyXO8BT4ABScVx90KecbcHUtt6fI6hFoA8dvVJv+Wfcl9qMBH7B+By7jucMX+VBiaElef/8l3CTkwJl9nrwJ+E7CvEwWbNBwNfNHE/MDIQcLPyNtzbQAAAAASUVORK5CYII=);
 }
 
 li.task-list-item {

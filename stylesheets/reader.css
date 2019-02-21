@@ -326,7 +326,7 @@ input[type=checkbox] {
 input[type=checkbox]:before {
     display: inline-block;
     content: "";
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWBAMAAAA2mnEIAAAAElBMVEVjb2x4eHh5eXl+fn6mpqb///9l1pNpAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAABigAAAYoATuadt0AAAAHdElNRQfjAhUJDjNvgUBWAAAAMElEQVQY02NgQAaKghAgxMDAJAgDCgyMwi4QYCjAwCgSCgGOg5yN5GZkvyD7EQkAAExdLUt4Ys2XAAAAAElFTkSuQmCC);
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWBAMAAAA2mnEIAAAAElBMVEVjb2ygoKChoaGkpKTAwMD///9ivA55AAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAABkwAAAZMAalulTIAAAAHdElNRQfjAhULOixaJ2o6AAAAMElEQVQY02NgQAaKghAgxMDAJAgDCgyMwi4QYCjAwCgSCgGOg5yN5GZkvyD7EQkAAExdLUt4Ys2XAAAAAElFTkSuQmCC);
     background-size: 100%;
     background-repeat: no-repeat;
     width: 1rem;
