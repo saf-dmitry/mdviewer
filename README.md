@@ -148,7 +148,7 @@ All CSS3 options that work in WebKit will work in MDviewer. See the existing sty
 
 Tip: Use the Web Inspector to see what elements and attributes exist and what CSS rules are applying to them. You can launch the Web Inspector by selecting "Inspect" in the context menu.
 
-Note: Importing existing CSS files in custom style sheets via the `@import` rule currently has a drawback that you will probably need to reload the Preview (by pressing F5 or selecting "Reload" in the context menu) first time after selecting the custom style sheet to evaluate the importing step.
+Note: Import of existing CSS files in custom style sheets using the `@import` rule currently has a drawback that you will need to reload the Preview (by pressing F5 or selecting "Reload" in the context menu) first time after selecting the custom style sheet to evaluate the importing step.
 
 
 ## Using Math Formulas
