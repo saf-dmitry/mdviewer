@@ -14,7 +14,7 @@
             msg.innerHTML = this.protocol + this.hostname + this.pathname;
         } else {
             msg.innerHTML = this.protocol + "//" + this.hostname
-                + "<span class=\"fade\">"
+                + "<span class=\"secondary-text\">"
                 + this.port + this.pathname + this.search + this.hash
                 + "</span>";
         }
@@ -60,7 +60,6 @@
 
             var link = document.createElement("a");
             link.href = "#" + ref;
-            // link.textContent = heading.innerText;
             link.appendChild(document.createTextNode(heading.innerText || heading.textContent));
 
             var entry = document.createElement("div");
