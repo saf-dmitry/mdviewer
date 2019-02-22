@@ -387,31 +387,33 @@ div.todo, div.warning, div.note, div.tip, div.example {
 }
 
 div.todo {
-    border-top: 4px solid #d93025;
     background-color: #fce8eb;
     color: #d93025;
 }
 
 div.warning {
-    border-top: 4px solid #fa7b17;
     background-color: #feefe3;
     color: #fa7b17;
 }
 
 div.note {
-    border-top: 4px solid #1a73e8;
     background-color: #e8f0fe;
     color: #1a73e8;
 }
 
 div.tip {
-    border-top: 4px solid #a142f4;
     background-color: #f3e8fd;
     color: #a142f4;
 }
 
 div.example {
     background-color: #f5f5e9;
+}
+
+div.column {
+    display: inline-block;
+    vertical-align: top;
+    width: 48%;
 }
 
 p, li, th, td, caption, figcaption {
