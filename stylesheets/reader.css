@@ -26,7 +26,7 @@ p {
 }
 
 q {
-    quotes: "“" "”";
+    quotes: "\201c" "\201d" "\2018" "\2019";
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -99,6 +99,8 @@ abbr[title] {
 sub, sup {
     height: 0;
     font-size: 78%;
+    line-height: 0;
+    position: relative;
 }
 
 pre, code, tt, kbd, samp {
@@ -251,7 +253,7 @@ table td {
     height: 2rem;
 }
 
-table th, td {
+table th, table td {
     padding: 0.1rem 0.4rem !important;
     vertical-align: center;
 }

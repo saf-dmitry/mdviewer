@@ -1,6 +1,9 @@
 
-/* Basic CSS */
+/* Base CSS */
 
+q {
+    quotes: "\201c" "\201d" "\2018" "\2019";
+}
 q:lang(af) {
     quotes: "\201c" "\201d" "\2018" "\201d";
 }

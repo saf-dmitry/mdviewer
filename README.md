@@ -1,4 +1,5 @@
 
+
 # MDviewer
 
 MDviewer is a cross-platform and editor-agnostic previewer for Markdown files. Use it with your favorite text editor and it updates every time you save. In applications that automatically save in the background, the Preview will be updated at save intervals as you type.
