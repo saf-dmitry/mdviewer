@@ -15,8 +15,8 @@ from PyQt5.QtPrintSupport import QPrintPreviewDialog
 
 VERSION = "0.4"
 
-script_dir = os.path.dirname(os.path.realpath(__file__))
-stylesheet_dir = os.path.join(script_dir, "stylesheets")
+app_dir = os.path.dirname(os.path.realpath(__file__))
+css_dir = os.path.join(app_dir, "stylesheets")
 
 class App(QMainWindow):
 
@@ -24,20 +24,9 @@ class App(QMainWindow):
     def QSETTINGS(self):
         return QSettings(QSettings.IniFormat, QSettings.UserScope, "mdviewer", "session")
 
-    def set_window_title(self):
-        _path, name = os.path.split(os.path.abspath(self.filename))
-        self.setWindowTitle(u"%s – MDviewer" % (name))
-
-    def set_env (self):
-        path, name = os.path.split(os.path.abspath(self.filename))
-        ext = name.split(".")[-1].lower()
-        os.environ["MDVIEWER_EXT"] = ext
-        os.environ["MDVIEWER_FILE"] = name
-        os.environ["MDVIEWER_ORIGIN"] = path
-
     def __init__(self, parent = None, filename = ""):
         QMainWindow.__init__(self, parent)
-        self.filename = filename or os.path.join(script_dir, u"README.md")
+        self.filename = filename or os.path.join(app_dir, u"README.md")
 
         # Set environment variables
         self.set_env()
@@ -69,6 +58,17 @@ class App(QMainWindow):
         self.set_menus()
         self.set_search_bar()
 
+    def set_env (self):
+        path, name = os.path.split(os.path.abspath(self.filename))
+        ext = name.split(".")[-1].lower()
+        os.environ["MDVIEWER_EXT"] = ext
+        os.environ["MDVIEWER_FILE"] = name
+        os.environ["MDVIEWER_ORIGIN"] = path
+
+    def set_window_title(self):
+        _path, name = os.path.split(os.path.abspath(self.filename))
+        self.setWindowTitle(u"%s – MDviewer" % (name))
+
     def update(self, text, warn):
         "Update Preview."
 
@@ -88,8 +88,8 @@ class App(QMainWindow):
         self.web_view.setHtml(text, baseUrl = QUrl.fromLocalFile(os.path.join(os.getcwd(), self.filename)))
 
         # Load JavaScript and core CSS
-        scr = os.path.join(script_dir, "mdviewer.js")
-        css = os.path.join(script_dir, "mdviewer.css")
+        scr = os.path.join(app_dir, "mdviewer.js")
+        css = os.path.join(app_dir, "mdviewer.css")
         add_resources = """
         (function() {
             var scr = document.createElement("script");
@@ -252,7 +252,7 @@ class App(QMainWindow):
 
     @staticmethod
     def set_stylesheet(self, stylesheet = "default.css"):
-        path = os.path.join(stylesheet_dir, stylesheet)
+        path = os.path.join(css_dir, stylesheet)
         url = QUrl.fromLocalFile(path)
         self.web_view.settings().setUserStyleSheetUrl(url)
         self.stylesheet = stylesheet
@@ -294,8 +294,8 @@ class App(QMainWindow):
         style_menu.setStyleSheet("menu-scrollable: 1")
         style_menu.setDisabled(True)
 
-        if os.path.exists(stylesheet_dir):
-            files = sorted(os.listdir(stylesheet_dir))
+        if os.path.exists(css_dir):
+            files = sorted(os.listdir(css_dir))
             files = [f for f in files if f.endswith(".css")]
             if len(files) > 0:
                 style_menu.setDisabled(False)
@@ -366,7 +366,7 @@ class Settings:
             self.user_source = os.path.join(os.getenv("APPDATA"), "mdviewer", "settings.yml")
         else:
             self.user_source = os.path.join(os.getenv("HOME"), ".config", "mdviewer", "settings.yml")
-        self.app_source = os.path.join(script_dir, "settings.yml")
+        self.app_source = os.path.join(app_dir, "settings.yml")
         self.settings_file = self.user_source if os.path.exists(self.user_source) else self.app_source
         self.load_settings()
 
