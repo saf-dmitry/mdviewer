@@ -43,6 +43,7 @@
         toc = document.createElement("div");
         toc.id = "generated-toc";
         toc.style.display = "none";
+        toc.oncontextmenu = function() { return false }
         document.body.insertBefore(toc, document.body.lastChild);
 
         var headings = [].slice.call(document.body.querySelectorAll("h1, h2, h3, h4, h5, h6"));
