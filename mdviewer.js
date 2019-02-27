@@ -77,6 +77,10 @@
         hidetoc.addEventListener ("click", function() { toc.style.display = "none" });
         toc.appendChild(hidetoc);
 
+        if (typeof(window.MathJax) !== "undefined") {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub, "generated-toc"]);
+        }
+
     }
 
     // Startup
