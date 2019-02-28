@@ -8,7 +8,8 @@
         var msg = document.createElement("span");
         if (this.pathname == window.location.pathname &&
             this.protocol == window.location.protocol &&
-            this.host     == window.location.host) {
+            this.host     == window.location.host &&
+            this.hash) {
             msg.innerHTML = this.hash;
         } else if (this.protocol === "mailto:") {
             msg.innerHTML = this.protocol + this.hostname + this.pathname;
