@@ -352,13 +352,16 @@ input[type=checkbox].task-list-item-checkbox {
 }
 
 .tag {
-    color: #333;
-    background-color: rgba(245, 245, 233, 0.8);
-    padding: 0.1rem 0.4rem;
-    border: none;
-    border-radius: 0.1rem;
+    color: #428bca;
+    padding: 0.1rem 0.2rem;
     font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, DejaVu Sans, Liberation Sans, sans-serif;
     font-size: 98%;
+}
+
+.tag:before {
+    content: "#";
+    color: #9fbce5;
+    padding-right: 1px;
 }
 
 div.todo, div.warning, div.note, div.tip, div.example {
