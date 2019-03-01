@@ -60,8 +60,8 @@ class App(QMainWindow):
 
     def set_env (self):
         path, name = os.path.split(os.path.abspath(self.filename))
-        ext = name.split(".")[-1].lower()
-        os.environ["MDVIEWER_EXT"] = ext
+        ext = os.path.splitext(name)[-1].lower()
+        os.environ["MDVIEWER_EXT"] = ext[1:]
         os.environ["MDVIEWER_FILE"] = name
         os.environ["MDVIEWER_ORIGIN"] = path
 
@@ -115,7 +115,7 @@ class App(QMainWindow):
         except KeyError:
             pass
         else:
-            self.web_view.page().currentFrame().evaluateJavaScript("window.scrollTo(%s, %s);" % (pos.x(), pos.y()))
+            self.web_view.page().currentFrame().evaluateJavaScript("window.scrollTo(%s, %s)" % (pos.x(), pos.y()))
 
     def open_file(self):
         filename, _filter = QFileDialog.getOpenFileName(self, "Open File", os.path.dirname(self.filename))
