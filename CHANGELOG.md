@@ -2,6 +2,12 @@
 
 # Development Version
 
+Changed:
+
+- Fixed status bar
+- Improved style sheets
+- Improved Navigation pane
+
 
 # v0.4
 
