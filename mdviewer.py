@@ -154,7 +154,9 @@ class App(QMainWindow):
         self.search_bar = QToolBar()
         self.search_bar.setMovable(False)
         self.search_bar.setFloatable(False)
+        self.search_bar.setVisible(False)
         self.search_bar.layout().setSpacing(1)
+        self.addToolBar(0x8, self.search_bar)
 
         self.text = QLineEdit(self)
         self.text.setClearButtonEnabled(True)
@@ -204,7 +206,6 @@ class App(QMainWindow):
         self.text.textChanged.connect(_enable_nav)
 
     def show_search_bar(self):
-        self.addToolBar(0x8, self.search_bar)
         self.search_bar.show()
         self.text.setFocus()
         self.text.selectAll()
