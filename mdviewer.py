@@ -2,7 +2,6 @@
 # coding: utf8
 
 import sys, os, io, shutil, yaml
-# import locale, importlib, subprocess
 
 from PyQt5 import QtCore, QtGui, QtWidgets, QtWebKit, QtWebKitWidgets, QtPrintSupport
 from PyQt5.QtCore import *
@@ -261,6 +260,10 @@ class App(QMainWindow):
         msg_about = QMessageBox(0, "About MDviewer", u"MDviewer\n\nVersion: %s" % (VERSION), parent = self)
         msg_about.show()
 
+    def report_issue(self):
+        url = QUrl.fromUserInput("https://github.com/saf-dmitry/mdviewer/issues")
+        QDesktopServices.openUrl(url)
+
     def set_menus(self):
         menubar = self.menuBar()
 
@@ -313,7 +316,8 @@ class App(QMainWindow):
         help_menu = menubar.addMenu("&Help")
 
         for d in (
-                {"name": u"&About...", "func": self.about},
+                {"name": u"&About...",        "func": self.about},
+                {"name": u"&Report an Issue", "func": self.report_issue},
                  ):
             action = QAction(d["name"], self)
             action.triggered.connect(d["func"])
