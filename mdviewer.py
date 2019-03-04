@@ -242,7 +242,7 @@ class App(QMainWindow):
 
     def handle_link_clicked(self, url):
         if url.isLocalFile():
-            if url.toLocalFile() == os.path.join(os.getcwd(), self.filename) and url.hasFragment():
+            if url.toLocalFile() == os.path.abspath(self.filename) and url.hasFragment():
                 self.web_view.page().currentFrame().scrollToAnchor(url.fragment())
                 return
             else:
