@@ -405,6 +405,12 @@ div.example {
     background-color: #f5f5e9;
 }
 
+div.epigraph {
+    display: block;
+    font-size: 95%;
+    margin: 1.5rem 1.5rem;
+}
+
 div.column {
     display: inline-block;
     vertical-align: top;
