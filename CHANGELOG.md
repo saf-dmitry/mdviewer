@@ -5,6 +5,7 @@
 Changed:
 
 - Fixed status bar
+- Fixed handling of internal links
 - Improved style sheets
 - Improved Navigation pane
 
