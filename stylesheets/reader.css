@@ -130,7 +130,7 @@ pre > code, code > pre {
 }
 
 h1 > code, h2 > code, h3 > code {
-    font-size: 0.8em;
+    font-size: 90%;
 }
 
 kbd {
@@ -202,11 +202,11 @@ blockquote {
     padding: 0 0.8rem;
 }
 
-blockquote > :first-child {
+blockquote:first-child {
     margin-top: 1rem;
 }
 
-blockquote > :last-child {
+blockquote:last-child {
     margin-bottom: 1rem;
 }
 
@@ -215,7 +215,7 @@ blockquote blockquote {
 }
 
 img {
-    max-width: 100%;
+    max-width: 100% !important;
     box-sizing: border-box;
 }
 
@@ -272,11 +272,14 @@ table caption {
     margin-bottom: 0.5rem;
 }
 
+svg {
+    overflow: auto;
+}
+
 video {
     display: block;
-    max-width: 100%;
+    max-width: 100% !important;
     margin: 0.5rem auto;
-    clear: both;
 }
 
 .title {
@@ -408,7 +411,7 @@ div.column {
     width: 48%;
 }
 
-p, li, th, td, caption, figcaption {
+p {
     hyphens: auto;
     -webkit-hyphens: auto;
 }
@@ -430,15 +433,6 @@ p, li, th, td, caption, figcaption {
         background-color: transparent;
         overflow: visible;
         float: none !important;
-    }
-
-    h1, h2, h3, h4, h5, h6 {
-        page-break-after: avoid !important;
-    }
-
-    p, li {
-        orphans: 3;
-        widows: 3;
     }
 
     a {
@@ -468,13 +462,17 @@ p, li, th, td, caption, figcaption {
         overflow: visible;
     }
 
-    img {
-        max-width: 160mm !important;
-        max-height: 220mm !important;
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid !important;
     }
 
     figure, div.figure {
         page-break-inside: avoid !important;
+    }
+
+    p {
+        orphans: 3;
+        widows: 3;
     }
 
 }
