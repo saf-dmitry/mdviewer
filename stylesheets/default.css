@@ -227,7 +227,7 @@ blockquote blockquote {
     padding-right: 0;
 }
 
-img, video, object, embed {
+img {
     max-width: 100%;
     box-sizing: border-box;
 }
@@ -291,6 +291,13 @@ table caption {
     font-size: 100%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+}
+
+video {
+    display: block;
+    max-width: 100%;
+    margin: 0.5rem auto;
+    clear: both;
 }
 
 .title {
