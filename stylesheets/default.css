@@ -116,7 +116,7 @@ pre, code, tt, kbd, samp {
 
 pre {
     border-radius: 0.1rem;
-    background-color: #f6f8fa;
+    background-color: rgb(246, 248, 250);
     padding: 0.8rem 1rem;
     overflow: auto;
     white-space: pre !important;
@@ -125,7 +125,7 @@ pre {
 
 code {
     border-radius: 0.1rem;
-    background-color: #f7f7f7;
+    background-color: rgba(27, 31, 35, 0.05);
     padding: 0rem 0.2rem;
     white-space: pre-wrap !important;
 }
@@ -135,7 +135,7 @@ pre > code, code > pre {
     padding: 0rem;
     line-height: 1.5;
     overflow-x: scroll;
-    background: transparent;
+    background-color: transparent;
     white-space: pre !important;
 }
 
@@ -146,7 +146,6 @@ h1 > code, h2 > code, h3 > code {
 kbd {
     border: 1px solid #c6cbd1;
     border-radius: 0.2rem;
-    background-color: #fafbfc;
     padding: 0.1rem 0.2rem;
     white-space: pre !important;
 }
@@ -258,7 +257,7 @@ table {
 table th {
     height: 2rem;
     font-weight: 400;
-    background-color: rgba(246, 248, 250, 0.8)
+    background-color: rgba(220, 232, 255, 0.2);
 }
 
 table td {
@@ -280,7 +279,7 @@ tbody tr:nth-child(odd) {
 }
 
 tbody tr:hover {
-    background-color: rgba(209, 232, 255, 0.5);
+    background-color: rgba(209, 232, 255, 0.2);
 }
 
 table caption {

@@ -125,7 +125,7 @@ pre > code, code > pre {
     padding: 0rem;
     line-height: 1.5;
     overflow-x: scroll;
-    background-color: inherit;
+    background-color: transparent;
     white-space: pre !important;
 }
 
@@ -259,7 +259,7 @@ table th, table td {
 }
 
 tbody tr:hover {
-    background-color: rgba(209, 232, 255, 0.5);
+    background-color: rgba(209, 232, 255, 0.2);
 }
 
 table caption {
