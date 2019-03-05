@@ -443,6 +443,11 @@ p {
     -webkit-hyphens: auto;
 }
 
+h1, h2, h3, h4, h5, h6 {
+    hyphens: none;
+    -webkit-hyphens: none;
+}
+
 ::selection {
     background-color: rgba(209, 232, 255, 0.8);
 }
@@ -491,6 +496,7 @@ p {
 
     h1, h2, h3, h4, h5, h6 {
         page-break-after: avoid !important;
+        page-break-inside: avoid !important;
     }
 
     figure, div.figure {
