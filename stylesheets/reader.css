@@ -93,7 +93,7 @@ a img {
 }
 
 abbr[title] {
-    border-bottom: 1px dotted #cccccc;
+    border-bottom: 1px dotted;
 }
 
 sub, sup {
@@ -134,10 +134,10 @@ h1 > code, h2 > code, h3 > code {
 }
 
 kbd {
-    border: 1px solid #111;
+    border: 1px solid;
     border-radius: 0.2rem;
     padding: 0.1rem 0.2rem;
-    white-space: pre !important;
+    word-wrap: break-words;
 }
 
 small {
@@ -239,14 +239,14 @@ table {
     line-height: 1.4;
     border-collapse: collapse;
     border-spacing: 0rem;
-    border-top: 2px solid #333333;
-    border-bottom: 2px solid #333333;
+    border-top: 2px solid;
+    border-bottom: 2px solid;
 }
 
 table th {
     height: 2rem;
     font-weight: 400;
-    border-bottom: 1px solid #333333;
+    border-bottom: 1px solid;
 }
 
 table td {
@@ -418,6 +418,7 @@ div.column {
 }
 
 p {
+    word-break: break-word;
     hyphens: auto;
     -webkit-hyphens: auto;
 }
