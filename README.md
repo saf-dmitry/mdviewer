@@ -250,7 +250,7 @@ The rendering performance can vary greatly based on your configuration settings 
 
 - __Documents containing a lot of math expressions__
 
-    The math rendering performance generally depends on the [MathJax][mathjax] configuration, especially the output processor options. Depending on type and complexity of your math you may consider using [KaTeX][katex] as alternative LaTeX math renderer.
+    The math rendering performance generally depends on the [MathJax][mathjax] configuration, especially the output processor options. Depending on type and complexity of your math you may consider using [KaTeX][katex] with [Auto-render][katex-autorender] extension as alternative solution.
 
 
 # Acknowledgments
@@ -292,6 +292,8 @@ You should have received a copy of the GNU General Public License along with thi
 [mathjax-config]: http://docs.mathjax.org/en/latest/configuration.html
 
 [katex]: https://katex.org/
+
+[katex-autorender]: https://katex.org/docs/autorender.html
 
 [github-issues]: https://github.com/saf-dmitry/mdviewer/issues
 
