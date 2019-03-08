@@ -417,6 +417,10 @@ div.column {
     width: 48%;
 }
 
+span.mark {
+    background-color: rgba(255, 255, 0, 0.8);
+}
+
 p {
     word-break: break-word;
     hyphens: auto;
