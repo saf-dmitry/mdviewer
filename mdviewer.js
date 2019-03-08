@@ -92,7 +92,7 @@
         link.addEventListener("mouseout",  hideURL);
     });
 
-    var items = [].slice.call(document.body.querySelectorAll('li'));
+    var items = [].slice.call(document.body.querySelectorAll("li"));
     items.forEach(function (item) {
         element = item.firstChild;
         if (element.nodeName === "INPUT" &&
