@@ -215,7 +215,8 @@ blockquote blockquote {
 }
 
 img {
-    max-width: 100% !important;
+    height: auto;
+    max-width: 100%;
     box-sizing: border-box;
 }
 
@@ -272,12 +273,13 @@ table caption {
     margin-bottom: 0.5rem;
 }
 
-svg {
-    overflow: auto;
+svg:not(:root) {
+    overflow: hidden;
 }
 
 video {
     display: block;
+    height: auto;
     max-width: 100% !important;
     margin: 0.5rem auto;
 }
@@ -422,14 +424,19 @@ span.mark {
 }
 
 p {
-    word-break: break-word;
     hyphens: auto;
     -webkit-hyphens: auto;
+}
+
+pre, code, kbd, samp {
+    hyphens: none;
+    -webkit-hyphens: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
     hyphens: none;
     -webkit-hyphens: none;
+    word-break: break-word;
 }
 
 ::selection {
@@ -465,11 +472,15 @@ h1, h2, h3, h4, h5, h6 {
         display: none !important;
     }
 
+    a[href^="javascript:"]:after {
+        display: none !important;
+    }
+
     a[href^="#fnref"] {
         display: none !important;
     }
 
-    abbr[title] {
+    abbr {
         border-bottom: none !important;
     }
 
