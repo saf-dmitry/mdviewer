@@ -1,4 +1,20 @@
 
+@font-face {
+    font-family: "Font Awesome";
+    font-style: normal;
+    font-weight: 400;
+    font-display: auto;
+    src: url(../webfonts/fa-regular-400.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "Font Awesome";
+    font-style: normal;
+    font-weight: 900;
+    font-display: auto;
+    src: url(../webfonts/fa-solid-900.otf) format("opentype");
+}
+
 html {
     font-size: 12pt;
 }
@@ -342,20 +358,17 @@ input[type=checkbox] {
 }
 
 input[type=checkbox]:before {
-    display: inline-block;
-    content: "";
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWBAMAAAA2mnEIAAAAElBMVEVjb2ygoKChoaGkpKTAwMD///9ivA55AAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAABkwAAAZMAalulTIAAAAHdElNRQfjAhULOixaJ2o6AAAAMElEQVQY02NgQAaKghAgxMDAJAgDCgyMwi4QYCjAwCgSCgGOg5yN5GZkvyD7EQkAAExdLUt4Ys2XAAAAAElFTkSuQmCC);
-    background-size: 100%;
-    background-repeat: no-repeat;
-    width: 1rem;
-    height: 1rem;
-    vertical-align: middle;
-    text-decoration: none;
-    -webkit-user-select: none;
+    content: "\f0c8";
+    font-weight: 400;
+    color: rgb(160, 160, 160);
+    font-family: "Font Awesome";
 }
 
 input[type=checkbox]:checked:before {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAMAAADzapwJAAAAeFBMVEUAAAAAAAAHBwcMDAwSEhIUFBQVFRUYGBgZGRkcHBwlJSU2NjY/Pz9CQkJDQ0NbW1tcXFxdXV1ubm6VlZWWlpaXl5etra2urq6wsLCxsbG+vr7Hx8fKysrOzs7Y2NjZ2dnb29vc3Nze3t7f39/t7e3u7u7+/v7///8RxDVrAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAABkwAAAZMAalulTIAAAAHdElNRQfjAhUJBhl84wOIAAAAfklEQVQY02NgwAUYMQB2UbA4JcJMPGzYhMXUpbEI86ury2AKs6uoq/FhCkuoq4sirOQSYgWLCqirKzMjhOXVFTiBFAfQCF4kB0qpg8Ul1dVFkN3NIgsSF4QZAbcSJK6oCjMC4RKQuLq6MIbnQeJKzJhhwiIux01+wOKINKwAAIZ+CZsVLr5AAAAAAElFTkSuQmCC);
+    content: "\f14a";
+    font-weight: 900;
+    color: rgb(0, 0, 0);
+    font-family: "Font Awesome";
 }
 
 li.task-list-item {
