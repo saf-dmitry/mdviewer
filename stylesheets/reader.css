@@ -244,6 +244,10 @@ table {
     border-bottom: 2px solid;
 }
 
+table + table {
+    margin-top: 1.2rem;
+}
+
 table th {
     height: 2rem;
     font-weight: 400;

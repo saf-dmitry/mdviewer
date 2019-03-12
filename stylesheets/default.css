@@ -255,6 +255,10 @@ table {
     border-spacing: 0rem;
 }
 
+table + table {
+    margin-top: 1.2rem;
+}
+
 table th {
     height: 2rem;
     font-weight: 700;
