@@ -380,14 +380,14 @@ input[type=checkbox]:before {
     content: "\f0c8";
     font-weight: 400;
     color: rgb(160, 160, 160);
-    font-family: "Font Awesome";
+    font-family: Font Awesome;
 }
 
 input[type=checkbox]:checked:before {
     content: "\f14a";
     font-weight: 900;
     color: rgb(48, 130, 250);
-    font-family: "Font Awesome";
+    font-family: Font Awesome;
 }
 
 li.task-list-item {
