@@ -20,7 +20,7 @@ html {
 }
 
 body {
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, DejaVu Sans, Liberation Sans, sans-serif;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, Open Sans, DejaVu Sans, Liberation Sans, sans-serif;
     max-width: 740px;
     margin-left: auto;
     margin-right: auto;
@@ -37,8 +37,8 @@ body {
 p {
     line-height: 1.5;
     vertical-align: baseline;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
 }
 
 q {
@@ -402,7 +402,7 @@ input[type=checkbox].task-list-item-checkbox {
 .tag {
     color: #0366d6;
     padding: 0.1rem 0.2rem;
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, DejaVu Sans, Liberation Sans, sans-serif;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, Open Sans, DejaVu Sans, Liberation Sans, sans-serif;
     font-size: 98%;
 }
 
