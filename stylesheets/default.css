@@ -412,31 +412,31 @@ input[type=checkbox].task-list-item-checkbox {
     padding-right: 1px;
 }
 
-div.todo, div.warning, div.note, div.tip, div.example {
+div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.note, div.hint, div.tip, div.example {
     display: block;
     margin: 0.5rem auto;
     padding: 0.1rem 1rem;
     border-radius: 0.1rem;
 }
 
-div.todo {
+div.attention, div.important, div.danger, div.error {
     background-color: #fce8eb;
     color: #d93025;
 }
 
-div.warning {
+div.caution, div.warning {
     background-color: #feefe3;
     color: #fa7b17;
+}
+
+div.hint, div.tip {
+    background-color: #f3e8fd;
+    color: #a142f4;
 }
 
 div.note {
     background-color: #e8f0fe;
     color: #1a73e8;
-}
-
-div.tip {
-    background-color: #f3e8fd;
-    color: #a142f4;
 }
 
 div.example {
