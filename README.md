@@ -2,9 +2,9 @@
 
 # MDviewer
 
-MDviewer is a cross-platform and editor-agnostic previewer for Markdown files. Use it with your favorite text editor and it updates every time you save. In applications that automatically save in the background, the Preview will be updated at save intervals as you type.
+MDviewer is a cross-platform and editor-agnostic previewer for Markdown files. You can use it with your favorite text editor and the Preview updates every time you save. In applications that automatically save in the background, the Preview will be updated at save intervals as you type.
 
-MDviewer can also be configured to work with just about any processor you need, including Textile, reStructuredText, MediaWiki, AsciiDoc, Graphviz and more.
+MDviewer can also be configured to work with just about any syntax and processor you need, including Textile, reStructuredText, MediaWiki, AsciiDoc, Graphviz and more.
 
 ![](images/screenshot_01.png)
 
@@ -209,7 +209,7 @@ These variables allows you to script different processes based on the type and l
 make it executable and point the processor setting to it:
 
     processor_path: mdviewer-proc.sh
-    processor_args: ''
+    processor_args: ""
 
 
 # Troubleshooting
