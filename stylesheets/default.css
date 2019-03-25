@@ -245,11 +245,10 @@ blockquote blockquote {
 img {
     height: auto;
     max-width: 100%;
-    box-sizing: border-box;
 }
 
 figure, div.figure {
-    margin: 1.2rem auto;
+    margin: 0.5rem auto;
     text-align: center;
 }
 
@@ -258,7 +257,8 @@ figure figcaption, div.figure p.caption {
     font-weight: normal;
     font-size: 100%;
     text-align: center;
-    margin: 0.5rem auto;
+    margin-top: 0.1rem;
+    margin-bottom: 0;
 }
 
 table {
@@ -291,11 +291,11 @@ table th, table td {
 }
 
 tbody tr:nth-child(even) {
-    background-color: rgba(246, 248, 250, 0.02);
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 tbody tr:nth-child(odd) {
-    background-color: rgba(0, 0, 0, 0.02);
+    background-color: rgba(246, 248, 250, 0.02);
 }
 
 tbody tr:hover {
@@ -303,13 +303,13 @@ tbody tr:hover {
 }
 
 table caption {
-    caption-side: top;
     font-style: normal;
-    text-align: center;
     font-weight: normal;
     font-size: 100%;
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+    text-align: center;
+    caption-side: top;
+    margin-top: 0;
+    margin-bottom: 0.1rem;
 }
 
 svg:not(:root) {
@@ -455,7 +455,7 @@ div.column {
     width: 48%;
 }
 
-span.mark {
+.highlight {
     background-color: rgba(255, 255, 0, 0.8);
 }
 
