@@ -49,7 +49,7 @@ h1, h2, h3, h4, h5, h6 {
     font-style: normal;
     font-weight: 400;
     line-height: 1.2;
-    margin-top: 1.8rem;
+    margin-top: 1.6rem;
     margin-bottom: 1rem;
 }
 
@@ -84,7 +84,8 @@ hr {
     border: none;
     background-color: #111;
     margin-top: 1rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
+    clear: both;
 }
 
 a {
@@ -126,7 +127,7 @@ pre, code, tt, kbd, samp {
 }
 
 pre {
-    padding: 0.8rem 1rem;
+    padding: 0.5rem 1rem;
     overflow: auto;
     white-space: pre !important;
     word-wrap: normal;
