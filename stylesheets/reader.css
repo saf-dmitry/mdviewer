@@ -256,32 +256,24 @@ table {
     margin: 0.5rem auto;
     line-height: 1.4;
     border-collapse: collapse;
-    border-spacing: 0rem;
+    border-spacing: 0;
     border-top: 2px solid;
     border-bottom: 2px solid;
 }
 
-table + table {
-    margin-top: 1.2rem;
-}
-
 table th {
-    height: 2rem;
     font-weight: 400;
     border-bottom: 1px solid;
 }
 
-table td {
-    height: 2rem;
-}
-
 table th, table td {
+    height: 2rem;
     padding: 0.1rem 0.4rem !important;
     vertical-align: center;
 }
 
-tbody tr:hover {
-    background-color: rgba(209, 232, 255, 0.2);
+table + table {
+    margin-top: 1.2rem;
 }
 
 table caption {

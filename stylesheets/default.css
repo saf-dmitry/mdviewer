@@ -267,28 +267,25 @@ table {
     overflow: auto;
     margin: 0.5rem auto;
     line-height: 1.4;
-    border: 1px solid rgb(223, 226, 229);
     border-collapse: collapse;
-    border-spacing: 0rem;
-}
-
-table + table {
-    margin-top: 1.2rem;
+    border-spacing: 0;
+    border-top: 1px solid rgb(223, 226, 229);
+    border-bottom: 1px solid rgb(223, 226, 229);
 }
 
 table th {
-    height: 2rem;
     font-weight: 700;
-}
-
-table td {
-    height: 2rem;
+    border-bottom: 1px solid rgb(223, 226, 229);
 }
 
 table th, table td {
+    height: 2rem;
     padding: 0.1rem 0.4rem !important;
     vertical-align: center;
-    border: 1px solid rgb(223, 226, 229);
+}
+
+table tr {
+    border-bottom: 1px solid rgb(223, 226, 229);
 }
 
 tbody tr:nth-child(even) {
@@ -299,8 +296,8 @@ tbody tr:nth-child(odd) {
     background-color: rgba(246, 248, 250, 0.02);
 }
 
-tbody tr:hover {
-    background-color: rgba(209, 232, 255, 0.2);
+table + table {
+    margin-top: 1.2rem;
 }
 
 table caption {
