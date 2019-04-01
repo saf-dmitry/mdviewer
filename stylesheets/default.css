@@ -269,8 +269,8 @@ table {
     line-height: 1.4;
     border-collapse: collapse;
     border-spacing: 0;
-    border-top: 1px solid rgb(223, 226, 229);
-    border-bottom: 1px solid rgb(223, 226, 229);
+    border-top: 2px solid rgb(223, 226, 229);
+    border-bottom: 2px solid rgb(223, 226, 229);
 }
 
 table th {
