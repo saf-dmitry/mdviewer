@@ -283,7 +283,7 @@ table caption {
     text-align: center;
     caption-side: top;
     margin-top: 0;
-    margin-bottom: 0.1rem;
+    margin-bottom: 0.2rem;
 }
 
 svg:not(:root) {
