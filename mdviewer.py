@@ -94,6 +94,7 @@ class App(QMainWindow):
             var scr = document.createElement("script");
             scr.type = "text/javascript";
             scr.src = "%s";
+            scr.setAttribute("defer", "");
             document.head.appendChild(scr);
             var css = document.createElement("link");
             css.rel = "stylesheet";
