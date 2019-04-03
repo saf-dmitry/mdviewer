@@ -1,10 +1,7 @@
 
-(function () {
-
-    // Status bar
+function setStatusBar() {
 
     function showURL(ev) {
-
         var msg = document.createElement("span");
         if (this.pathname == window.location.pathname &&
             this.protocol == window.location.protocol &&
@@ -19,11 +16,9 @@
                 + this.port + this.pathname + this.search + this.hash
                 + "</span>";
         }
-
         var sbar = document.createElement("div");
         sbar.id = "status-bar";
         sbar.appendChild(msg);
-
         document.body.insertBefore(sbar, document.body.lastChild);
     }
 
@@ -34,64 +29,76 @@
         }
     }
 
-    // Generated TOC
-
-    function generateTOC() {
-
-        var toc = document.getElementById("generated-toc");
-        if (toc) { toc.parentNode.removeChild(toc) }
-
-        toc = document.createElement("div");
-        toc.id = "generated-toc";
-        toc.style.display = "none";
-        toc.oncontextmenu = function() { return false }
-        document.body.insertBefore(toc, document.body.lastChild);
-
-        var headings = [].slice.call(document.body.querySelectorAll("h1, h2, h3, h4, h5, h6"));
-
-        headings.forEach(function (heading, i) {
-
-            var ref;
-
-            if (heading.id) {
-                ref = heading.getAttribute("id");
-            } else {
-                ref = "toc-" + i;
-                heading.id = ref;
-            }
-
-            var link = document.createElement("a");
-            link.href = "#" + ref;
-            link.appendChild(document.createTextNode(heading.innerText || heading.textContent));
-
-            var entry = document.createElement("div");
-            entry.className = "toc-" + heading.tagName.toLowerCase();
-            entry.appendChild(link);
-            toc.appendChild(entry);
-
-        });
-
-        var hidetoc = document.createElement("a");
-        hidetoc.id = "generated-toc-hide-toc";
-        hidetoc.textContent = "Hide";
-        hidetoc.title = "Hide Navigation pane";
-        hidetoc.addEventListener ("click", function() { toc.style.display = "none" });
-        toc.appendChild(hidetoc);
-
-        if (typeof(window.MathJax) !== "undefined") {
-            MathJax.Hub.Queue(["Typeset", MathJax.Hub, "generated-toc"]);
-        }
-
-    }
-
-    // Startup
-
     var links = [].slice.call(document.links);
     links.forEach(function (link) {
         link.addEventListener("mouseover", showURL);
         link.addEventListener("mouseout",  hideURL);
     });
 
+}
+
+function generateTOC() {
+
+    var toc = document.getElementById("generated-toc");
+    if (toc) { toc.parentNode.removeChild(toc) }
+
+    toc = document.createElement("div");
+    toc.id = "generated-toc";
+    toc.style.display = "none";
+    toc.oncontextmenu = function () { return false };
+    document.body.insertBefore(toc, document.body.lastChild);
+
+    var headings = [].slice.call(document.body.querySelectorAll("h1, h2, h3, h4, h5, h6"));
+
+    headings.forEach(function (heading, i) {
+
+        var ref;
+
+        if (heading.id) {
+            ref = heading.getAttribute("id");
+        } else {
+            ref = "toc-" + i;
+            heading.id = ref;
+        }
+
+        var link = document.createElement("a");
+        link.href = "#" + ref;
+        link.appendChild(document.createTextNode(heading.innerText || heading.textContent));
+
+        var entry = document.createElement("div");
+        entry.className = "toc-" + heading.tagName.toLowerCase();
+        entry.appendChild(link);
+        toc.appendChild(entry);
+
+    });
+
+    var hidetoc = document.createElement("a");
+    hidetoc.id = "generated-toc-hide-toc";
+    hidetoc.textContent = "Hide";
+    hidetoc.title = "Hide Navigation pane";
+    hidetoc.addEventListener ("click", function () { toc.style.display = "none" });
+    toc.appendChild(hidetoc);
+
+    if (typeof(window.MathJax) !== "undefined") {
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "generated-toc"]);
+    }
+
+}
+
+function toggleTOC() {
+    var toc = document.getElementById("generated-toc");
+    if (toc) {
+        if (toc.style.display === "none") {
+            toc.style.display = "block";
+            toc.getElementsByTagName("a")[0].focus()
+        } else {
+            toc.style.display = "none";
+            document.body.focus();
+        }
+    }
+}
+
+function procTaskList() {
     var items = [].slice.call(document.body.querySelectorAll("li"));
     items.forEach(function (item) {
         element = item.firstChild;
@@ -109,21 +116,9 @@
             }
         }
     });
-
-    generateTOC();
-
-})()
-
-function toggleTOC() {
-    var toc = document.getElementById("generated-toc");
-    if (toc) {
-        if (toc.style.display === "none") {
-            toc.style.display = "block";
-            toc.getElementsByTagName("a")[0].focus()
-        } else {
-            toc.style.display = "none";
-            document.body.focus();
-        }
-    }
 }
+
+generateTOC();
+setStatusBar();
+procTaskList();
 
