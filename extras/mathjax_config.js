@@ -1,7 +1,7 @@
 
 MathJax.Hub.Config({
     jax: ["input/TeX",
-          "output/CommonHTML"],
+          "output/HTML-CSS"],
     extensions: ["tex2jax.js",
                  "MathMenu.js",
                  "MathZoom.js"],
@@ -14,22 +14,24 @@ MathJax.Hub.Config({
     },
     TeX: {
         equationNumbers: {
-            autoNumber: "all"
+            autoNumber: "AMS"
         },
         extensions: ["AMSmath.js",
                      "AMSsymbols.js",
                      "noErrors.js",
-                     "noUndefined.js",
-                     "mhchem.js"],
+                     "noUndefined.js"]
         Macros: {
-            "micro": "\\unicode{xb5}",
-            "ohm": "\\unicode{x2126}"
+            "ohm": "\\unicode{x2126}",
+            "micro": "\\unicode{x00b5}",
+            "degree": "\\unicode{x00b0}"
         },
     },
-    "CommonHTML": {
+    "HTML-CSS": {
+        scale: 98,
         linebreaks: {
             automatic: false
-        }
+        },
+        fonts: ["Latin-Modern","TeX","STIX-Web"]
     }
 });
 
