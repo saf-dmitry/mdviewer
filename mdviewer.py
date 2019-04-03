@@ -90,18 +90,18 @@ class App(QMainWindow):
         scr = os.path.join(app_dir, "mdviewer.js")
         css = os.path.join(app_dir, "mdviewer.css")
         add_resources = """
-        (function() {
+        (function () {
+            var css = document.createElement("link");
+            css.rel = "stylesheet";
+            css.href = "%s";
+            document.head.appendChild(css);
             var scr = document.createElement("script");
             scr.type = "text/javascript";
             scr.src = "%s";
             scr.setAttribute("defer", "");
             document.head.appendChild(scr);
-            var css = document.createElement("link");
-            css.rel = "stylesheet";
-            css.href = "%s";
-            document.head.appendChild(css);
         })()
-        """ % (scr, css)
+        """ % (css, scr)
         self.web_view.page().currentFrame().evaluateJavaScript(add_resources)
 
         # Display processor warnings
