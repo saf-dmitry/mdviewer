@@ -118,7 +118,7 @@ function procTaskList() {
     });
 }
 
-generateTOC();
 setStatusBar();
+generateTOC();
 procTaskList();
 
