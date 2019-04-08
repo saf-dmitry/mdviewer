@@ -54,7 +54,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1, h2, h3 {
-    border-bottom: 1px solid rgba(18, 18, 18, 0.08);
+    border-bottom: 1px solid rgba(14, 14, 14, 0.08);
     padding-bottom: 1px;
 }
 
@@ -84,12 +84,12 @@ h6 {
 
 hr {
     width: 100%;
-    height: 1px;
-    color: rgb(223, 226, 229);
+    height: 2px;
+    color: rgb(210, 214, 218);
     border: none;
-    background-color: rgb(223, 226, 229);
+    background-color: rgb(210, 214, 218);
     margin-top: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     clear: both;
 }
 
@@ -269,13 +269,13 @@ table {
     line-height: 1.4;
     border-collapse: collapse;
     border-spacing: 0;
-    border-top: 2px solid rgb(223, 226, 229);
-    border-bottom: 2px solid rgb(223, 226, 229);
+    border-top: 2px solid rgb(210, 214, 218);
+    border-bottom: 2px solid rgb(210, 214, 218);
 }
 
 table th {
     font-weight: 700;
-    border-bottom: 1px solid rgb(223, 226, 229);
+    border-bottom: 1px solid rgb(210, 214, 218);
 }
 
 table th, table td {
@@ -285,7 +285,7 @@ table th, table td {
 }
 
 table tr {
-    border-bottom: 1px solid rgb(223, 226, 229);
+    border-bottom: 1px solid rgb(210, 214, 218);
 }
 
 tbody tr:nth-child(even) {
@@ -457,6 +457,14 @@ div.column {
     background-color: rgba(255, 255, 0, 0.8);
 }
 
+.page-break, .pagebreak {
+    width: 100%;
+    background: transparent;
+    border-bottom: dashed 1px rgba(100, 100, 100, 0.2);
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
 p {
     hyphens: auto;
     -webkit-hyphens: auto;
@@ -535,6 +543,10 @@ h1, h2, h3, h4, h5, h6 {
     p {
         orphans: 3;
         widows: 3;
+    }
+
+    .page-break, .pagebreak {
+        border-bottom: none !important;
     }
 
 }
