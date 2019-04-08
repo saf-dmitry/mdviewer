@@ -94,10 +94,12 @@ class App(QMainWindow):
             var css = document.createElement("link");
             css.rel = "stylesheet";
             css.href = "%s";
+            css.id = "coreCSS";
             document.head.appendChild(css);
             var scr = document.createElement("script");
             scr.type = "text/javascript";
             scr.src = "%s";
+            scr.id = "coreJS";
             scr.setAttribute("defer", "");
             document.head.appendChild(scr);
         })()
