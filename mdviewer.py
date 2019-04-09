@@ -91,17 +91,18 @@ class App(QMainWindow):
         css = os.path.join(app_dir, "mdviewer.css")
         add_resources = """
         (function () {
+            var head = document.querySelector("head");
             var css = document.createElement("link");
             css.rel = "stylesheet";
             css.href = "%s";
             css.id = "coreCSS";
-            document.head.appendChild(css);
-            var scr = document.createElement("script");
-            scr.type = "text/javascript";
-            scr.src = "%s";
-            scr.id = "coreJS";
-            scr.setAttribute("defer", "");
-            document.head.appendChild(scr);
+            head.appendChild(css);
+            var script = document.createElement("script");
+            script.type = "text/javascript";
+            script.src = "%s";
+            script.id = "coreJS";
+            script.setAttribute("defer", "");
+            head.appendChild(script);
         })()
         """ % (css, scr)
         self.web_view.page().currentFrame().evaluateJavaScript(add_resources)
