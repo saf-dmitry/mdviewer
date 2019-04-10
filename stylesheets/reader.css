@@ -28,8 +28,8 @@ body {
     text-align: left;
     padding-left: 2.5%;
     padding-right: 2.5%;
-    color: #111;
-    background-color: #fff;
+    color: rgb(17, 17, 17);
+    background-color: rgb(255, 255, 255);
     font-smooth: always;
     -webkit-font-smoothing: subpixel-antialiased;
 }
@@ -80,16 +80,16 @@ h6 {
 hr {
     width: 100%;
     height: 2px;
-    color: #111;
+    color: rgb(17, 17, 17);
     border: none;
-    background-color: #111;
+    background-color: rgb(17, 17, 17);
     margin-top: 1rem;
     margin-bottom: 1.5rem;
     clear: both;
 }
 
 a {
-    color: #0366d6;
+    color: rgb(3, 102, 214);
     padding-bottom: 0;
     text-decoration: none;
     -webkit-transition: border-bottom .2s ease-in-out;
@@ -97,7 +97,7 @@ a {
 }
 
 a[href^="#"] {
-    color: #0366d6;
+    color: rgb(3, 102, 214);
 }
 
 a:hover, a:active {
@@ -352,16 +352,15 @@ input[type=checkbox] {
 
 input[type=checkbox]:before {
     content: "\f0c8";
+    font-size: 95%;
     font-weight: 400;
-    color: rgb(160, 160, 160);
+    color: rgba(17, 17, 17, 0.5);
     font-family: Font Awesome;
 }
 
 input[type=checkbox]:checked:before {
     content: "\f14a";
     font-weight: 900;
-    color: rgb(0, 0, 0);
-    font-family: Font Awesome;
 }
 
 li.task-list-item {
@@ -374,7 +373,7 @@ input[type=checkbox].task-list-item-checkbox {
 }
 
 .tag {
-    color: #0366d6;
+    color: rgb(3, 102, 214);
     padding: 0.1rem 0.2rem;
     font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, Open Sans, DejaVu Sans, Liberation Sans, sans-serif;
     font-size: 98%;
@@ -382,39 +381,39 @@ input[type=checkbox].task-list-item-checkbox {
 
 .tag:before {
     content: "#";
-    color: #9fbce5;
+    color: rgb(159, 188, 229);
     padding-right: 1px;
 }
 
 div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.note, div.hint, div.tip, div.example {
     display: block;
     margin: 0.5rem auto;
-    padding: 0.1rem 1rem;
+    padding: 1rem 1rem 0.5rem 1rem;
     border-radius: 0.1rem;
 }
 
 div.attention, div.important, div.danger, div.error {
-    background-color: #fce8eb;
-    color: #d93025;
+    background-color: rgb(252, 232, 235);
+    color: rgb(217, 48, 37);
 }
 
 div.caution, div.warning {
-    background-color: #feefe3;
-    color: #fa7b17;
+    background-color: rgb(254, 239, 227);
+    color: rgb(250, 123, 23);
 }
 
 div.hint, div.tip {
-    background-color: #f3e8fd;
-    color: #a142f4;
+    background-color: rgb(243, 232, 253);
+    color: rgb(161, 66, 244);
 }
 
 div.note {
-    background-color: #e8f0fe;
-    color: #1a73e8;
+    background-color: rgb(232, 240, 254);
+    color: rgb(26, 115, 232);
 }
 
 div.example {
-    background-color: #f5f5e9;
+    background-color: rgb(245, 245, 233);
 }
 
 div.epigraph {
