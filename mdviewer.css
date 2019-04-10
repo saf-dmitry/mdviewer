@@ -522,8 +522,8 @@ q:lang(zu) {
         max-width: 90%;
         bottom: 2px;
         left: 2px;
-        color: #000;
-        background: #efefef;
+        color: rgb(0, 0, 0);
+        background: rgb(239, 239, 239);
         padding: 0 4px;
         border: none;
         border-radius: 2px;
@@ -620,7 +620,7 @@ q:lang(zu) {
         text-decoration: none !important;
         border: none !important;
         outline: none !important;
-        color: #fff !important;
+        color: rgb(255, 255, 255) !important;
         width: 320px;
         font-size: 14px;
         line-height: 1.4;
@@ -633,7 +633,7 @@ q:lang(zu) {
     }
 
     #generated-toc a:hover, #generated-toc a:focus {
-        color: #96dcff !important;
+        color: rgb(150, 220, 255) !important;
     }
 
     #generated-toc a#generated-toc-hide-toc {
@@ -652,7 +652,7 @@ q:lang(zu) {
     }
 
     #generated-toc a#generated-toc-hide-toc:hover {
-        color: #fff !important;
+        color: rgb(255, 255, 255) !important;
         -webkit-transition: opacity .2s;
         transition: opacity .2s;
         opacity: 1 !important;
