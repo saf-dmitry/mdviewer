@@ -620,7 +620,7 @@ q:lang(zu) {
         text-decoration: none !important;
         border: none !important;
         outline: none !important;
-        color: rgb(255, 255, 255) !important;
+        color: rgba(255, 255, 255, 0.95) !important;
         width: 320px;
         font-size: 14px;
         line-height: 1.4;
@@ -652,7 +652,7 @@ q:lang(zu) {
     }
 
     #generated-toc a#generated-toc-hide-toc:hover {
-        color: rgb(255, 255, 255) !important;
+        color: rgba(255, 255, 255, 0.95) !important;
         -webkit-transition: opacity .2s;
         transition: opacity .2s;
         opacity: 1 !important;
