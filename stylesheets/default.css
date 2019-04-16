@@ -378,7 +378,7 @@ input[type=checkbox]:before {
     content: "\f0c8";
     font-size: 95%;
     font-weight: 400;
-    color: rgba(36, 41, 46, 0.5);
+    color: rgba(36, 42, 64, 0.5);
     font-family: Font Awesome;
 }
 
@@ -418,13 +418,12 @@ div.attention, div.important, div.danger, div.error, div.caution, div.warning, d
 
 div.attention, div.important, div.danger, div.error {
     background-color: rgb(252, 232, 235);
-    color: rgb(217, 48, 37);
     color: rgb(199, 37, 78);
 }
 
 div.caution, div.warning {
     background-color: rgb(254, 239, 227);
-    color: rgb(250, 123, 23);
+    color: rgb(252, 88, 12);
 }
 
 div.hint, div.tip {
@@ -447,13 +446,7 @@ div.epigraph {
     margin: 1.5rem 1.5rem;
 }
 
-div.column {
-    display: inline-block;
-    vertical-align: top;
-    width: 48%;
-}
-
-.highlight {
+.highlight, .mark, .alert {
     background-color: rgba(255, 255, 0, 0.8);
 }
 
