@@ -256,7 +256,7 @@ figure, div.figure {
 figure figcaption, div.figure p.caption {
     font-style: normal;
     font-weight: normal;
-    font-size: 100%;
+    font-size: 95%;
     text-align: center;
     margin-top: 0.1rem;
     margin-bottom: 0;
@@ -285,14 +285,14 @@ table th, table td {
 }
 
 table tr {
-    border-bottom: 1px solid rgb(210, 214, 218);
-}
-
-tbody tr:nth-child(even) {
-    background-color: rgba(112, 118, 124, 0.04);
+    border-bottom: 1px solid rgba(112, 118, 124, 0.08);
 }
 
 tbody tr:nth-child(odd) {
+    background-color: rgba(112, 118, 124, 0.04);
+}
+
+tbody tr:nth-child(even) {
     background-color: rgba(246, 248, 250, 0.02);
 }
 
@@ -303,7 +303,7 @@ table + table {
 table caption {
     font-style: normal;
     font-weight: normal;
-    font-size: 100%;
+    font-size: 95%;
     text-align: center;
     caption-side: top;
     margin-top: 0;
@@ -423,7 +423,7 @@ div.attention, div.important, div.danger, div.error {
 
 div.caution, div.warning {
     background-color: rgb(254, 239, 227);
-    color: rgb(252, 88, 12);
+    color: rgb(252, 72, 12);
 }
 
 div.hint, div.tip {
