@@ -278,13 +278,13 @@ table {
     line-height: 1.4;
     border-collapse: collapse;
     border-spacing: 0;
-    border-top: 2px solid rgb(210, 214, 218);
-    border-bottom: 2px solid rgb(210, 214, 218);
+    border-top: 2px solid rgb(222, 224, 228);
+    border-bottom: 2px solid rgb(222, 224, 228);
 }
 
 table th {
     font-weight: 700;
-    border-bottom: 1px solid rgb(210, 214, 218);
+    border-bottom: 1px solid rgb(222, 224, 228);
 }
 
 table th, table td {
@@ -328,7 +328,7 @@ video {
     font-weight: 400;
     font-size: 3.2rem;
     text-align: center;
-    margin-top: 5rem;
+    margin-top: 4rem;
     margin-bottom: 1rem;
     border-style: none;
 }
@@ -338,7 +338,7 @@ video {
     font-weight: 400;
     font-size: 2.4rem;
     text-align: center;
-    margin-top: 5rem;
+    margin-top: 2rem;
     margin-bottom: 1rem;
     border-style: none;
 }
