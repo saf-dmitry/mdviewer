@@ -118,11 +118,19 @@ abbr[title] {
     border-bottom: 1px dotted;
 }
 
-sub, sup {
-    height: 0;
-    font-size: 80%;
+sup, sub {
+    font-size: 90%;
     line-height: 0;
     position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.25em;
+}
+
+sub {
+    bottom: -0.25em;
 }
 
 pre, code, tt, kbd, samp {
@@ -256,16 +264,17 @@ figure, div.figure {
 figure figcaption, div.figure p.caption {
     font-style: normal;
     font-weight: normal;
-    font-size: 95%;
+    font-size: 100%;
     text-align: center;
     margin-top: 0.1rem;
     margin-bottom: 0;
+    color: rgb(106, 115, 125);
 }
 
 table {
     width: auto;
     overflow: auto;
-    margin: 0.5rem auto;
+    margin: 0.5rem auto 0.8rem auto;
     line-height: 1.4;
     border-collapse: collapse;
     border-spacing: 0;
@@ -288,14 +297,6 @@ table tr {
     border-bottom: 1px solid rgba(112, 118, 124, 0.08);
 }
 
-tbody tr:nth-child(odd) {
-    background-color: rgba(112, 118, 124, 0.04);
-}
-
-tbody tr:nth-child(even) {
-    background-color: rgba(246, 248, 250, 0.02);
-}
-
 table + table {
     margin-top: 1.2rem;
 }
@@ -303,11 +304,12 @@ table + table {
 table caption {
     font-style: normal;
     font-weight: normal;
-    font-size: 95%;
+    font-size: 100%;
     text-align: center;
     caption-side: top;
     margin-top: 0;
     margin-bottom: 0.2rem;
+    color: rgb(106, 115, 125);
 }
 
 svg:not(:root) {

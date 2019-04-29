@@ -113,11 +113,19 @@ abbr[title] {
     border-bottom: 1px dotted;
 }
 
-sub, sup {
-    height: 0;
-    font-size: 78%;
+sup, sub {
+    font-size: 85%;
     line-height: 0;
     position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.25em;
+}
+
+sub {
+    bottom: -0.25em;
 }
 
 pre, code, tt, kbd, samp {
@@ -253,7 +261,7 @@ figure figcaption, div.figure p.caption {
 table {
     width: auto;
     overflow: auto;
-    margin: 0.5rem auto;
+    margin: 0.5rem auto 0.8rem auto;
     line-height: 1.4;
     border-collapse: collapse;
     border-spacing: 0;
