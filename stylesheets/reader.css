@@ -250,8 +250,8 @@ figure, div.figure {
 }
 
 figure figcaption, div.figure p.caption {
-    font-style: normal;
-    font-weight: normal;
+    font-style: inherit;
+    font-weight: inherit;
     font-size: 95%;
     text-align: center;
     margin-top: 0.1rem;
@@ -285,8 +285,8 @@ table + table {
 }
 
 table caption {
-    font-style: normal;
-    font-weight: normal;
+    font-style: inherit;
+    font-weight: inherit;
     font-size: 95%;
     text-align: center;
     caption-side: top;
@@ -425,12 +425,10 @@ div.example {
 }
 
 div.epigraph {
-    display: block;
-    font-size: 95%;
     margin: 1.5rem 1.5rem;
 }
 
-.highlight, .mark, .alert {
+.highlight {
     background-color: rgba(255, 255, 0, 0.8);
 }
 
