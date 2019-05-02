@@ -42,7 +42,7 @@ function generateTOC() {
     var toc = document.getElementById("generated-toc");
     if (toc) { toc.parentNode.removeChild(toc) }
 
-    toc = document.createElement("div");
+    toc = document.createElement("nav");
     toc.id = "generated-toc";
     toc.style.display = "none";
     toc.oncontextmenu = function () { return false };
