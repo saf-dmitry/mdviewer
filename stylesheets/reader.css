@@ -28,7 +28,7 @@ body {
     text-align: left;
     padding-left: 2.5%;
     padding-right: 2.5%;
-    color: rgb(17, 17, 17);
+    color: rgb(0, 0, 0);
     background-color: rgb(255, 255, 255);
     font-smooth: always;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -80,9 +80,9 @@ h6 {
 hr {
     width: 100%;
     height: 2px;
-    color: rgb(17, 17, 17);
+    color: rgb(0, 0, 0);
     border: none;
-    background-color: rgb(17, 17, 17);
+    background-color: rgb(0, 0, 0);
     margin-top: 1rem;
     margin-bottom: 1.5rem;
     clear: both;
@@ -362,7 +362,7 @@ input[type=checkbox]:before {
     content: "\f0c8";
     font-size: 95%;
     font-weight: 400;
-    color: rgba(17, 17, 17, 0.5);
+    color: rgba(0, 0, 0, 0.4);
     font-family: Font Awesome;
 }
 
@@ -393,7 +393,7 @@ input[type=checkbox].task-list-item-checkbox {
     padding-right: 1px;
 }
 
-div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.note, div.hint, div.tip, div.example {
+div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.note, div.hint, div.tip, div.example, div.algorithm {
     display: block;
     margin: 0.5rem auto;
     padding: 1rem 1rem 0.5rem 1rem;
@@ -402,26 +402,26 @@ div.attention, div.important, div.danger, div.error, div.caution, div.warning, d
 
 div.attention, div.important, div.danger, div.error {
     background-color: rgb(252, 232, 235);
-    color: rgb(199, 37, 78);
 }
 
 div.caution, div.warning {
     background-color: rgb(254, 239, 227);
-    color: rgb(252, 72, 12);
 }
 
 div.hint, div.tip {
     background-color: rgb(243, 232, 253);
-    color: rgb(148, 48, 188);
 }
 
 div.note {
     background-color: rgb(232, 240, 254);
-    color: rgb(26, 115, 232);
 }
 
 div.example {
     background-color: rgb(245, 245, 233);
+}
+
+div.algorithm {
+    background-color: rgb(246, 248, 250);
 }
 
 div.epigraph {

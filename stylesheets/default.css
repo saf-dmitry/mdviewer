@@ -85,9 +85,9 @@ h6 {
 hr {
     width: 100%;
     height: 2px;
-    color: rgb(210, 214, 218);
+    color: rgba(112, 118, 124, 0.2);
     border: none;
-    background-color: rgb(210, 214, 218);
+    background-color: rgba(112, 118, 124, 0.2);
     margin-top: 1rem;
     margin-bottom: 1.5rem;
     clear: both;
@@ -235,7 +235,7 @@ blockquote {
     display: block;
     margin: 0.5rem 0;
     padding: 0 0.8rem;
-    border-left: 4px solid rgb(223, 226, 229);
+    border-left: 4px solid rgba(112, 118, 124, 0.2);
     color: rgb(106, 115, 125);
 }
 
@@ -278,13 +278,13 @@ table {
     line-height: 1.4;
     border-collapse: collapse;
     border-spacing: 0;
-    border-top: 2px solid rgb(222, 224, 228);
-    border-bottom: 2px solid rgb(222, 224, 228);
+    border-top: 2px solid rgba(112, 118, 124, 0.2);
+    border-bottom: 2px solid rgba(112, 118, 124, 0.2);
 }
 
 table th {
     font-weight: 700;
-    border-bottom: 1px solid rgb(222, 224, 228);
+    border-bottom: 1px solid rgba(112, 118, 124, 0.12);
 }
 
 table th, table td {
@@ -411,7 +411,7 @@ input[type=checkbox].task-list-item-checkbox {
     padding-right: 1px;
 }
 
-div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.note, div.hint, div.tip, div.example {
+div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.note, div.hint, div.tip, div.example, div.algorithm {
     display: block;
     margin: 0.5rem auto;
     padding: 1rem 1rem 0.5rem 1rem;
@@ -420,26 +420,26 @@ div.attention, div.important, div.danger, div.error, div.caution, div.warning, d
 
 div.attention, div.important, div.danger, div.error {
     background-color: rgb(252, 232, 235);
-    color: rgb(199, 37, 78);
 }
 
 div.caution, div.warning {
     background-color: rgb(254, 239, 227);
-    color: rgb(252, 72, 12);
 }
 
 div.hint, div.tip {
     background-color: rgb(243, 232, 253);
-    color: rgb(148, 48, 188);
 }
 
 div.note {
     background-color: rgb(232, 240, 254);
-    color: rgb(26, 115, 232);
 }
 
 div.example {
     background-color: rgb(245, 245, 233);
+}
+
+div.algorithm {
+    background-color: rgb(246, 248, 250);
 }
 
 div.epigraph {
