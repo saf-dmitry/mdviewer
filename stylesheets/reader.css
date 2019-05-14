@@ -393,6 +393,10 @@ input[type=checkbox].task-list-item-checkbox {
     padding-right: 1px;
 }
 
+h1 > .tag, h2 > .tag, h3 > .tag {
+    font-size: 90%;
+}
+
 div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.note, div.hint, div.tip, div.example, div.algorithm {
     display: block;
     margin: 0.5rem auto;
@@ -402,18 +406,22 @@ div.attention, div.important, div.danger, div.error, div.caution, div.warning, d
 
 div.attention, div.important, div.danger, div.error {
     background-color: rgb(252, 232, 235);
+    border-left: 4px solid rgba(217, 48, 37, 0.8);
 }
 
 div.caution, div.warning {
     background-color: rgb(254, 239, 227);
+    border-left: 4px solid rgba(250, 123, 23, 0.8);
 }
 
 div.hint, div.tip {
     background-color: rgb(243, 232, 253);
+    border-left: 4px solid rgba(161, 66, 244, 0.8);
 }
 
 div.note {
     background-color: rgb(232, 240, 254);
+    border-left: 4px solid rgba(26, 115, 232, 0.8);
 }
 
 div.example {
