@@ -415,7 +415,7 @@ h1 > .tag, h2 > .tag, h3 > .tag {
     font-size: 90%;
 }
 
-div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.note, div.hint, div.tip, div.example, div.algorithm {
+div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.note, div.hint, div.tip, div.example, div.exercise, div.algorithm {
     display: block;
     margin: 0.5rem auto;
     padding: 1rem 1rem 0.5rem 1rem;
@@ -443,7 +443,11 @@ div.note {
 }
 
 div.example {
-    background-color: rgb(245, 245, 233);
+    background-color: rgb(247, 247, 235);
+}
+
+div.exercise {
+    background-color: rgb(250, 247, 240);
 }
 
 div.algorithm {
