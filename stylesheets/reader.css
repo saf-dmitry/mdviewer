@@ -397,31 +397,66 @@ h1 > .tag, h2 > .tag, h3 > .tag {
     font-size: 90%;
 }
 
-div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.note, div.hint, div.tip, div.example, div.exercise, div.algorithm {
+div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.note, div.hint, div.tip {
     display: block;
     margin: 0.5rem auto;
-    padding: 1rem 1rem 0.5rem 1rem;
+    padding: 0.4rem 1rem 0.2rem 1rem;
     border-radius: 0.1rem;
 }
 
 div.attention, div.important, div.danger, div.error {
     background-color: rgb(252, 232, 235);
-    border-left: 4px solid rgba(217, 48, 37, 0.8);
+}
+
+div.attention:before, div.important:before, div.danger:before, div.error:before {
+    display: block;
+    content: "\f057";
+    color: rgba(217, 48, 37, 0.8);
+    font-family: Font Awesome;
+    font-weight: 900;
 }
 
 div.caution, div.warning {
     background-color: rgb(254, 239, 227);
-    border-left: 4px solid rgba(250, 123, 23, 0.8);
+}
+
+div.caution:before, div.warning:before {
+    display: block;
+    content: "\f071";
+    color: rgba(250, 123, 23, 0.8);
+    font-family: Font Awesome;
+    font-weight: 900;
 }
 
 div.hint, div.tip {
     background-color: rgb(243, 232, 253);
-    border-left: 4px solid rgba(161, 66, 244, 0.8);
+}
+
+div.hint:before, div.tip:before {
+    display: block;
+    content: "\f05a";
+    color: rgba(161, 66, 244, 0.8);
+    font-family: Font Awesome;
+    font-weight: 900;
 }
 
 div.note {
     background-color: rgb(232, 240, 254);
-    border-left: 4px solid rgba(26, 115, 232, 0.8);
+}
+
+div.note:before {
+    display: block;
+    content: "\f05a";
+    color: rgba(26, 115, 232, 0.8);
+    font-family: Font Awesome;
+    font-weight: 900;
+}
+
+div.example, div.exercise, div.algorithm {
+    display: block;
+    margin: 0.5rem auto;
+    padding: 0.8rem 1rem 0.2rem 1rem;
+    border-radius: 0.1rem;
 }
 
 div.example {
