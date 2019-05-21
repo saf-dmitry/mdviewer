@@ -15,6 +15,11 @@
     src: url(../webfonts/fa-solid-900.otf) format("opentype");
 }
 
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
 html {
     font-size: 12pt;
 }
