@@ -283,13 +283,8 @@ table {
     line-height: 1.4;
     border-collapse: collapse;
     border-spacing: 0;
-    border-top: 2px solid rgba(112, 118, 124, 0.2);
-    border-bottom: 2px solid rgba(112, 118, 124, 0.2);
-}
-
-table th {
-    font-weight: 700;
-    border-bottom: 1px solid rgba(112, 118, 124, 0.12);
+    border-top: 2px solid rgba(112, 118, 124, 0.1);
+    border-bottom: 2px solid rgba(112, 118, 124, 0.1);
 }
 
 table th, table td {
@@ -298,8 +293,17 @@ table th, table td {
     vertical-align: center;
 }
 
+table th {
+    font-weight: 700;
+    border-bottom: 1px solid rgba(112, 118, 124, 0.08);
+}
+
 table tr {
     border-bottom: 1px solid rgba(112, 118, 124, 0.08);
+}
+
+table tr:last-child {
+    border-bottom: none;
 }
 
 table + table {

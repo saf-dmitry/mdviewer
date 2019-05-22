@@ -274,15 +274,15 @@ table {
     border-bottom: 2px solid;
 }
 
-table th {
-    font-weight: 400;
-    border-bottom: 1px solid;
-}
-
 table th, table td {
     height: 2rem;
     padding: 0.1rem 0.4rem !important;
     vertical-align: center;
+}
+
+table th {
+    font-weight: 400;
+    border-bottom: 1px solid;
 }
 
 table + table {
