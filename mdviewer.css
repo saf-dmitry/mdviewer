@@ -516,7 +516,7 @@ q:lang(zu) {
 
 @media screen {
 
-    #status-bar {
+    #ui-status-bar {
         display: block;
         position: fixed;
         max-width: 90%;
@@ -541,17 +541,17 @@ q:lang(zu) {
         -webkit-user-select: none;
     }
 
-    #status-bar .secondary-text {
+    #ui-status-bar .secondary-text {
         opacity: 0.6;
     }
 
-    #generated-toc {
+    #ui-toc {
         display: block;
         position: fixed;
-        max-height: 90%;
+        max-height: 90vh;
         width: 380px;
         overflow-y: auto;
-        right: 20px;
+        right: 10px;
         bottom: 10px;
         background: rgba(0, 0, 0, 0.8);
         padding: 20px 20px 40px 20px;
@@ -564,20 +564,20 @@ q:lang(zu) {
         -webkit-user-select: none;
     }
 
-    #generated-toc::-webkit-scrollbar {
+    #ui-toc::-webkit-scrollbar {
         width: 6px;
     }
 
-    #generated-toc::-webkit-scrollbar-track {
+    #ui-toc::-webkit-scrollbar-track {
         background: transparent;
         margin: 0 0;
     }
 
-    #generated-toc::-webkit-scrollbar-track:disabled {
+    #ui-toc::-webkit-scrollbar-track:disabled {
         display: none;
     }
 
-    #generated-toc::-webkit-scrollbar-thumb {
+    #ui-toc::-webkit-scrollbar-thumb {
         border-radius: 3px;
         min-height: 40px;
         -webkit-transition: background 0.2s;
@@ -585,43 +585,42 @@ q:lang(zu) {
         background: rgba(256, 256, 256, 0.2);
     }
 
-    #generated-toc::-webkit-scrollbar-thumb:hover {
+    #ui-toc::-webkit-scrollbar-thumb:hover {
         -webkit-transition: background 0.2s;
         transition: background 0.2s;
         background: rgba(256, 256, 256, 0.4);
     }
 
-    #generated-toc div.toc-h1 {
+    #ui-toc div.ui-toc-h1 {
         margin-left: 0px;
     }
 
-    #generated-toc div.toc-h2 {
+    #ui-toc div.ui-toc-h2 {
         margin-left: 10px;
     }
 
-    #generated-toc div.toc-h3 {
+    #ui-toc div.ui-toc-h3 {
         margin-left: 20px;
     }
 
-    #generated-toc div.toc-h4 {
+    #ui-toc div.ui-toc-h4 {
         margin-left: 30px;
     }
 
-    #generated-toc div.toc-h5 {
+    #ui-toc div.ui-toc-h5 {
         margin-left: 40px;
     }
 
-    #generated-toc div.toc-h6 {
+    #ui-toc div.ui-toc-h6 {
         margin-left: 50px;
     }
 
-    #generated-toc a {
+    #ui-toc a {
         display: block;
         text-decoration: none !important;
         border: none !important;
         outline: none !important;
         color: rgba(255, 255, 255, 0.98) !important;
-        width: 320px;
         font-size: 14px;
         line-height: 1.4;
         padding: 5px 0;
@@ -632,11 +631,11 @@ q:lang(zu) {
         text-overflow: ellipsis;
     }
 
-    #generated-toc a:hover, #generated-toc a:focus {
+    #ui-toc a:hover, #ui-toc a:focus {
         color: rgb(150, 220, 255) !important;
     }
 
-    #generated-toc a#generated-toc-hide-toc {
+    #ui-toc a#ui-toc-hide {
         display: block;
         position: fixed;
         max-width: 50px;
@@ -651,7 +650,7 @@ q:lang(zu) {
         opacity: 0.25 !important;
     }
 
-    #generated-toc a#generated-toc-hide-toc:hover {
+    #ui-toc a#ui-toc-hide:hover {
         color: rgba(255, 255, 255, 0.98) !important;
         -webkit-transition: opacity 0.2s;
         transition: opacity 0.2s;
@@ -662,7 +661,7 @@ q:lang(zu) {
 
 @media print {
 
-    #status-bar, #generated-toc {
+    #ui-status-bar, #ui-toc {
         display: none !important;
     }
 

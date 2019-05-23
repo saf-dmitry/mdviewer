@@ -17,13 +17,13 @@ function setStatusBar() {
                 + "</span>";
         }
         var sbar = document.createElement("div");
-        sbar.id = "status-bar";
+        sbar.id = "ui-status-bar";
         sbar.appendChild(msg);
         document.body.insertBefore(sbar, document.body.lastChild);
     }
 
     function hideURL(ev) {
-        var sbar = document.getElementById("status-bar");
+        var sbar = document.getElementById("ui-status-bar");
         if (sbar) {
             sbar.parentNode.removeChild(sbar);
         }
@@ -39,11 +39,11 @@ function setStatusBar() {
 
 function generateTOC() {
 
-    var toc = document.getElementById("generated-toc");
+    var toc = document.getElementById("ui-toc");
     if (toc) { toc.parentNode.removeChild(toc) }
 
     toc = document.createElement("nav");
-    toc.id = "generated-toc";
+    toc.id = "ui-toc";
     toc.style.display = "none";
     toc.oncontextmenu = function () { return false };
     document.body.insertBefore(toc, document.body.lastChild);
@@ -57,7 +57,7 @@ function generateTOC() {
         if (heading.id) {
             ref = heading.getAttribute("id");
         } else {
-            ref = "toc-" + i;
+            ref = "ui-toc-" + i;
             heading.id = ref;
         }
 
@@ -66,27 +66,27 @@ function generateTOC() {
         link.appendChild(document.createTextNode(heading.innerText || heading.textContent));
 
         var entry = document.createElement("div");
-        entry.className = "toc-" + heading.tagName.toLowerCase();
+        entry.className = "ui-toc-" + heading.tagName.toLowerCase();
         entry.appendChild(link);
         toc.appendChild(entry);
 
     });
 
     var hidetoc = document.createElement("a");
-    hidetoc.id = "generated-toc-hide-toc";
+    hidetoc.id = "ui-toc-hide";
     hidetoc.textContent = "Hide";
     hidetoc.title = "Hide Navigation pane";
     hidetoc.addEventListener ("click", function () { toc.style.display = "none" });
     toc.appendChild(hidetoc);
 
     if (typeof(window.MathJax) !== "undefined") {
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "generated-toc"]);
+        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "ui-toc"]);
     }
 
 }
 
 function toggleTOC() {
-    var toc = document.getElementById("generated-toc");
+    var toc = document.getElementById("ui-toc");
     if (toc) {
         if (toc.style.display === "none") {
             toc.style.display = "block";
