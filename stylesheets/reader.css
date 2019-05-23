@@ -402,7 +402,7 @@ h1 > .tag, h2 > .tag, h3 > .tag {
     font-size: 90%;
 }
 
-div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.note, div.hint, div.tip {
+div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.note, div.info, div.hint, div.tip {
     display: block;
     margin: 0.5rem auto;
     padding: 0.4rem 1rem 0.2rem 1rem;
@@ -445,11 +445,11 @@ div.hint:before, div.tip:before {
     font-weight: 900;
 }
 
-div.note {
+div.note, div.info {
     background-color: rgb(232, 240, 254);
 }
 
-div.note:before {
+div.note:before, div.info:before {
     display: block;
     content: "\f05a";
     color: rgba(26, 115, 232, 0.8);
