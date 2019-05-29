@@ -514,6 +514,22 @@ q:lang(zu) {
 
 /* GUI */
 
+@font-face {
+    font-family: "Font Awesome";
+    font-style: normal;
+    font-weight: 400;
+    font-display: auto;
+    src: url(./webfonts/fa-regular-400.otf) format("opentype");
+}
+
+@font-face {
+    font-family: "Font Awesome";
+    font-style: normal;
+    font-weight: 900;
+    font-display: auto;
+    src: url(./webfonts/fa-solid-900.otf) format("opentype");
+}
+
 @media screen {
 
     #ui-status-bar {
@@ -541,7 +557,7 @@ q:lang(zu) {
         -webkit-user-select: none;
     }
 
-    #ui-status-bar .secondary-text {
+    #ui-status-bar span.secondary-text {
         opacity: 0.6;
     }
 
@@ -635,7 +651,7 @@ q:lang(zu) {
         color: rgb(150, 220, 255) !important;
     }
 
-    #ui-toc a#ui-toc-hide {
+    #ui-toc #ui-toc-hide {
         display: block;
         position: fixed;
         max-width: 50px;
@@ -650,11 +666,18 @@ q:lang(zu) {
         opacity: 0.25 !important;
     }
 
-    #ui-toc a#ui-toc-hide:hover {
+    #ui-toc #ui-toc-hide:hover {
         color: rgba(255, 255, 255, 0.98) !important;
         -webkit-transition: opacity 0.2s;
         transition: opacity 0.2s;
         opacity: 1 !important;
+    }
+
+    #ui-toc span.ui-toc-hide-icon:before {
+        content: "\f00d";
+        font-size: 14px;
+        font-weight: 400;
+        font-family: Font Awesome;
     }
 
 }

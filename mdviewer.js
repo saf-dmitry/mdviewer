@@ -72,12 +72,14 @@ function generateTOC() {
 
     });
 
-    var hidetoc = document.createElement("a");
-    hidetoc.id = "ui-toc-hide";
-    hidetoc.textContent = "Hide";
-    hidetoc.title = "Hide Navigation pane";
-    hidetoc.addEventListener ("click", function () { toc.style.display = "none" });
-    toc.appendChild(hidetoc);
+    var hidetoc = document.createElement("span");
+    var hidetocbtn = document.createElement("a");
+    hidetoc.className = "ui-toc-hide-icon";
+    hidetocbtn.appendChild(hidetoc);
+    hidetocbtn.id = "ui-toc-hide";
+    hidetocbtn.title = "Hide Navigation pane";
+    hidetocbtn.addEventListener ("click", function () { toc.style.display = "none" });
+    toc.appendChild(hidetocbtn);
 
     if (typeof(window.MathJax) !== "undefined") {
         MathJax.Hub.Queue(["Typeset", MathJax.Hub, "ui-toc"]);
