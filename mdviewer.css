@@ -514,22 +514,6 @@ q:lang(zu) {
 
 /* GUI */
 
-@font-face {
-    font-family: "Font Awesome";
-    font-style: normal;
-    font-weight: 400;
-    font-display: auto;
-    src: url(./webfonts/fa-regular-400.otf) format("opentype");
-}
-
-@font-face {
-    font-family: "Font Awesome";
-    font-style: normal;
-    font-weight: 900;
-    font-display: auto;
-    src: url(./webfonts/fa-solid-900.otf) format("opentype");
-}
-
 @media screen {
 
     #ui-status-bar {
@@ -655,30 +639,18 @@ q:lang(zu) {
     #ui-toc #ui-toc-hide {
         display: block;
         position: fixed;
-        max-width: 50px;
         bottom: 15px;
         right: 30px;
-        padding: 2px;
-        text-align: center;
+        width: 24px;
+        height: 24px;
+        background: url("data:image/svg+xml;utf8,<svg focusable='false' height='24px' width='24px' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z' fill='white'></path><path d='M0 0h24v24H0z' fill='none'></path></svg>") no-repeat !important;
         z-index: 1000;
         cursor: pointer;
-        -webkit-transition: opacity 0.2s;
-        transition: opacity 0.2s;
-        opacity: 0.25 !important;
+        opacity: 0.2 !important;
     }
 
     #ui-toc #ui-toc-hide:hover {
-        color: rgba(255, 255, 255, 0.98) !important;
-        -webkit-transition: opacity 0.2s;
-        transition: opacity 0.2s;
-        opacity: 1 !important;
-    }
-
-    #ui-toc span.ui-toc-hide-icon:before {
-        content: "\f00d";
-        font-size: 14px;
-        font-weight: 400;
-        font-family: Font Awesome;
+        opacity: 0.8 !important;
     }
 
 }
