@@ -524,11 +524,11 @@ q:lang(zu) {
         left: 2px;
         color: rgb(0, 0, 0);
         background: rgb(239, 239, 239);
-        padding: 0 4px;
+        padding: 2px 5px;
         border: none;
         border-radius: 2px;
         font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, DejaVu Sans, Liberation Sans, sans-serif;
-        font-size: 12px;
+        font-size: 13px;
         font-weight: 400;
         line-height: 1.2;
         text-align: left;
