@@ -498,6 +498,10 @@ div.algorithm {
     background-color: rgb(246, 248, 250);
 }
 
+div.nomenclature > ul {
+    list-style-type: none;
+}
+
 div.epigraph {
     margin: 1.5rem 1.5rem;
 }
