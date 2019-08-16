@@ -1,13 +1,10 @@
 
 MathJax.Hub.Config({
-    jax: ["input/TeX",
-          "output/HTML-CSS"],
-    extensions: ["tex2jax.js",
-                 "MathMenu.js",
-                 "MathZoom.js"],
+    jax: ["input/TeX", "output/HTML-CSS"],
+    extensions: ["tex2jax.js", "MathMenu.js"],
     tex2jax: {
-        inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-        displayMath: [ ["$$","$$"], ["\\[","\\]"] ],
+        inlineMath: [["$","$"], ["\\(","\\)"]],
+        displayMath: [["$$","$$"], ["\\[","\\]"]],
         processRefs: true,
         processEscapes: true,
         processEnvironments: true
@@ -28,10 +25,7 @@ MathJax.Hub.Config({
     },
     "HTML-CSS": {
         scale: 98,
-        linebreaks: {
-            automatic: false
-        },
-        fonts: ["Latin-Modern","TeX","STIX-Web"]
+        fonts: ["Latin-Modern", "TeX", "STIX-Web"]
     }
 });
 
