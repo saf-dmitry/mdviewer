@@ -294,8 +294,8 @@ table th, table td {
 }
 
 table th {
-    font-weight: 700;
-    border-bottom: 1px solid rgba(112, 118, 124, 0.08);
+    font-weight: 400;
+    border-bottom: 2px solid rgba(112, 118, 124, 0.05);
 }
 
 table tr {
