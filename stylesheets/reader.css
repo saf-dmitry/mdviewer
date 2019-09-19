@@ -229,7 +229,7 @@ cite {
 blockquote {
     display: block;
     margin: 0.5rem 0;
-    padding: 0 0.8rem;
+    padding: 0 1.2rem;
 }
 
 blockquote:first-child {
@@ -465,7 +465,7 @@ div.example, div.exercise, div.algorithm {
 }
 
 div.example {
-    background-color: rgb(247, 247, 235);
+    background-color: rgb(246, 246, 238);
 }
 
 div.exercise {

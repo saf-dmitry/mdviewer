@@ -241,7 +241,6 @@ blockquote {
     margin: 0.5rem 0;
     padding: 0 0.8rem;
     border-left: 4px solid rgba(112, 118, 124, 0.2);
-    color: rgb(106, 115, 125);
 }
 
 blockquote:first-child {
@@ -273,7 +272,7 @@ figure figcaption, div.figure p.caption {
     text-align: center;
     margin-top: 0.1rem;
     margin-bottom: 0;
-    color: rgb(106, 115, 125);
+    color: rgb(134, 134, 138);
 }
 
 table {
@@ -318,7 +317,7 @@ table caption {
     caption-side: top;
     margin-top: 0;
     margin-bottom: 0.2rem;
-    color: rgb(106, 115, 125);
+    color: rgb(134, 134, 138);
 }
 
 svg:not(:root) {
@@ -389,7 +388,7 @@ input[type=checkbox]:before {
     content: "\f0c8";
     font-size: 95%;
     font-weight: 400;
-    color: rgba(36, 42, 64, 0.5);
+    color: rgba(36, 41, 61, 0.4);
     font-family: Font Awesome;
 }
 
@@ -487,7 +486,7 @@ div.example, div.exercise, div.algorithm {
 }
 
 div.example {
-    background-color: rgb(247, 247, 235);
+    background-color: rgb(246, 246, 238);
 }
 
 div.exercise {
