@@ -272,7 +272,7 @@ figure figcaption, div.figure p.caption {
     text-align: center;
     margin-top: 0.1rem;
     margin-bottom: 0;
-    color: rgb(134, 134, 138);
+    color: rgb(142, 142, 142);
 }
 
 table {
@@ -317,7 +317,7 @@ table caption {
     caption-side: top;
     margin-top: 0;
     margin-bottom: 0.2rem;
-    color: rgb(134, 134, 138);
+    color: rgb(142, 142, 142);
 }
 
 svg:not(:root) {
