@@ -364,7 +364,7 @@ input[type=checkbox] {
 }
 
 input[type=checkbox]:before {
-    content: "\f0c8";
+    content: "\f111";
     font-size: 95%;
     font-weight: 400;
     color: rgba(0, 0, 0, 0.4);
@@ -372,7 +372,7 @@ input[type=checkbox]:before {
 }
 
 input[type=checkbox]:checked:before {
-    content: "\f14a";
+    content: "\f058";
     font-weight: 900;
 }
 
