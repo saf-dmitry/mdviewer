@@ -258,6 +258,7 @@ blockquote blockquote {
 img {
     height: auto;
     max-width: 100%;
+    object-fit: contain !important;
 }
 
 figure, div.figure {
@@ -329,6 +330,7 @@ video {
     height: auto;
     max-width: 100% !important;
     margin: 0.5rem auto;
+    object-fit: contain !important;
 }
 
 .title {
