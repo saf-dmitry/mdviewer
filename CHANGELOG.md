@@ -1,5 +1,4 @@
 
-
 # Development Version
 
 Changed:
@@ -8,7 +7,6 @@ Changed:
 - Fixed handling of internal links
 - Updated style sheets
 - Improved Navigation pane
-
 
 # v0.4
 
@@ -28,13 +26,11 @@ Changed:
 - Remember selected style sheet
 - Save settings on window closing
 
-
 # v0.3
 
 Changed:
 
 - The main module is ported to Python 3 and PyQt5
-
 
 # v0.2
 
@@ -53,7 +49,6 @@ Fixed:
 Removed:
 
 - Temporarily removed "Scroll To Edit" feature
-
 
 # v0.1
 

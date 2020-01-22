@@ -1,5 +1,4 @@
 
-
 # MDviewer
 
 MDviewer is a cross-platform and editor-agnostic previewer for Markdown files. You can use it with your favorite text editor and the Preview updates every time you save. In applications that automatically save in the background, the Preview will be updated at save intervals as you type.
@@ -7,7 +6,6 @@ MDviewer is a cross-platform and editor-agnostic previewer for Markdown files. Y
 MDviewer can also be configured to work with just about any syntax and processor you need, including Textile, reStructuredText, MediaWiki, AsciiDoc, Graphviz and more.
 
 ![](images/screenshot_01.png)
-
 
 # Contents
 
@@ -35,7 +33,6 @@ MDviewer can also be configured to work with just about any syntax and processor
 - [Bugs](#bugs)
 - [License](#license)
 
-
 # Installation
 
 MDviewer requires the following packages to run:
@@ -53,9 +50,7 @@ The current MDviewer version is based on Qt WebKit browser engine, which is drop
 
 To install and configure Markdown (or other markup) processor see the [Setting a Markdown Processor](#setting-a-markdown-processor) section below.
 
-
 # Configuration
-
 
 ## Configuration Files
 
@@ -68,7 +63,6 @@ By default, MDviewer checks the following places for configuration files, in the
 
 In general, you should place your personal settings in `$HOME/.config/mdviewer/settings.yml` (or `%APPDATA%\mdviewer\settings.yml`), so they will be preserved between software updates.
 
-
 ## Setting a Markdown Processor
 
 First, you must specify a Markdown (or other markup) processor in the `processor_path` field of the configuration file. Enter a full path to an executable or script which can return HTML or SVG output on STDOUT and it will be used for Preview and Save operations. Examples of cross-platform Markdown processors include [pandoc][pandoc], [MultiMarkdown][multimarkdown], and [PHP Markdown Extra][php-markdown-extra].
@@ -80,16 +74,13 @@ Configuration file entry example:
     processor_path: /usr/bin/pandoc
     processor_args: --from=markdown --to=html5 --standalone
 
-
 # Basic Usage
-
 
 ## Opening Files
 
 You can open files directly using the "File > Open" menu option. If a file is currently being displayed it will be closed. Alternatively, you can give the path and name of a particular file as a command-line argument to open that file immediately upon viewer's startup:
 
     mdviewer file.md
-
 
 ## Navigating Preview
 
@@ -99,11 +90,9 @@ There are multiple ways to navigate the Preview window. You may use the scrollba
 
 Pressing the "t" key will toggle the Navigation pane showing the Table of Contents, and clicking the title of a heading will navigate to that section of the Preview.
 
-
 ## Choosing a Style
 
 You can select a preview and print style in the "Style" drop-down menu. You can add your own styles as described in the [Adding Custom Styles](#adding-custom-styles) section.
-
 
 ## Zooming In and Out
 
@@ -111,13 +100,11 @@ You can increase or decrease the magnification of the document view using the "V
 
 Depending on the selected style zooming will change the size of everything on the Preview, including text and images, or just the size of the font.
 
-
 ## Clicking External Links
 
 Clicking an external link in your document's Preview will open it in your default web browser. If the link points to a local file then it will be opened with a suitable application instead of a web browser.
 
 The user's desktop settings control whether certain executable file types are opened for browsing, or if they are executed instead. Some desktop environments are configured to prevent users from executing files obtained from non-local URLs, or to ask the user's permission before doing so.
-
 
 ## Searching
 
@@ -125,11 +112,9 @@ The search bar on the bottom of the viewing area can be accessed with the "File 
 
 The checkboxes on the left side of the search field allow you to narrow the search down by case sensitivity and wrap the search around the document boundaries. Clicking the "Done" button will hide the search bar.
 
-
 ## Exporting HTML
 
 The "File > Save HTML" menu option will allow you to save a full HTML document ready for sharing or publishing.
-
 
 ## Printing
 
@@ -137,9 +122,7 @@ The "File > Print" menu option will bring up a standard print dialog. Here you c
 
 You can save the Preview as paginated PDF by choosing "Print to File (PDF)" in the drop-down list of available printers.
 
-
 # Advanced Usage
-
 
 ## Adding Custom Styles
 
@@ -151,10 +134,9 @@ Tip: Use the Web Inspector to see what elements and attributes exist and what CS
 
 Note: Import of existing CSS files in custom style sheets using the `@import` rule currently has a drawback that you will need to reload the Preview (by pressing F5 or selecting "Reload" in the context menu) first time after selecting the custom style sheet to evaluate the importing step.
 
-
 ## Using Math Formulas
 
-You can use [MathJax][mathjax] JavaScrpt library to render inline and displayed LaTeX equations embedded in your documents.
+You can use [MathJax][mathjax] JavaScript library to render inline and displayed LaTeX equations embedded in your documents.
 
 To install MathJax on Debian-based systems such as Ubuntu or Mint, all you need to do is
 
@@ -175,11 +157,9 @@ Pandoc provides the `--mathjax[=URL]` command-line option. The URL should point 
     pandoc --from=markdown --to=html5 --standalone \
            --mathjax=/usr/share/javascript/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
-
 MathJax supports most of the standard TeX and LaTeX math syntax, as well as some AMS and other LaTeX extensions and custom macros. See [MathJax TeX and LaTeX Support][mathjax-tex] and [Loading and Configuring MathJax][mathjax-config] pages for details. In the MDviewer's `extras` directory you can find an example of MathJax's local configuration file, which you can use as a starting point for your own configuration.
 
 Please note that MathJax doesn't provide a full LaTeX environment. Only math-mode macros are supported.
-
 
 ## Evaluating Environment Variables
 
@@ -211,9 +191,7 @@ make it executable and point the processor setting to it:
     processor_path: mdviewer-proc.sh
     processor_args: ""
 
-
 # Troubleshooting
-
 
 ## Preview Not Updating
 
@@ -239,7 +217,6 @@ Many editors can be configured to update existing file in place when saving inst
 
         "atomic_save": false
 
-
 ## Overall Performance Issue
 
 The rendering performance can vary greatly based on your configuration settings and the document content. There are several factors that can affect rendering speed:
@@ -252,17 +229,14 @@ The rendering performance can vary greatly based on your configuration settings 
 
     The math rendering performance generally depends on the [MathJax][mathjax] configuration, especially the output processor options. Depending on type and complexity of your math you may consider using [KaTeX][katex] with [Auto-render][katex-autorender] extension as alternative solution.
 
-
 # Acknowledgments
 
 - Copyright 2013 Matthew Borgerson <mborgerson@gmail.com>
 - Copyright 2014 Vova Kolobok <vovkkk@ya.ru>
 
-
 # Bugs
 
 MDviewer is developed and tested primarily to work on GNU/Linux and other POSIX-compatible platforms. If you find any bugs in MDviewer, please construct a test case or a patch and open a ticket on the [GitHub issue tracker][github-issues].
-
 
 # License
 
@@ -271,7 +245,6 @@ This program is free software; you can redistribute it and/or modify it under th
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
-
 
 [python]: https://www.python.org/downloads/
 
