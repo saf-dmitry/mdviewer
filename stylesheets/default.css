@@ -25,8 +25,8 @@ html {
 }
 
 body {
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, Open Sans, DejaVu Sans, Liberation Sans, sans-serif;
-    max-width: 740px;
+    font-family: -apple-user, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, Open Sans, DejaVu Sans, Liberation Sans, sans-serif;
+    max-width: 800px;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.5;
@@ -54,37 +54,37 @@ h1, h2, h3, h4, h5, h6 {
     font-style: normal;
     font-weight: 400;
     line-height: 1.2;
-    margin-top: 1.6rem;
+    margin-top: 2.2rem;
     margin-bottom: 1rem;
 }
 
 h1, h2 {
     border-bottom:  1px solid rgba(12, 18, 24, 0.08);
-    padding-bottom: 1px;
+    padding-bottom: 4px;
 }
 
 h1 {
-    font-size: 2.4rem;
-}
-
-h2 {
     font-size: 2.2rem;
 }
 
-h3 {
-    font-size: 2rem;
-}
-
-h4 {
+h2 {
     font-size: 1.8rem;
 }
 
-h5 {
+h3 {
+    font-size: 1.6rem;
+}
+
+h4 {
     font-size: 1.4rem;
 }
 
-h6 {
+h5 {
     font-size: 1.2rem;
+}
+
+h6 {
+    font-size: 1.1rem;
 }
 
 hr {
@@ -102,8 +102,8 @@ a {
     color: rgb(3, 102, 214);
     padding-bottom: 0;
     text-decoration: none;
-    -webkit-transition: border-bottom .2s ease-in-out;
-    transition: border-bottom .2s ease-in-out;
+    -webkit-transition: border-bottom 0.2s ease-in-out;
+    transition: border-bottom 0.2s ease-in-out;
 }
 
 a[href^="#"] {
@@ -112,6 +112,14 @@ a[href^="#"] {
 
 a:hover, a:active {
     border-bottom: 1px solid;
+}
+
+a.footnote {
+    font-size: 90%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+    top: -0.25em;
 }
 
 a img {
@@ -294,8 +302,8 @@ table th, table td {
 }
 
 table th {
-    font-weight: 400;
-    border-bottom: 2px solid rgba(112, 118, 124, 0.05);
+    font-weight: 700;
+    border-bottom: 1px solid rgba(112, 118, 124, 0.05);
 }
 
 table tr {
@@ -412,7 +420,7 @@ input[type=checkbox].task-list-item-checkbox {
 .tag {
     color: rgb(3, 102, 214);
     padding: 0.1rem 0.2rem;
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, Open Sans, DejaVu Sans, Liberation Sans, sans-serif;
+    font-family: -apple-user, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, Open Sans, DejaVu Sans, Liberation Sans, sans-serif;
     font-size: 98%;
 }
 
