@@ -57,7 +57,7 @@ class App(QMainWindow):
         self.set_menus()
         self.set_search_bar()
 
-    def set_env (self):
+    def set_env(self):
         path, name = os.path.split(os.path.abspath(self.filename))
         ext = os.path.splitext(name)[-1].lower()
         os.environ["MDVIEWER_EXT"] = ext[1:]
