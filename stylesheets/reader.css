@@ -40,8 +40,6 @@ body {
 }
 
 p {
-    line-height: 1.5;
-    vertical-align: baseline;
     margin-top: 0;
     margin-bottom: 0.8rem;
 }
@@ -51,11 +49,11 @@ q {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-style: normal;
     font-weight: 400;
     line-height: 1.2;
     margin-top: 2.2rem;
     margin-bottom: 1rem;
+    clear: both;
 }
 
 h1 {
@@ -75,21 +73,21 @@ h4 {
 }
 
 h5 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
 }
 
 h6 {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
 hr {
     width: 100%;
     height: 2px;
-    color: rgb(0, 0, 0);
-    border: none;
-    background-color: rgb(0, 0, 0);
+    padding: 0;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
+    background-color: rgb(0, 0, 0);
+    border: none;
     clear: both;
 }
 
@@ -97,29 +95,12 @@ a {
     color: rgb(3, 102, 214);
     padding-bottom: 0;
     text-decoration: none;
-    -webkit-transition: border-bottom 0.2s ease-in-out;
     transition: border-bottom 0.2s ease-in-out;
-}
-
-a[href^="#"] {
-    color: rgb(3, 102, 214);
+    -webkit-transition: border-bottom 0.2s ease-in-out;
 }
 
 a:hover, a:active {
     border-bottom: 1px solid;
-}
-
-a.footnote {
-    font-size: 90%;
-    line-height: 0;
-    position: relative;
-    vertical-align: baseline;
-    top: -0.25em;
-}
-
-a img {
-    border: none;
-    outline: none;
 }
 
 abbr[title] {
@@ -141,30 +122,34 @@ sub {
     bottom: -0.25em;
 }
 
-pre, code, tt, kbd, samp {
+sup > a, a > sup {
+    padding-left: 1px;
+}
+
+code, pre, tt, kbd, samp {
     font-size: 100%;
     font-family: SFMono-Regular, Consolas, Ubuntu Mono, DejaVu Sans Mono, Source Code Pro, Liberation Mono, Menlo, Courier, monospace;
     tab-size: 4;
+}
+
+code {
+    padding: 0 0.2rem;
+    white-space: pre-wrap;
 }
 
 pre {
     padding: 0.5rem 1rem;
     overflow: auto;
     white-space: pre !important;
-    word-wrap: normal;
 }
 
-code {
-    padding: 0rem 0.2rem;
-    white-space: pre-wrap !important;
-}
-
-pre > code, code > pre {
-    padding: 0rem;
+pre code {
+    margin: 0;
+    padding: 0;
     line-height: 1.5;
     overflow-x: scroll;
     background-color: transparent;
-    white-space: pre !important;
+    white-space: pre;
 }
 
 h1 > code, h2 > code, h3 > code {
@@ -194,20 +179,7 @@ ol {
     list-style-type: outside decimal;
 }
 
-ol ol, ul ol {
-    list-style-type: lower-roman;
-}
-
-ul ul ol, ul ol ol, ol ul ol, ol ol ol {
-    list-style-type: lower-alpha;
-}
-
-ul ul, ul ol {
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-ol ol, ol ul {
+ul ul, ul ol, ol ul, ol ol {
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -218,6 +190,7 @@ li {
 }
 
 li > p {
+    margin-top: 0;
     margin-bottom: 0;
 }
 
@@ -226,8 +199,8 @@ li p + p {
 }
 
 dl dt {
-    margin-top: 0.5rem;
     font-weight: 700;
+    margin-top: 0.5rem;
 }
 
 cite {
@@ -235,7 +208,6 @@ cite {
 }
 
 blockquote {
-    display: block;
     margin: 0.5rem 0;
     padding: 0 1.2rem;
 }
@@ -248,14 +220,13 @@ blockquote:last-child {
     margin-bottom: 1rem;
 }
 
-blockquote blockquote {
+blockquote > blockquote {
     padding-right: 0;
 }
 
 img {
-    height: auto;
     max-width: 100%;
-    object-fit: contain !important;
+    object-fit: contain;
 }
 
 figure, div.figure {
@@ -264,12 +235,10 @@ figure, div.figure {
 }
 
 figure figcaption, div.figure p.caption {
-    font-style: inherit;
-    font-weight: inherit;
     font-size: 95%;
     text-align: center;
     margin-top: 0.1rem;
-    margin-bottom: 0;
+    margin-bottom: 0.1rem;
 }
 
 table {
@@ -299,8 +268,6 @@ table + table {
 }
 
 table caption {
-    font-style: inherit;
-    font-weight: inherit;
     font-size: 95%;
     text-align: center;
     caption-side: top;
@@ -308,16 +275,15 @@ table caption {
     margin-bottom: 0.2rem;
 }
 
-svg:not(:root) {
-    overflow: hidden;
-}
-
 video {
     display: block;
-    height: auto;
-    max-width: 100% !important;
+    max-width: 100%;
+    object-fit: contain;
     margin: 0.5rem auto;
-    object-fit: contain !important;
+}
+
+object {
+    max-width: 100%;
 }
 
 .title {
@@ -360,6 +326,15 @@ video {
     border-style: none;
 }
 
+a.footnote {
+    font-size: 85%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+    top: -0.25em;
+    padding: 1px;
+}
+
 pre.sourceCode {
     border: none;
 }
@@ -386,7 +361,7 @@ input[type=checkbox]:checked:before {
     font-weight: 900;
 }
 
-li.task-list-item {
+.task-list-item {
     list-style-type: none;
 }
 
@@ -412,18 +387,18 @@ h1 > .tag, h2 > .tag, h3 > .tag {
     font-size: 90%;
 }
 
-div.attention, div.important, div.danger, div.error, div.caution, div.warning, div.info, div.hint, div.tip {
+.attention, .important, .danger, .error, .caution, .warning, .info, .hint, .tip {
     display: block;
     margin: 0.5rem auto;
     padding: 0.4rem 1rem 0.2rem 1rem;
     border-radius: 0.1rem;
 }
 
-div.attention, div.important, div.danger, div.error {
+.attention, .important, .danger, .error {
     background-color: rgb(252, 232, 235);
 }
 
-div.attention:before, div.important:before, div.danger:before, div.error:before {
+.attention:before, .important:before, .danger:before, .error:before {
     display: block;
     content: "\f057";
     color: rgba(217, 48, 37, 0.8);
@@ -431,11 +406,11 @@ div.attention:before, div.important:before, div.danger:before, div.error:before 
     font-weight: 900;
 }
 
-div.caution, div.warning {
+.caution, .warning {
     background-color: rgb(254, 239, 227);
 }
 
-div.caution:before, div.warning:before {
+.caution:before, .warning:before {
     display: block;
     content: "\f071";
     color: rgba(250, 123, 23, 0.8);
@@ -443,11 +418,11 @@ div.caution:before, div.warning:before {
     font-weight: 900;
 }
 
-div.hint, div.tip {
+.hint, .tip {
     background-color: rgb(243, 232, 253);
 }
 
-div.hint:before, div.tip:before {
+.hint:before, .tip:before {
     display: block;
     content: "\f05a";
     color: rgba(161, 66, 244, 0.8);
@@ -455,11 +430,11 @@ div.hint:before, div.tip:before {
     font-weight: 900;
 }
 
-div.info {
+.info {
     background-color: rgb(232, 240, 254);
 }
 
-div.info:before {
+.info:before {
     display: block;
     content: "\f05a";
     color: rgba(26, 115, 232, 0.8);
@@ -467,36 +442,36 @@ div.info:before {
     font-weight: 900;
 }
 
-div.example, div.exercise, div.algorithm {
+.example, .exercise, .algorithm {
     display: block;
     margin: 0.5rem auto;
     padding: 0.8rem 1rem 0.2rem 1rem;
     border-radius: 0.1rem;
 }
 
-div.example {
+.example {
     background-color: rgb(246, 246, 238);
 }
 
-div.exercise {
+.exercise {
     background-color: rgb(250, 247, 240);
 }
 
-div.algorithm {
+.algorithm {
     background-color: rgb(246, 248, 250);
 }
 
-div.note {
+.note {
     display: block;
     margin: 0.5rem auto;
     font-size: 90%;
 }
 
-div.nomenclature > ul {
+.nomenclature > ul {
     list-style-type: none;
 }
 
-div.epigraph {
+.epigraph {
     margin: 1.5rem 1.5rem;
 }
 
@@ -517,7 +492,7 @@ p {
     -webkit-hyphens: auto;
 }
 
-pre, code, kbd, samp {
+code, kbd, samp {
     hyphens: none;
     -webkit-hyphens: none;
 }
@@ -544,47 +519,46 @@ h1, h2, h3, h4, h5, h6 {
         max-width: none;
         background-color: transparent;
         overflow: visible;
-        float: none !important;
     }
 
     a {
-        text-decoration: none !important;
-        border-style: none !important;
+        text-decoration: none;
+        border-style: none;
     }
 
     p a[href]:after, li a[href]:after {
-        content: " (" attr(href) ")" !important;
-        word-wrap: break-word !important;
+        content: " (" attr(href) ")";
+        word-wrap: break-word;
     }
 
     a[href=""]:after, a[href^="#"]:after {
-        display: none !important;
+        display: none;
     }
 
     a[href^="javascript:"]:after {
-        display: none !important;
+        display: none;
     }
 
     a[href^="#fnref"] {
-        display: none !important;
+        display: none;
     }
 
     abbr {
-        border-bottom: none !important;
+        border-bottom: none;
     }
 
-    pre > code, code > pre {
-        white-space: pre-wrap !important;
+    pre code {
+        white-space: pre-wrap;
         overflow: visible;
     }
 
     h1, h2, h3, h4, h5, h6 {
-        page-break-after: avoid !important;
-        page-break-inside: avoid !important;
+        break-after: avoid;
+        break-inside: avoid;
     }
 
     figure, div.figure {
-        page-break-inside: avoid !important;
+        break-inside: avoid;
     }
 
     p {
@@ -593,7 +567,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .page-break, .pagebreak {
-        border-bottom: none !important;
+        display: none;
     }
 
 }

@@ -1,7 +1,7 @@
 
 function setStatusBar() {
 
-    function showURL(ev) {
+    function showURL (ev) {
         var msg = document.createElement("span");
         if (this.pathname == window.location.pathname &&
             this.protocol == window.location.protocol &&
@@ -22,7 +22,7 @@ function setStatusBar() {
         document.body.insertBefore(sbar, document.body.lastChild);
     }
 
-    function hideURL(ev) {
+    function hideURL (ev) {
         var sbar = document.getElementById("ui-status-bar");
         if (sbar) {
             sbar.parentNode.removeChild(sbar);
@@ -84,7 +84,7 @@ function generateTOC() {
 
 }
 
-function toggleTOC() {
+function toggleTOC () {
     var toc = document.getElementById("ui-toc");
     if (toc) {
         if (toc.style.display === "none") {
@@ -97,7 +97,7 @@ function toggleTOC() {
     }
 }
 
-function procTaskList() {
+function procTaskList () {
     var items = [].slice.call(document.body.querySelectorAll("li"));
     items.forEach(function (item) {
         element = item.firstChild;
