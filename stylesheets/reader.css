@@ -26,7 +26,7 @@ html {
 
 body {
     font-family: Palatino Linotype, Palatino LT STD, Palatino, Book Antiqua, Georgia, DejaVu Serif, Liberation Serif, serif;
-    max-width: 800px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.5;
@@ -254,7 +254,7 @@ table {
 
 table th, table td {
     height: 2rem;
-    padding: 0.1rem 0.4rem !important;
+    padding: 0.4rem 0.8rem !important;
     vertical-align: center;
 }
 

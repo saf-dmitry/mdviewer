@@ -26,7 +26,7 @@ html {
 
 body {
     font-family: -apple-user, system-ui, BlinkMacSystemFont, Segoe UI, Tahoma, Ubuntu, Helvetica, Arial, Open Sans, DejaVu Sans, Liberation Sans, sans-serif;
-    max-width: 800px;
+    max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
     line-height: 1.5;
@@ -256,31 +256,22 @@ figure figcaption, div.figure p.caption {
 table {
     width: auto;
     overflow: auto;
-    margin: 0.5rem auto 0.8rem auto;
+    margin-top: 0.5rem;
+    margin-bottom: 0.8rem;
     line-height: 1.4;
     border-collapse: collapse;
     border-spacing: 0;
-    border-top: 2px solid rgba(112, 118, 124, 0.1);
-    border-bottom: 2px solid rgba(112, 118, 124, 0.1);
 }
 
 table th, table td {
     height: 2rem;
-    padding: 0.1rem 0.4rem !important;
+    padding: 0.4rem 1.2rem !important;
     vertical-align: center;
+    border: 1px solid rgb(220, 220, 220);
 }
 
 table th {
     font-weight: 700;
-    border-bottom: 1px solid rgba(112, 118, 124, 0.05);
-}
-
-table tr {
-    border-bottom: 1px solid rgba(112, 118, 124, 0.08);
-}
-
-table tr:last-child {
-    border-bottom: none;
 }
 
 table + table {
