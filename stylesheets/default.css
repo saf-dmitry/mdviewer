@@ -301,7 +301,7 @@ object {
 .title {
     font-style: normal;
     font-weight: 400;
-    font-size: 3.2rem;
+    font-size: 2.4rem;
     text-align: center;
     margin-top: 4rem;
     margin-bottom: 1rem;
@@ -311,7 +311,7 @@ object {
 .subtitle {
     font-style: normal;
     font-weight: 400;
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     text-align: center;
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -496,7 +496,7 @@ h1 > .tag, h2 > .tag, h3 > .tag {
 .page-break, .pagebreak {
     width: 100%;
     border-bottom: dashed 1px rgba(100, 100, 100, 0.2);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     position: relative;
 }
 
@@ -580,7 +580,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
     .page-break, .pagebreak {
-        display: none;
+        visibility: hidden;
     }
 
 }
