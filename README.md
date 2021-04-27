@@ -157,7 +157,7 @@ Pandoc provides the `--mathjax[=URL]` command-line option. The URL should point 
     pandoc --from=markdown --to=html5 --standalone \
            --mathjax=/usr/share/javascript/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
-MathJax supports most of the standard TeX and LaTeX math syntax, as well as some AMS and other LaTeX extensions and custom macros. See [MathJax TeX and LaTeX Support][mathjax-tex] and [Loading and Configuring MathJax][mathjax-config] pages for details. In the MDviewer's `extras` directory you can find an example of MathJax's local configuration file, which you can use as a starting point for your own configuration.
+MathJax supports most of the standard TeX and LaTeX math syntax, as well as some AMS and other LaTeX extensions and custom macros. See [MathJax TeX and LaTeX Support][mathjax-tex] page for details. In the MDviewer's `extras` directory you can find an example of MathJax's local configuration file, which you can use as a starting point for your own configuration.
 
 Please note that MathJax doesn't provide a full LaTeX environment. Only math-mode macros are supported.
 
@@ -260,9 +260,7 @@ You should have received a copy of the GNU General Public License along with thi
 
 [mathjax-github]: https://github.com/mathjax/MathJax
 
-[mathjax-tex]: http://docs.mathjax.org/en/latest/tex.html
-
-[mathjax-config]: http://docs.mathjax.org/en/latest/configuration.html
+[mathjax-tex]: http://docs.mathjax.org/en/latest/input/tex/index.html
 
 [katex]: https://katex.org/
 
