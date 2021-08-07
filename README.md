@@ -37,16 +37,20 @@ MDviewer can also be configured to work with just about any syntax and processor
 
 MDviewer requires the following packages to run:
 
-- [Python 3][python] and [PyQt5][pyqt5] libraries
-- Markdown (or other markup) processor
+-   [Python 3][python] and [PyQt5][pyqt5] libraries
+-   Markdown (or other markup) processor
 
 To install Python 3 and PyQt5 on Debian-based systems such as Ubuntu or Mint, you can issue the following command:
 
-    sudo apt-get install python3 python3-yaml python3-pyqt5
+```shell
+sudo apt-get install python3 python3-yaml python3-pyqt5
+```
 
 The current MDviewer version is based on Qt WebKit browser engine, which is dropped from the release since Qt 5.6 and must be installed separately:
 
-    sudo apt-get install python3-pyqt5.qtwebkit
+```shell
+sudo apt-get install python3-pyqt5.qtwebkit
+```
 
 To install and configure Markdown (or other markup) processor see the [Setting a Markdown Processor](#setting-a-markdown-processor) section below.
 
@@ -58,8 +62,8 @@ MDviewer stores all of its configuration data in YAML files which have the `.yml
 
 By default, MDviewer checks the following places for configuration files, in the following order:
 
-- `$HOME/.config/mdviewer/settings.yml` on macOS and GNU/Linux or `%APPDATA%\mdviewer\settings.yml` on MS Windows
-- `settings.yml` in the application's root directory
+-   `$HOME/.config/mdviewer/settings.yml` on macOS and GNU/Linux or `%APPDATA%\mdviewer\settings.yml` on MS Windows
+-   `settings.yml` in the application's root directory
 
 In general, you should place your personal settings in `$HOME/.config/mdviewer/settings.yml` (or `%APPDATA%\mdviewer\settings.yml`), so they will be preserved between software updates.
 
@@ -71,8 +75,10 @@ If the specified processor needs additional arguments besides the file name, spe
 
 Configuration file entry example:
 
-    processor_path: /usr/bin/pandoc
-    processor_args: --from=markdown --to=html5 --standalone
+```yaml
+processor_path: /usr/bin/pandoc
+processor_args: --from=markdown --to=html5 --standalone
+```
 
 # Basic Usage
 
@@ -80,7 +86,9 @@ Configuration file entry example:
 
 You can open files directly using the "File > Open" menu option. If a file is currently being displayed it will be closed. Alternatively, you can give the path and name of a particular file as a command-line argument to open that file immediately upon viewer's startup:
 
-    mdviewer file.md
+```shell
+mdviewer file.md
+```
 
 ## Navigating Preview
 
@@ -140,7 +148,9 @@ You can use [MathJax][mathjax] JavaScript library to render inline and displayed
 
 To install MathJax on Debian-based systems such as Ubuntu or Mint, all you need to do is
 
-    sudo apt-get install libjs-mathjax
+```shell
+sudo apt-get install libjs-mathjax
+```
 
 On UNIX-like systems where MathJax is not packaged, you can download it from [GitHub][mathjax-github] and extract to `/usr/share/javascript/` directory.
 
@@ -148,14 +158,18 @@ Alternatively, you can use a third party CDN server, where the JavaScript needed
 
 To enable MathJax support you have to point your processor or your document template to the `MathJax.js` load script. The exact way depends on your processor (see the [Setting a Markdown Processor](#setting-a-markdown-processor) section). E.g., in case of MultiMarkdown you can add following metadata directly to your Markdown document:
 
-    html header: <script type="text/javascript"
-        src="/usr/share/javascript/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-        </script>
+```text
+html header: <script type="text/javascript"
+    src="/usr/share/javascript/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+```
 
 Pandoc provides the `--mathjax[=URL]` command-line option. The URL should point to the `MathJax.js` load script. If an URL is not provided, a link to the Cloudflare CDN will be inserted.
 
-    pandoc --from=markdown --to=html5 --standalone \
-           --mathjax=/usr/share/javascript/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+```shell
+pandoc --from=markdown --to=html5 --standalone \
+       --mathjax=/usr/share/javascript/MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML
+```
 
 MathJax supports most of the standard TeX and LaTeX math syntax, as well as some AMS and other LaTeX extensions and custom macros. See [MathJax TeX and LaTeX Support][mathjax-tex] page for details. In the MDviewer's `extras` directory you can find an example of MathJax's local configuration file, which you can use as a starting point for your own configuration.
 
@@ -165,31 +179,35 @@ Please note that MathJax doesn't provide a full LaTeX environment. Only math-mod
 
 MDviewer runs the processor in its own shell, meaning standard environment variables are not automatically passed. You can use MDviewer's environment variables to augment your own in your scripts. MDviewer makes the following variables available for use in your shell scripts:
 
-- `MDVIEWER_FILE`: The name of the file being viewed
-- `MDVIEWER_EXT`: The extension of the file being viewed
-- `MDVIEWER_ORIGIN`: The location (base directory) of the file being viewed
+-   `MDVIEWER_FILE`: The name of the file being viewed
+-   `MDVIEWER_EXT`: The extension of the file being viewed
+-   `MDVIEWER_ORIGIN`: The location (base directory) of the file being viewed
 
 These variables allows you to script different processes based on the type and location of file being viewed. For example, on a UNIX-like system you can create a shell script `mdviewer-proc.sh`
 
-    #!/bin/sh
+```shell
+#!/bin/sh
 
-    case "$MDVIEWER_EXT" in
-        md | markdown | text )
-            pandoc --from=markdown --to=html5 --standalone "$1" ;;
-        rst | rest )
-            pandoc --from=rst --to=html5 --standalone "$1" ;;
-        dot )
-            dot -Kdot -Tsvg "$1" ;;
-        html | htm | svg )
-            cat "$1" ;;
-        * )
-            echo "Unknown format: $MDVIEWER_EXT" >&2 ;;
-    esac
+case "$MDVIEWER_EXT" in
+    md | markdown | text )
+        pandoc --from=markdown --to=html5 --standalone "$1" ;;
+    rst | rest )
+        pandoc --from=rst --to=html5 --standalone "$1" ;;
+    dot )
+        dot -Kdot -Tsvg "$1" ;;
+    html | htm | svg )
+        cat "$1" ;;
+    * )
+        echo "Unknown format: $MDVIEWER_EXT" >&2 ;;
+esac
+```
 
 make it executable and point the processor setting to it:
 
-    processor_path: mdviewer-proc.sh
-    processor_args: ""
+```yaml
+processor_path: mdviewer-proc.sh
+processor_args: ""
+```
 
 # Troubleshooting
 
@@ -199,40 +217,46 @@ Some text editors will save by writing to an alternate file and then renaming it
 
 Many editors can be configured to update existing file in place when saving instead of replacing it. Below some configuration tips for popular programming editors.
 
-- __Vim__
+-   __Vim__
 
      Add following line to your `.vimrc` configuration file:
 
-        set backupcopy=yes
+    ```vim
+    set backupcopy=yes
+    ```
 
-- __GNU Emacs__
+-   __GNU Emacs__
 
     Add following line to your `.emacs` configuration file:
 
-        (setq backup-by-copying t)
+    ```elisp
+    (setq backup-by-copying t)
+    ```
 
-- __Sublime Text__
+-   __Sublime Text__
 
     Add following line to your `Preferences.sublime-settings` configuration file:
 
-        "atomic_save": false
+    ```json
+    "atomic_save": false
+    ```
 
 ## Overall Performance Issue
 
 The rendering performance can vary greatly based on your configuration settings and the document content. There are several factors that can affect rendering speed:
 
-- __Document processor__
+-   __Document processor__
 
     Different processors have different performance, which depends on the type of content you have in your document.
 
-- __Documents containing a lot of math expressions__
+-   __Documents containing a lot of math expressions__
 
     The math rendering performance generally depends on the [MathJax][mathjax] configuration, especially the output processor options. Depending on type and complexity of your math you may consider using [KaTeX][katex] with [Auto-render][katex-autorender] extension as alternative solution.
 
 # Acknowledgments
 
-- Copyright 2013 Matthew Borgerson <mborgerson@gmail.com>
-- Copyright 2014 Vova Kolobok <vovkkk@ya.ru>
+-   Copyright 2013 Matthew Borgerson <mborgerson@gmail.com>
+-   Copyright 2014 Vova Kolobok <vovkkk@ya.ru>
 
 # Bugs
 
