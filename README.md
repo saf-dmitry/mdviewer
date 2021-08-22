@@ -217,7 +217,7 @@ Some text editors will save by writing to an alternate file and then renaming it
 
 Many editors can be configured to update existing file in place when saving instead of replacing it. Below some configuration tips for popular programming editors.
 
--   __Vim__
+-   **Vim**
 
      Add following line to your `.vimrc` configuration file:
 
@@ -225,7 +225,7 @@ Many editors can be configured to update existing file in place when saving inst
     set backupcopy=yes
     ```
 
--   __GNU Emacs__
+-   **GNU Emacs**
 
     Add following line to your `.emacs` configuration file:
 
@@ -233,7 +233,7 @@ Many editors can be configured to update existing file in place when saving inst
     (setq backup-by-copying t)
     ```
 
--   __Sublime Text__
+-   **Sublime Text**
 
     Add following line to your `Preferences.sublime-settings` configuration file:
 
@@ -245,11 +245,11 @@ Many editors can be configured to update existing file in place when saving inst
 
 The rendering performance can vary greatly based on your configuration settings and the document content. There are several factors that can affect rendering speed:
 
--   __Document processor__
+-   **Document processor**
 
     Different processors have different performance, which depends on the type of content you have in your document.
 
--   __Documents containing a lot of math expressions__
+-   **Documents containing a lot of math expressions**
 
     The math rendering performance generally depends on the [MathJax][mathjax] configuration, especially the output processor options. Depending on type and complexity of your math you may consider using [KaTeX][katex] with [Auto-render][katex-autorender] extension as alternative solution.
 
