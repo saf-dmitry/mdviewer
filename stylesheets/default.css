@@ -360,7 +360,7 @@ input[type=checkbox] {
     position: relative;
 }
 
-input[type=checkbox]:before {
+input[type=checkbox]::before {
     content: "\f111";
     font-size: 95%;
     font-weight: 400;
@@ -368,7 +368,7 @@ input[type=checkbox]:before {
     font-family: Font Awesome;
 }
 
-input[type=checkbox]:checked:before {
+input[type=checkbox]:checked::before {
     content: "\f058";
     font-weight: 900;
     color: rgba(26, 115, 232, 0.8);
@@ -390,7 +390,7 @@ input[type=checkbox].task-list-item-checkbox {
     font-size: 98%;
 }
 
-.tag:before {
+.tag::before {
     content: "#";
     color: rgb(159, 188, 229);
     padding-right: 1px;
@@ -411,7 +411,7 @@ h1 > .tag, h2 > .tag, h3 > .tag {
     background-color: rgb(252, 232, 235);
 }
 
-.attention:before, .important:before, .danger:before, .error:before {
+.attention::before, .important::before, .danger::before, .error::before {
     display: block;
     content: "\f057";
     color: rgba(217, 48, 37, 0.8);
@@ -423,7 +423,7 @@ h1 > .tag, h2 > .tag, h3 > .tag {
     background-color: rgb(254, 239, 227);
 }
 
-.caution:before, .warning:before {
+.caution::before, .warning::before {
     display: block;
     content: "\f071";
     color: rgba(250, 123, 23, 0.8);
@@ -435,7 +435,7 @@ h1 > .tag, h2 > .tag, h3 > .tag {
     background-color: rgb(243, 232, 253);
 }
 
-.hint:before, .tip:before {
+.hint::before, .tip::before {
     display: block;
     content: "\f05a";
     color: rgba(161, 66, 244, 0.8);
@@ -447,7 +447,7 @@ h1 > .tag, h2 > .tag, h3 > .tag {
     background-color: rgb(232, 240, 254);
 }
 
-.info:before {
+.info::before {
     display: block;
     content: "\f05a";
     color: rgba(26, 115, 232, 0.8);
@@ -539,16 +539,16 @@ h1, h2, h3, h4, h5, h6 {
         border-style: none;
     }
 
-    p a[href]:after, li a[href]:after {
+    p a[href]::after, li a[href]::after {
         content: " (" attr(href) ")";
         word-wrap: break-word;
     }
 
-    a[href=""]:after, a[href^="#"]:after {
+    a[href=""]::after, a[href^="#"]::after {
         display: none;
     }
 
-    a[href^="javascript:"]:after {
+    a[href^="javascript:"]::after {
         display: none;
     }
 
