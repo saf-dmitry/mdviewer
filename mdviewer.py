@@ -90,7 +90,7 @@ class App(QMainWindow):
         scr = os.path.join(app_dir, "mdviewer.js")
         css = os.path.join(app_dir, "mdviewer.css")
         add_resources = """
-        (function () {
+        (function() {
             var head = document.querySelector("head");
             var css = document.createElement("link");
             css.rel = "stylesheet";
