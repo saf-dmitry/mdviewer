@@ -30,7 +30,7 @@ function setStatusBar() {
     }
 
     var links = [].slice.call(document.links);
-    links.forEach(function (link) {
+    links.forEach(function(link) {
         link.addEventListener("mouseover", showURL);
         link.addEventListener("mouseout",  hideURL);
     });
@@ -45,7 +45,7 @@ function generateTOC() {
     toc = document.createElement("nav");
     toc.id = "ui-toc";
     toc.style.display = "none";
-    toc.oncontextmenu = function () { return false };
+    toc.oncontextmenu = function() { return false };
     document.body.insertBefore(toc, document.body.lastChild);
 
     var headings = [].slice.call(document.body.querySelectorAll("h1, h2, h3, h4, h5, h6"));
@@ -75,7 +75,7 @@ function generateTOC() {
     var hidetoc = document.createElement("a");
     hidetoc.id = "ui-toc-hide";
     hidetoc.title = "Hide Navigation pane";
-    hidetoc.addEventListener ("click", function () { toc.style.display = "none" });
+    hidetoc.addEventListener ("click", function() { toc.style.display = "none" });
     toc.appendChild(hidetoc);
 
     if (typeof(window.MathJax) !== "undefined") {

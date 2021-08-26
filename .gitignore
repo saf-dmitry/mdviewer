@@ -1,4 +1,7 @@
 .DS_Store
+*.pyc
+*.pcd
+*.pco
 install.sh
 push.sh
 stylesheets/user.css
