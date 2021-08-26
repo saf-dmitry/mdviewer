@@ -79,7 +79,12 @@ function generateTOC() {
     toc.appendChild(hidetoc);
 
     if (typeof(window.MathJax) !== "undefined") {
-        MathJax.Hub.Queue(["Typeset", MathJax.Hub, "ui-toc"]);
+        let mjversion = parseInt(MathJax.version.split(".")[0]);
+        if (mjversion > 2) {
+            MathJax.typeset();
+        } else {
+            MathJax.Hub.Queue(["Typeset", MathJax.Hub, "ui-toc"]);
+        }
     }
 
 }
