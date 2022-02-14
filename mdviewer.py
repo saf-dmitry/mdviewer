@@ -23,7 +23,7 @@ class App(QMainWindow):
     def QSETTINGS(self):
         return QSettings(QSettings.IniFormat, QSettings.UserScope, "mdviewer", "session")
 
-    def __init__(self, parent = None, filename = ""):
+    def __init__(self, parent=None, filename=""):
         QMainWindow.__init__(self, parent)
         self.filename = filename or os.path.join(app_dir, u"README.md")
 
@@ -84,7 +84,7 @@ class App(QMainWindow):
             self.scroll_pos[self.filename] = self.web_view.page().currentFrame().scrollPosition()
 
         # Update Preview
-        self.web_view.setHtml(text, baseUrl = QUrl.fromLocalFile(os.path.join(os.getcwd(), self.filename)))
+        self.web_view.setHtml(text, baseUrl=QUrl.fromLocalFile(os.path.join(os.getcwd(), self.filename)))
 
         # Load JavaScript and core CSS
         scr = os.path.join(app_dir, "mdviewer.js")
@@ -140,13 +140,13 @@ class App(QMainWindow):
             caller.start(proc, args)
             caller.waitForFinished()
             html = str(caller.readAllStandardOutput(), "utf8")
-            with io.open(filename, "w", encoding = "utf8") as f:
+            with io.open(filename, "w", encoding="utf8") as f:
                 f.writelines(html)
                 f.close()
         else:
             pass
 
-    def find(self, text, btn = ""):
+    def find(self, text, btn=""):
         page = self.web_view.page()
         back = page.FindFlags(1) if btn is self.prev else page.FindFlags(0)
         case = page.FindFlags(2) if self.case.isChecked() else page.FindFlags(0)
@@ -187,7 +187,7 @@ class App(QMainWindow):
                 self.next.setDisabled(False)
                 self.prev.setDisabled(False)
 
-        def _toggle_btn(btn = ""):
+        def _toggle_btn(btn=""):
             self.text.setFocus()
             self.find(self.text.text(), btn)
 
@@ -255,14 +255,14 @@ class App(QMainWindow):
             QDesktopServices.openUrl(url)
 
     @staticmethod
-    def set_stylesheet(self, stylesheet = "default.css"):
+    def set_stylesheet(self, stylesheet="default.css"):
         path = os.path.join(css_dir, stylesheet)
         url = QUrl.fromLocalFile(path)
         self.web_view.settings().setUserStyleSheetUrl(url)
         self.stylesheet = stylesheet
 
     def about(self):
-        msg_about = QMessageBox(0, "About MDviewer", u"MDviewer\n\nVersion: %s" % (VERSION), parent = self)
+        msg_about = QMessageBox(0, "About MDviewer", u"MDviewer\n\nVersion: %s" % (VERSION), parent=self)
         msg_about.show()
 
     def report_issue(self):
@@ -307,8 +307,8 @@ class App(QMainWindow):
             files = [f for f in files if f.endswith(".css")]
             if len(files) > 0:
                 style_menu.setDisabled(False)
-                group = QActionGroup(self, exclusive = True)
-                for i, f in enumerate(files, start = 1):
+                group = QActionGroup(self, exclusive=True)
+                for i, f in enumerate(files, start=1):
                     name = os.path.splitext(f)[0].replace("&", "&&")
                     action = group.addAction(QtWidgets.QAction(name, self))
                     action.triggered.connect(
@@ -335,9 +335,9 @@ class App(QMainWindow):
         self.web_view.addAction(reload_action)
 
         # Define additional shortcuts
-        QShortcut(QKeySequence("j"), self, activated = self.scroll_down)
-        QShortcut(QKeySequence("k"), self, activated = self.scroll_up)
-        QShortcut(QKeySequence("t"), self, activated = self.toggle_toc)
+        QShortcut(QKeySequence("j"), self, activated=self.scroll_down)
+        QShortcut(QKeySequence("k"), self, activated=self.scroll_up)
+        QShortcut(QKeySequence("t"), self, activated=self.toggle_toc)
 
     def closeEvent(self, event):
         self.quit(event)
@@ -380,7 +380,7 @@ class Settings:
         self.load_settings()
 
     def load_settings(self):
-        with io.open(self.settings_file, "r", encoding = "utf8") as f:
+        with io.open(self.settings_file, "r", encoding="utf8") as f:
             self.settings = yaml.safe_load(f)
 
     @classmethod
@@ -396,7 +396,7 @@ def main():
     if len(sys.argv) != 2:
         window = App()
     else:
-        window = App(filename = sys.argv[1])
+        window = App(filename=sys.argv[1])
     window.show()
     sys.exit(app.exec_())
 
