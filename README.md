@@ -37,8 +37,8 @@ MDviewer can also be configured to work with just about any syntax and processor
 
 MDviewer requires the following packages to run:
 
--   [Python 3][python] and [PyQt5][pyqt5] libraries
--   Markdown (or other markup) processor
+- [Python 3][python] and [PyQt5][pyqt5] libraries
+- Markdown (or other markup) processor
 
 To install Python 3 and PyQt5 on Debian-based systems such as Ubuntu or Mint, you can issue the following command:
 
@@ -62,8 +62,8 @@ MDviewer stores all of its configuration data in YAML files which have the `.yml
 
 By default, MDviewer checks the following places for configuration files, in the following order:
 
--   `$HOME/.config/mdviewer/settings.yml` on macOS and GNU/Linux or `%APPDATA%\mdviewer\settings.yml` on MS Windows
--   `settings.yml` in the application's root directory
+- `$HOME/.config/mdviewer/settings.yml` on macOS and GNU/Linux or `%APPDATA%\mdviewer\settings.yml` on MS Windows
+- `settings.yml` in the application's root directory
 
 In general, you should place your personal settings in `$HOME/.config/mdviewer/settings.yml` (or `%APPDATA%\mdviewer\settings.yml`), so they will be preserved between software updates.
 
@@ -179,9 +179,9 @@ Please note that MathJax doesn't provide a full LaTeX environment. Only math-mod
 
 MDviewer runs the processor in its own shell, meaning standard environment variables are not automatically passed. You can use MDviewer's environment variables to augment your own in your scripts. MDviewer makes the following variables available for use in your shell scripts:
 
--   `MDVIEWER_FILE`: The name of the file being viewed
--   `MDVIEWER_EXT`: The extension of the file being viewed
--   `MDVIEWER_ORIGIN`: The location (base directory) of the file being viewed
+- `MDVIEWER_FILE`: The name of the file being viewed
+- `MDVIEWER_EXT`: The extension of the file being viewed
+- `MDVIEWER_ORIGIN`: The location (base directory) of the file being viewed
 
 These variables allows you to script different processes based on the type and location of file being viewed. For example, on a UNIX-like system you can create a shell script `mdviewer-proc.sh`
 
@@ -217,7 +217,7 @@ Some text editors will save by writing to an alternate file and then renaming it
 
 Many editors can be configured to update existing file in place when saving instead of replacing it. Below some configuration tips for popular programming editors.
 
--   **Vim**
+- **Vim**
 
      Add following line to your `.vimrc` configuration file:
 
@@ -225,7 +225,7 @@ Many editors can be configured to update existing file in place when saving inst
     set backupcopy=yes
     ```
 
--   **GNU Emacs**
+- **GNU Emacs**
 
     Add following line to your `.emacs` configuration file:
 
@@ -233,7 +233,7 @@ Many editors can be configured to update existing file in place when saving inst
     (setq backup-by-copying t)
     ```
 
--   **Sublime Text**
+- **Sublime Text**
 
     Add following line to your `Preferences.sublime-settings` configuration file:
 
@@ -245,18 +245,18 @@ Many editors can be configured to update existing file in place when saving inst
 
 The rendering performance can vary greatly based on your configuration settings and the document content. There are several factors that can affect rendering speed:
 
--   **Document processor**
+- **Document processor**
 
     Different processors have different performance, which depends on the type of content you have in your document.
 
--   **Documents containing a lot of math expressions**
+- **Documents containing a lot of math expressions**
 
     The math rendering performance generally depends on the [MathJax][mathjax] configuration, especially the output processor options. Depending on type and complexity of your math you may consider using [KaTeX][katex] with [Auto-render][katex-autorender] extension as alternative solution.
 
 # Acknowledgments
 
--   Copyright 2013 Matthew Borgerson <mborgerson@gmail.com>
--   Copyright 2014 Vova Kolobok <vovkkk@ya.ru>
+- Copyright 2013 Matthew Borgerson <mborgerson@gmail.com>
+- Copyright 2014 Vova Kolobok <vovkkk@ya.ru>
 
 # Bugs
 
