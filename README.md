@@ -251,7 +251,7 @@ The rendering performance can vary greatly based on your configuration settings 
 
 - **Documents containing a lot of math expressions**
 
-    The math rendering performance generally depends on the [MathJax][mathjax] configuration, especially the output processor options. Depending on type and complexity of your math you may consider using [KaTeX][katex] with [Auto-render][katex-autorender] extension as alternative solution.
+    The math rendering performance generally depends on the [MathJax][mathjax] configuration, especially the output processor options. Depending on type and complexity of your math you may consider using [KaTeX][katex] with [Auto-render][katex-autorender] extension as an alternative solution.
 
 # Acknowledgments
 
